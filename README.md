@@ -1,4 +1,4 @@
-# OMI Morelos — Guía de aprendizaje
+# OMRI · Guía de programación
 
 Plataforma educativa en español para estudiantes de secundaria y preparatoria, inspirada en la estructura de USACO Guide. Incluye una entrada desde cero y una introducción a cada uno de los **149 módulos** de su índice público, cotejado el 10 de noviembre de 2026. Es un proyecto educativo independiente, sin afiliación con USACO Guide. No es una convocatoria oficial; los niveles de USACO sirven para organizar el aprendizaje, no representan categorías oficiales de la OMI.
 
@@ -129,4 +129,6 @@ El índice curricular se basa en [USACO Guide](https://usaco.guide/), de Competi
 
 El compilador WebAssembly se basa en [binji/wasm-clang](https://github.com/binji/wasm-clang), con las adaptaciones y la versión de origen documentadas en `public/compiler/NOTICE` y `public/compiler/manifest.json`. Se conservan `public/compiler/LICENSE` y `public/compiler/LICENSE.llvm`; estas licencias de software son independientes de la licencia del material educativo.
 
-Fuentes DM Sans y Manrope bajo SIL Open Font License, con licencias en `public/fonts/`. Iconos de Lucide. Ilustración e identidad visual locales.
+El logotipo, la mascota Entrenator y el favicon proceden del [sitio de la Olimpiada Morelense de Informática](https://www.omri.org.mx/). Sus archivos originales, fuentes y condiciones de atribución se documentan en [public/brand/ATTRIBUTION.md](public/brand/ATTRIBUTION.md). La interfaz toma su paleta verde lima y azul oscuro como referencia para integrar estos recursos en la guía.
+
+Fuentes DM Sans y Manrope bajo SIL Open Font License, con licencias en `public/fonts/`. Iconos de Lucide.

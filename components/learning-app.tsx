@@ -27,7 +27,6 @@ import {
   LayoutDashboard,
   Lightbulb,
   Menu,
-  Mountain,
   NotebookPen,
   Play,
   Search,
@@ -90,7 +89,7 @@ const viewNames: Record<View, string> = {
   problemas: "Problemas",
   apuntes: "Mis apuntes",
   recursos: "Recursos",
-  acerca: "Acerca de la OMI",
+  acerca: "Acerca de la OMRI",
   leccion: "Aprender",
   problema: "Practicar",
   compilador: "Laboratorio C++",
@@ -353,16 +352,10 @@ export default function LearningApp() {
         className={`sidebar ${menu ? "open" : ""}`}
         aria-label="Navegación principal"
       >
-        <a className="brand" href="#/dashboard">
-          <span className="brand-mark">
-            <Code2 size={26} strokeWidth={2.3} />
-          </span>
-          <span>
-            <strong>
-              OMI <span>Morelos</span>
-            </strong>
-            <small>EL SIGUIENTE PASO ERES TÚ</small>
-          </span>
+        <a className="brand" href="#/dashboard" aria-label="OMRI · Guía de programación · Ir al panel">
+          <img className="brand-logo" src={publicAsset("brand/omri-logo.png")}
+            alt="OMRI · Olimpiada Morelense de Informática" width={1080} height={270} />
+          <small>GUÍA DE PROGRAMACIÓN</small>
         </a>
         <div className="workspace-label">
           <span className="tiny-dot" /> Tu espacio de aprendizaje{" "}
@@ -400,7 +393,7 @@ export default function LearningApp() {
             href="#/acerca"
           >
             <Trophy size={19} />
-            Acerca de la OMI
+            Acerca de la OMRI
           </a>
         </nav>
         <div className="sidebar-bottom">
@@ -447,6 +440,8 @@ export default function LearningApp() {
             >
               <Menu size={21} />
             </button>
+            <img className="mobile-brand" src={publicAsset("brand/omri-logo.png")}
+              alt="OMRI" width={1080} height={270} />
             <span>Tu aprendizaje</span>
             <ChevronRight size={14} />
             <strong>{viewNames[route.view]}</strong>
@@ -489,8 +484,7 @@ export default function LearningApp() {
                     <span className="hello-spark">✳</span>
                   </h1>
                   <p>
-                    Aprende a programar, resuelve retos y prepárate para la OMI
-                    Morelos.
+                    Aprende a programar, resuelve retos y prepárate para la OMRI.
                   </p>
                 </div>
                 <span className="local-badge">
@@ -525,11 +519,13 @@ export default function LearningApp() {
                     previa
                   </span>
                 </div>
-                <img
-                  className="hero-illustration"
-                  src={publicAsset("learning-illustration.svg")}
-                  alt="Una ventana de código entre las montañas de Morelos"
-                />
+                <div className="omri-hero-art">
+                  <span className="omri-code-note" aria-hidden="true">cout &lt;&lt; "¡Hola, Morelos!";</span>
+                  <img className="hero-mascot" src={publicAsset("brand/entrenator.png")}
+                    alt="Entrenator, la mascota de la OMRI, listo para acompañarte a programar"
+                    width={512} height={512} />
+                  <span className="mascot-caption">ENTRENATOR <span>· Aprendemos juntos</span></span>
+                </div>
               </section>
               <div className="stats-grid">
                 <Stat
@@ -833,8 +829,9 @@ export default function LearningApp() {
                 title="Un espacio para experimentar"
               />
               <div className="compiler-learning-tip">
-                <Lightbulb size={20} />
+                <img src={publicAsset("brand/entrenator.png")} alt="" width={512} height={512} />
                 <p>
+                  <strong className="mascot-tip-title">Un consejo de Entrenator</strong>
                   Escribe los datos que leerá <code>cin</code> en Entrada y
                   pulsa <strong>Ejecutar</strong>. Si aparece un error, revisa
                   la línea indicada: corregirlo también es aprender. Tus
@@ -1722,9 +1719,8 @@ function Empty({
 }) {
   return (
     <div className="empty-state">
-      <span className="empty-icon">
-        <NotebookPen size={32} />
-      </span>
+      <img className="empty-mascot" src={publicAsset("brand/entrenator.png")}
+        alt="Entrenator te acompaña en tu aprendizaje" width={512} height={512} loading="lazy" />
       <h2>{title}</h2>
       <p>{text}</p>
       <button className="button primary" onClick={action}>
@@ -1954,7 +1950,8 @@ function About() {
         description="Un espacio para quienes tienen ganas de descubrir qué pueden crear con la informática."
       />
       <section className="about-hero">
-        <Mountain size={54} />
+        <img className="about-brand-logo" src={publicAsset("brand/omri-logo.png")}
+          alt="OMRI · Olimpiada Morelense de Informática" width={1080} height={270} loading="lazy" />
         <h2>
           Aprender a resolver problemas
           <br />
@@ -1998,6 +1995,12 @@ function About() {
       <section className="card about-note">
         <h3>Sobre esta guía</h3>
         <p>
+          El logotipo y Entrenator, la mascota que te acompaña, proceden del{" "}
+          <a className="inline-link" href="https://www.omri.org.mx/" target="_blank" rel="noopener noreferrer">
+            sitio de la OMRI
+          </a>. Allí puedes consultar las convocatorias y la información oficial de la olimpiada.
+        </p>
+        <p>
           El temario ampliado recorre {lessons.length} lecciones en{" "}
           {levels.length} etapas y cubre los {guideIndex.length} módulos del
           índice de{" "}
@@ -2010,7 +2013,7 @@ function About() {
             USACO Guide
           </a>
           . Los nombres Bronce, Plata, Oro y Platino organizan el aprendizaje y
-          no representan categorías oficiales de la OMI Morelos.
+          no representan categorías oficiales de la OMRI.
         </p>
         <p>
           Referencia y organización temática: Competitive Programming Initiative
