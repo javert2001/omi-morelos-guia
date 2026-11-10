@@ -8,13 +8,34 @@ export interface Level {
   guideSection?: string;
 }
 
+export type LessonPicture = {
+  caption: string;
+  rows: { label: string; values: string[]; highlight?: number[] }[];
+};
+
+export type LessonSection = {
+  title: string;
+  body: string;
+  code?: string;
+  picture?: LessonPicture;
+  check?: { question: string; answer: string };
+  visual?: string;
+};
+
+export interface GuidedChapter {
+  sections: LessonSection[];
+  takeaway: string;
+}
+
 export interface Lesson {
   id: string;
   level: string;
   title: string;
   description: string;
   minutes: number;
-  sections: { title: string; body: string; code?: string }[];
+  sections: LessonSection[];
+  detailedSections?: LessonSection[];
+  takeaway?: string;
   quiz: {
     question: string;
     options: string[];

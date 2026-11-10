@@ -68,6 +68,7 @@ import CurriculumBrowser from "./curriculum-browser";
 import PracticeCatalog from "./practice-catalog";
 import CppPlayground from "./cpp-playground";
 import LessonExercises from "./lesson-exercises";
+import LessonAnimation, { LessonDrawing } from "./lesson-visual";
 import { guideIndex } from "@/lib/curriculum/source-index";
 import { legacyLevelAliases } from "@/lib/curriculum/levels";
 import { publicAsset } from "@/lib/public-asset";
@@ -1139,17 +1140,17 @@ function LessonPage({
         Volver a mi ruta
       </button>
       <div className="lesson-layout">
-        <article className="lesson-article">
+        <article className={`lesson-article ${lesson.takeaway ? "guided-lesson" : ""}`}>
           <div className="eyebrow">
             {levels.find((l) => l.id === lesson.level)?.title} · LECCIÓN{" "}
             {index + 1}
           </div>
           <h1>{lesson.title}</h1>
-          <p className="lesson-description">{lesson.description}</p>
+          {!lesson.takeaway&&<p className="lesson-description">{lesson.description}</p>}
           <div className="lesson-badges">
             <span>
               <Clock3 size={15} />
-              {lesson.minutes} min de estudio
+              {lesson.takeaway ? `${Math.max(2, Math.ceil(lesson.sections.reduce((n,s)=>n+s.body.split(/\s+/).length,0)/130))} min de lectura` : `${lesson.minutes} min de estudio`}
             </span>
             {done ? (
               <Pill>
@@ -1160,6 +1161,14 @@ function LessonPage({
               <Pill>A tu ritmo</Pill>
             )}
           </div>
+          {lesson.takeaway && <>
+            <div className="lesson-reading-mode"><BookOpen size={15} /> {lesson.sections.length} pasos cortos · lee, mira y prueba</div>
+            <div className="lesson-takeaway"><span>LA IDEA QUE VAMOS A CONSTRUIR</span><p>{lesson.takeaway}</p></div>
+            {!!lesson.prerequisites?.length && <div className="lesson-prerequisite-links"><span>Antes de esta lección:</span>{lesson.prerequisites.map(id => {
+              const previous=lessons.find(item=>item.id===id);
+              return previous?<button key={id} onClick={()=>openLesson(id)}>{previous.title}<ArrowUpRight size={12}/></button>:null;
+            })}</div>}
+          </>}
           <details className="mobile-lesson-contents">
             <summary>Contenido y ejercicios de esta lección</summary>
             {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{i + 1}. {section.title}</button>)}
@@ -1174,7 +1183,7 @@ function LessonPage({
               </p>
             </div>
           )}
-          {!!lesson.objectives?.length && (
+          {!lesson.takeaway && !!lesson.objectives?.length && (
             <section className="lesson-objectives">
               <h2>Al terminar podrás…</h2>
               <ul>
@@ -1189,13 +1198,23 @@ function LessonPage({
           )}
           {lesson.sections.map((s, i) => (
             <section className="lesson-section" id={`lesson-part-${i}`} key={i}>
-              <h2>{s.title}</h2>
+              <h2>{lesson.takeaway&&<span className="lesson-step-number" aria-label={`Paso ${i+1}`}>{String(i+1).padStart(2,"0")}</span>}{s.title}</h2>
               {s.body.split("\n\n").map((p, j) => (
                 <p key={j}>{p}</p>
               ))}
+              {s.picture&&<LessonDrawing picture={s.picture}/>}
+              {s.visual&&<LessonAnimation key={`${lesson.id}:${i}`} visual={s.visual}/>}
               {s.code && <CodeBlock code={s.code} />}
+              {s.check&&<div className="lesson-check"><span>ANTES DE SEGUIR</span><p>{s.check.question}</p><details><summary>Ver la respuesta</summary><p>{s.check.answer}</p></details></div>}
             </section>
           ))}
+          {!!lesson.detailedSections?.length&&<details className="lesson-depth" id="detalle-tecnico">
+            <summary>Quiero profundizar: {lesson.detailedSections.some(section=>section.code)?"detalles y código":"más detalles"}<span>Consulta un tema a la vez cuando estés listo para dar el siguiente paso.</span></summary>
+            <div className="lesson-depth-body">
+              {lesson.objectives&&<p><strong>Para profundizar:</strong> {lesson.objectives.join(" · ")}.</p>}
+              {lesson.detailedSections.map((section,i)=><details key={i}><summary>{section.title}</summary>{section.body.split("\n\n").map((paragraph,j)=><p key={j}>{paragraph}</p>)}{section.code&&<CodeBlock code={section.code}/>}</details>)}
+            </div>
+          </details>}
           {!!lesson.exercises?.length && <LessonExercises lessonId={lesson.id} exercises={lesson.exercises} />}
           <section className="quiz-card">
             <div className="eyebrow">

@@ -13,7 +13,7 @@ const compiler = new BrowserCompilerHarness();
 const failures=[];let examples=0,testCases=0,cached=0,executed=0;
 const solutions=[...problems.map(p=>({id:p.id,code:p.solution,tests:p.tests})),...lessons.flatMap(l=>(l.exercises||[]).flatMap(e=>e.code?[{id:`${l.id}/${e.id}`,code:e.code,tests:e.tests||[]}]:[]))];
 try{
-  for(const lesson of lessons)for(const [index,section] of lesson.sections.entries()){
+  for(const lesson of lessons)for(const [index,section] of [...lesson.sections,...lesson.detailedSections||[]].entries()){
     if(!section.code)continue;examples++;
     const key=hash(JSON.stringify([runtime,'compile',section.code]));
     if(cache[key]){cached++;continue;}
