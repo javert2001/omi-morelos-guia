@@ -1,0 +1,34 @@
+{
+  "upstream": "https://github.com/binji/wasm-clang",
+  "commit": "648c4a89997a351eef75cdaec3ef5b89d4937dec",
+  "assets": {
+    "clang.gz.bin": {
+      "bytes": 10529116,
+      "uncompressedBytes": 31214474,
+      "sha256": "18dc18c0f825de84c984703816980ab4060e45004792b25ced1135eb4887aade",
+      "upstreamSha256": "2a466f0e990329d3230b869d04fc20803eae96a7feb3a3f6c93e25a77b8aed1d",
+      "memoryLimitMiB": 256.0
+    },
+    "lld.gz.bin": {
+      "bytes": 6712813,
+      "uncompressedBytes": 19490096,
+      "sha256": "da4108d844656e647d7367a3c74506939a1648767ea2c2526a8ac6ffbe190657",
+      "upstreamSha256": "36419ed202011765222098d7701218378b67f634d50f0a4625059ae2c9860f48",
+      "memoryLimitMiB": 256.0
+    },
+    "memfs.gz.bin": {
+      "bytes": 18843,
+      "uncompressedBytes": 345444,
+      "sha256": "baa13f6e0b613b842a724f47a475a7aded8e630bb139d866b16b5de17ab9d701",
+      "upstreamSha256": "2c72ee42bd9430029dda8c6bafc9f37143f6fe88d5f1ea950a70259ab748bcfe",
+      "memoryLimitMiB": 64.0
+    },
+    "sysroot.tar.gz.bin": {
+      "bytes": 1814571,
+      "uncompressedBytes": 9297920,
+      "sha256": "2435a7b549af30c2be7ec249c405bc2e911ab0c6003012f0909ec3c131bff867",
+      "upstreamSha256": "2435a7b549af30c2be7ec249c405bc2e911ab0c6003012f0909ec3c131bff867",
+      "memoryLimitMiB": null
+    }
+  }
+}

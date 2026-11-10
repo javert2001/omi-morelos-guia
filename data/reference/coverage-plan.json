@@ -1,0 +1,10 @@
+{
+  "referenceDate": "2026-11-10",
+  "referenceModules": 149,
+  "originalLessonIdsPreserved": 20,
+  "targetLessons": 169,
+  "sourceModuleCounts": { "general": 29, "bronze": 13, "silver": 14, "gold": 29, "plat": 23, "adv": 41 },
+  "source": "https://github.com/cpinitiative/usaco-guide/blob/master/content/ordering.ts",
+  "sourceBlobSha": "896a07fed7b1ef82f6e8eb83a45d5be7e5928d57",
+  "scope": "Cobertura temática del índice público con lecciones originales en español, preguntas y enlaces de referencia; no es una copia íntegra de los artículos ni del banco de problemas externo."
+}

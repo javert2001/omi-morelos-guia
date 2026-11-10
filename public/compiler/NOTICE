@@ -1,0 +1,33 @@
+OMI Morelos — browser C++ compiler
+
+The browser compiler vendors Clang 8.0.1, LLD, memfs, the C/C++ WASI
+sysroot, and an adapted JavaScript runtime from:
+  https://github.com/binji/wasm-clang
+  Revision: 648c4a89997a351eef75cdaec3ef5b89d4937dec
+  Original copyright: 2020 WebAssembly Community Group participants
+
+The JavaScript runtime and memfs are covered by LICENSE (Apache-2.0).
+LLVM/Clang, LLD, libc++, libc++abi and compiler-rt are covered by
+LICENSE.llvm (Apache-2.0 with LLVM exceptions and the included legacy
+LLVM license). Existing header copyright/license notices remain in
+sysroot.tar.gz.bin. The sysroot also contains the WASI libc distribution;
+its license is reproduced in LICENSE.wasi-libc.
+
+Local changes (2026):
+- runtime.js preserves the original copyright header and adds UTF-8 I/O,
+  separate stdout/stderr, corrected wasm32 argument/environment size and
+  pointer-array handling, memory refresh for random_get, clock_time_get,
+  an empty environment and no imported canvas/browser capabilities.
+- The memory section of the Clang and LLD WASM binaries now has a maximum
+  of 4096 pages (256 MiB each); memfs has 1024 pages (64 MiB). These are
+  limits on each linear memory, not the total browser process memory.
+- Compiler assets are gzip-compressed deterministically. The .bin suffix
+  prevents static hosts from applying automatic HTTP decompression.
+  manifest.json records upstream and modified uncompressed SHA-256 hashes.
+- worker.js adds a fresh virtual filesystem per run, a standard-header
+  bits/stdc++.h compatibility header, fixed C++17 flags, compiler-rt
+  linking, UTF-8 output limits, cache validation and phase messages.
+  Compiled student programs have a 128 MiB linear-memory maximum.
+
+The compiler/runtime distributions have their own licenses and are not
+relicensed under the curriculum's Creative Commons license.

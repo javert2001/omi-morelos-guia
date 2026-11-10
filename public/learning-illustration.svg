@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="260" viewBox="0 0 440 260" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Tu primera aventura programando</title>
+  <desc id="desc">Un editor con el mensaje hola, mundo, rodeado de montañas, plantas y un amanecer naranja.</desc>
+  <defs>
+    <filter id="editorShadow" x="-25%" y="-25%" width="160%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#274437" flood-opacity=".1"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#274437" flood-opacity=".04"/>
+    </filter>
+    <filter id="chipShadow" x="-40%" y="-40%" width="180%" height="190%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#274437" flood-opacity=".08"/>
+    </filter>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#88AE94" fill-opacity=".35"/>
+    </pattern>
+    <clipPath id="sunClip"><rect x="303" y="20" width="68" height="62" rx="30"/></clipPath>
+  </defs>
+
+  <rect x="32" y="91" width="80" height="76" fill="url(#dots)"/>
+  <rect x="332" y="173" width="71" height="60" fill="url(#dots)"/>
+  <circle cx="339" cy="58" r="31" fill="#F2B779"/>
+  <path d="M310 58H368M314 67H364M321 76H357" stroke="#E9F1EB" stroke-width="3"/>
+  <path d="M339 13V7M369 26L374 21M382 56H388" stroke="#D99F64" stroke-width="2" stroke-linecap="round"/>
+
+  <path d="M42 213L101 119C103 116 107 116 109 119L169 213H42Z" fill="#B8D7BB"/>
+  <path d="M71 167L101 119C103 116 107 116 109 119L137 163L116 155L103 165L93 154L71 167Z" fill="#E9F1EB"/>
+  <path d="M83 213L134 151C136 148 140 148 142 151L198 213H83Z" fill="#7FAE8C"/>
+  <path d="M111 180L134 151C136 148 140 148 142 151L163 176L148 172L138 181L128 172L111 180Z" fill="#DAE8D8"/>
+  <path d="M38 217C121 208 261 216 391 212" stroke="#A3C2AA" stroke-width="1.5" stroke-linecap="round"/>
+
+  <g transform="rotate(-5 245 132)" filter="url(#editorShadow)">
+    <rect x="121" y="52" width="250" height="166" rx="11" fill="white"/>
+    <rect x="121.5" y="52.5" width="249" height="165" rx="10.5" stroke="#D9E4DA"/>
+    <path d="M122 78H370" stroke="#E6EDE7"/>
+    <circle cx="134" cy="65" r="3" fill="#F2B779"/>
+    <circle cx="145" cy="65" r="3" fill="#D9DEC7"/>
+    <circle cx="156" cy="65" r="3" fill="#B8D7BB"/>
+    <text x="252" y="68" fill="#819486" font-size="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="middle">mi-primer-programa.cpp</text>
+    <path d="M147 88V198" stroke="#EDF2EE"/>
+    <g fill="#B4C1B7" font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" text-anchor="end">
+      <text x="139" y="103">1</text><text x="139" y="122">2</text><text x="139" y="141">3</text><text x="139" y="160">4</text><text x="139" y="179">5</text>
+    </g>
+    <g font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+      <text x="158" y="103" fill="#8B9C8F">// Todo empieza con un hola</text>
+      <text x="158" y="122" fill="#22634A">int <tspan fill="#274437">main() {</tspan></text>
+      <text x="170" y="141" fill="#274437">cout <tspan fill="#7A9983">&lt;&lt;</tspan></text>
+      <text x="184" y="160" fill="#BB854D">"hola, mundo."<tspan fill="#274437">;</tspan></text>
+      <text x="158" y="179" fill="#274437">}</text>
+    </g>
+    <rect x="158" y="191" width="55" height="3" rx="1.5" fill="#E9F1EB"/>
+    <rect x="218" y="191" width="25" height="3" rx="1.5" fill="#E9F1EB"/>
+    <circle cx="352" cy="200" r="3" fill="#B8D7BB"/>
+  </g>
+
+  <g transform="rotate(-10 98 70)" filter="url(#chipShadow)">
+    <rect x="72" y="43" width="52" height="52" rx="12" fill="#FFFFFF"/>
+    <rect x="72.5" y="43.5" width="51" height="51" rx="11.5" stroke="#D9E4DA"/>
+    <path d="M87 63L81 69L87 75M108 63L114 69L108 75M101 59L94 79" stroke="#22634A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="rotate(7 363 188)" filter="url(#chipShadow)">
+    <rect x="338" y="163" width="53" height="53" rx="13" fill="#22634A"/>
+    <path d="M350 178L355 182L350 186" stroke="#B8D7BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M361 187H368" stroke="#B8D7BB" stroke-width="2" stroke-linecap="round"/>
+    <path d="M358 198L363 203L376 190" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <path d="M55 213C56 201 52 183 46 173" stroke="#548568" stroke-width="2" stroke-linecap="round"/>
+  <path d="M53 194C44 193 38 186 38 179C47 179 53 184 53 194Z" fill="#7FAE8C"/>
+  <path d="M55 203C64 198 67 190 64 184C56 187 53 195 55 203Z" fill="#A3C7A7"/>
+  <path d="M49 181C43 178 41 171 43 166C49 170 51 175 49 181Z" fill="#22634A"/>
+  <path d="M305 222C305 215 310 207 315 203" stroke="#7FAE8C" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M308 214C307 208 309 202 315 200C317 207 314 212 308 214Z" fill="#B8D7BB"/>
+  <path d="M305 220C299 218 295 214 296 209C302 209 306 214 305 220Z" fill="#7FAE8C"/>
+
+  <path d="M196 28V36M192 32H200" stroke="#7FAE8C" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="281" cy="232" r="2.5" fill="#F2B779"/>
+  <circle cx="54" cy="114" r="3" fill="#F2B779"/>
+  <path d="M396 132V139M392.5 135.5H399.5" stroke="#A3C2AA" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,953 @@
+{
+  "checkedAt": "2026-11-10",
+  "totalLessons": 169,
+  "sourceModules": 149,
+  "codeExamples": 56,
+  "optionalLessons": 52,
+  "stages": [
+    {
+      "id": "inicio",
+      "title": "Primeros pasos",
+      "lessons": 5,
+      "sourceModules": 0
+    },
+    {
+      "id": "fundamentos",
+      "title": "Fundamentos",
+      "lessons": 5,
+      "sourceModules": 0
+    },
+    {
+      "id": "general",
+      "title": "General",
+      "lessons": 30,
+      "sourceModules": 29
+    },
+    {
+      "id": "bronce",
+      "title": "Bronce",
+      "lessons": 18,
+      "sourceModules": 13
+    },
+    {
+      "id": "plata",
+      "title": "Plata",
+      "lessons": 17,
+      "sourceModules": 14
+    },
+    {
+      "id": "oro",
+      "title": "Oro",
+      "lessons": 30,
+      "sourceModules": 29
+    },
+    {
+      "id": "platino",
+      "title": "Platino",
+      "lessons": 23,
+      "sourceModules": 23
+    },
+    {
+      "id": "avanzado",
+      "title": "Avanzado",
+      "lessons": 41,
+      "sourceModules": 41
+    }
+  ],
+  "coverage": [
+    {
+      "key": "general/using-this-guide",
+      "lessonId": "usaco-general-using-this-guide",
+      "title": "Cómo recorrer esta guía",
+      "url": "https://usaco.guide/general/using-this-guide"
+    },
+    {
+      "key": "general/intro-cp",
+      "lessonId": "usaco-general-intro-cp",
+      "title": "Qué es la programación competitiva",
+      "url": "https://usaco.guide/general/intro-cp"
+    },
+    {
+      "key": "general/choosing-lang",
+      "lessonId": "usaco-general-choosing-lang",
+      "title": "Elegir un lenguaje y aprenderlo bien",
+      "url": "https://usaco.guide/general/choosing-lang"
+    },
+    {
+      "key": "general/resources-learning-to-code",
+      "lessonId": "usaco-general-resources-learning-to-code",
+      "title": "Aprender a programar desde cero",
+      "url": "https://usaco.guide/general/resources-learning-to-code"
+    },
+    {
+      "key": "general/running-code-online",
+      "lessonId": "usaco-general-running-code-online",
+      "title": "Ejecutar código en línea",
+      "url": "https://usaco.guide/general/running-code-online"
+    },
+    {
+      "key": "general/data-types",
+      "lessonId": "usaco-general-data-types",
+      "title": "Tipos de datos y rangos numéricos",
+      "url": "https://usaco.guide/general/data-types"
+    },
+    {
+      "key": "general/input-output",
+      "lessonId": "usaco-general-input-output",
+      "title": "Entrada y salida con precisión",
+      "url": "https://usaco.guide/general/input-output"
+    },
+    {
+      "key": "general/expected-knowledge",
+      "lessonId": "usaco-general-expected-knowledge",
+      "title": "Lo que necesitas antes de Bronce",
+      "url": "https://usaco.guide/general/expected-knowledge"
+    },
+    {
+      "key": "general/contributing",
+      "lessonId": "usaco-general-contributing",
+      "title": "Colaborar en una guía de aprendizaje",
+      "url": "https://usaco.guide/general/contributing"
+    },
+    {
+      "key": "general/adding-solution",
+      "lessonId": "usaco-general-adding-solution",
+      "title": "Escribir una solución que enseñe",
+      "url": "https://usaco.guide/general/adding-solution"
+    },
+    {
+      "key": "general/modules",
+      "lessonId": "usaco-general-modules",
+      "title": "Diseñar un módulo educativo",
+      "url": "https://usaco.guide/general/modules"
+    },
+    {
+      "key": "general/working-mdx",
+      "lessonId": "usaco-general-working-mdx",
+      "title": "Markdown y MDX para material educativo",
+      "url": "https://usaco.guide/general/working-mdx"
+    },
+    {
+      "key": "general/debugging-checklist",
+      "lessonId": "usaco-general-debugging-checklist",
+      "title": "Lista de revisión para errores",
+      "url": "https://usaco.guide/general/debugging-checklist"
+    },
+    {
+      "key": "general/practicing",
+      "lessonId": "usaco-general-practicing",
+      "title": "Practicar para aprender, no solo acumular envíos",
+      "url": "https://usaco.guide/general/practicing"
+    },
+    {
+      "key": "general/contest-strategy",
+      "lessonId": "usaco-general-contest-strategy",
+      "title": "Estrategia durante un concurso",
+      "url": "https://usaco.guide/general/contest-strategy"
+    },
+    {
+      "key": "general/resources-cp",
+      "lessonId": "usaco-general-resources-cp",
+      "title": "Cómo aprovechar recursos de algoritmos",
+      "url": "https://usaco.guide/general/resources-cp"
+    },
+    {
+      "key": "general/contests",
+      "lessonId": "usaco-general-contests",
+      "title": "Concursos y simulacros como herramientas",
+      "url": "https://usaco.guide/general/contests"
+    },
+    {
+      "key": "general/olympiads",
+      "lessonId": "usaco-general-olympiads",
+      "title": "Olimpiadas de informática y tu ruta en Morelos",
+      "url": "https://usaco.guide/general/olympiads"
+    },
+    {
+      "key": "general/running-code-locally",
+      "lessonId": "usaco-general-running-code-locally",
+      "title": "Programar y ejecutar en tu computadora",
+      "url": "https://usaco.guide/general/running-code-locally"
+    },
+    {
+      "key": "general/cpp-command",
+      "lessonId": "usaco-general-cpp-command",
+      "title": "Entender el comando de compilación de C++",
+      "url": "https://usaco.guide/general/cpp-command"
+    },
+    {
+      "key": "general/fast-io",
+      "lessonId": "usaco-general-fast-io",
+      "title": "Entrada y salida eficientes en C++",
+      "url": "https://usaco.guide/general/fast-io"
+    },
+    {
+      "key": "general/basic-debugging",
+      "lessonId": "usaco-general-basic-debugging",
+      "title": "Depuración con trazas e hipótesis",
+      "url": "https://usaco.guide/general/basic-debugging"
+    },
+    {
+      "key": "general/debugging-cpp",
+      "lessonId": "usaco-general-debugging-cpp",
+      "title": "Errores de memoria y comportamiento indefinido en C++",
+      "url": "https://usaco.guide/general/debugging-cpp"
+    },
+    {
+      "key": "general/generic-code",
+      "lessonId": "usaco-general-generic-code",
+      "title": "Código genérico y plantillas",
+      "url": "https://usaco.guide/general/generic-code"
+    },
+    {
+      "key": "general/lambda-funcs",
+      "lessonId": "usaco-general-lambda-funcs",
+      "title": "Funciones lambda",
+      "url": "https://usaco.guide/general/lambda-funcs"
+    },
+    {
+      "key": "general/usaco-faq",
+      "lessonId": "usaco-general-usaco-faq",
+      "title": "Preguntas sobre USACO: contexto para Morelos",
+      "url": "https://usaco.guide/general/usaco-faq"
+    },
+    {
+      "key": "general/usaco-monthlies",
+      "lessonId": "usaco-general-usaco-monthlies",
+      "title": "Concursos periódicos de USACO como práctica",
+      "url": "https://usaco.guide/general/usaco-monthlies"
+    },
+    {
+      "key": "general/usaco-camp",
+      "lessonId": "usaco-general-usaco-camp",
+      "title": "Campamentos de entrenamiento: qué puedes aprender de su enfoque",
+      "url": "https://usaco.guide/general/usaco-camp"
+    },
+    {
+      "key": "general/resources-usa",
+      "lessonId": "usaco-general-resources-usa",
+      "title": "Recursos de Estados Unidos y adaptación a Morelos",
+      "url": "https://usaco.guide/general/resources-usa"
+    },
+    {
+      "key": "bronze/time-comp",
+      "lessonId": "usaco-bronze-time-comp",
+      "title": "Complejidad: calcula antes de programar",
+      "url": "https://usaco.guide/bronze/time-comp"
+    },
+    {
+      "key": "bronze/intro-ds",
+      "lessonId": "usaco-bronze-intro-ds",
+      "title": "Estructuras de datos para empezar",
+      "url": "https://usaco.guide/bronze/intro-ds"
+    },
+    {
+      "key": "bronze/simulation",
+      "lessonId": "usaco-bronze-simulation",
+      "title": "Simulación: sigue las reglas paso a paso",
+      "url": "https://usaco.guide/bronze/simulation"
+    },
+    {
+      "key": "bronze/intro-complete",
+      "lessonId": "usaco-bronze-intro-complete",
+      "title": "Búsqueda exhaustiva con ciclos",
+      "url": "https://usaco.guide/bronze/intro-complete"
+    },
+    {
+      "key": "bronze/complete-rec",
+      "lessonId": "usaco-bronze-complete-rec",
+      "title": "Recursión, subconjuntos y permutaciones",
+      "url": "https://usaco.guide/bronze/complete-rec"
+    },
+    {
+      "key": "bronze/intro-sorting",
+      "lessonId": "usaco-bronze-intro-sorting",
+      "title": "Ordenamiento y sus primeras aplicaciones",
+      "url": "https://usaco.guide/bronze/intro-sorting"
+    },
+    {
+      "key": "bronze/intro-sets",
+      "lessonId": "usaco-bronze-intro-sets",
+      "title": "Conjuntos y diccionarios",
+      "url": "https://usaco.guide/bronze/intro-sets"
+    },
+    {
+      "key": "bronze/casework",
+      "lessonId": "usaco-bronze-casework",
+      "title": "Análisis por casos",
+      "url": "https://usaco.guide/bronze/casework"
+    },
+    {
+      "key": "bronze/intro-greedy",
+      "lessonId": "usaco-bronze-intro-greedy",
+      "title": "Primeros algoritmos voraces",
+      "url": "https://usaco.guide/bronze/intro-greedy"
+    },
+    {
+      "key": "bronze/intro-graphs",
+      "lessonId": "usaco-bronze-intro-graphs",
+      "title": "Grafos: objetos y conexiones",
+      "url": "https://usaco.guide/bronze/intro-graphs"
+    },
+    {
+      "key": "bronze/rect-geo",
+      "lessonId": "usaco-bronze-rect-geo",
+      "title": "Geometría de rectángulos",
+      "url": "https://usaco.guide/bronze/rect-geo"
+    },
+    {
+      "key": "bronze/ad-hoc",
+      "lessonId": "usaco-bronze-ad-hoc",
+      "title": "Observaciones y problemas ad hoc",
+      "url": "https://usaco.guide/bronze/ad-hoc"
+    },
+    {
+      "key": "bronze/bronze-conclusion",
+      "lessonId": "usaco-bronze-bronze-conclusion",
+      "title": "Cierre de Bronce: resuelve sin etiquetas",
+      "url": "https://usaco.guide/bronze/bronze-conclusion"
+    },
+    {
+      "key": "silver/prefix-sums",
+      "lessonId": "usaco-silver-prefix-sums",
+      "title": "Sumas de prefijos",
+      "url": "https://usaco.guide/silver/prefix-sums"
+    },
+    {
+      "key": "silver/more-prefix-sums",
+      "lessonId": "usaco-silver-more-prefix-sums",
+      "title": "Prefijos bidimensionales y arreglos de diferencias",
+      "url": "https://usaco.guide/silver/more-prefix-sums"
+    },
+    {
+      "key": "silver/two-pointers",
+      "lessonId": "usaco-silver-two-pointers",
+      "title": "Dos apuntadores y ventanas",
+      "url": "https://usaco.guide/silver/two-pointers"
+    },
+    {
+      "key": "silver/binary-search-sorted-array",
+      "lessonId": "usaco-silver-binary-search-sorted-array",
+      "title": "Búsqueda binaria en arreglos ordenados",
+      "url": "https://usaco.guide/silver/binary-search-sorted-array"
+    },
+    {
+      "key": "silver/binary-search",
+      "lessonId": "usaco-silver-binary-search",
+      "title": "Búsqueda binaria sobre la respuesta",
+      "url": "https://usaco.guide/silver/binary-search"
+    },
+    {
+      "key": "silver/sorting-custom",
+      "lessonId": "usaco-silver-sorting-custom",
+      "title": "Comparadores y compresión de coordenadas",
+      "url": "https://usaco.guide/silver/sorting-custom"
+    },
+    {
+      "key": "silver/greedy-sorting",
+      "lessonId": "usaco-silver-greedy-sorting",
+      "title": "Voraces después de ordenar",
+      "url": "https://usaco.guide/silver/greedy-sorting"
+    },
+    {
+      "key": "silver/priority-queues",
+      "lessonId": "usaco-silver-priority-queues",
+      "title": "Colas de prioridad",
+      "url": "https://usaco.guide/silver/priority-queues"
+    },
+    {
+      "key": "silver/graph-traversal",
+      "lessonId": "usaco-silver-graph-traversal",
+      "title": "Recorridos DFS y BFS",
+      "url": "https://usaco.guide/silver/graph-traversal"
+    },
+    {
+      "key": "silver/flood-fill",
+      "lessonId": "usaco-silver-flood-fill",
+      "title": "Flood fill: regiones en tableros",
+      "url": "https://usaco.guide/silver/flood-fill"
+    },
+    {
+      "key": "silver/intro-tree",
+      "lessonId": "usaco-silver-intro-tree",
+      "title": "Árboles y raíces",
+      "url": "https://usaco.guide/silver/intro-tree"
+    },
+    {
+      "key": "silver/func-graphs",
+      "lessonId": "usaco-silver-func-graphs",
+      "title": "Grafos funcionales",
+      "url": "https://usaco.guide/silver/func-graphs"
+    },
+    {
+      "key": "silver/intro-bitwise",
+      "lessonId": "usaco-silver-intro-bitwise",
+      "title": "Bits y máscaras",
+      "url": "https://usaco.guide/silver/intro-bitwise"
+    },
+    {
+      "key": "silver/silver-conclusion",
+      "lessonId": "usaco-silver-silver-conclusion",
+      "title": "Cierre de Plata: conecta las técnicas",
+      "url": "https://usaco.guide/silver/silver-conclusion"
+    },
+    {
+      "key": "gold/divisibility",
+      "lessonId": "usaco-gold-divisibility",
+      "title": "Divisibilidad, primos y máximo común divisor",
+      "url": "https://usaco.guide/gold/divisibility"
+    },
+    {
+      "key": "gold/modular",
+      "lessonId": "usaco-gold-modular",
+      "title": "Aritmética modular y potencias rápidas",
+      "url": "https://usaco.guide/gold/modular"
+    },
+    {
+      "key": "gold/combo",
+      "lessonId": "usaco-gold-combo",
+      "title": "Combinatoria: contar sin enumerar",
+      "url": "https://usaco.guide/gold/combo"
+    },
+    {
+      "key": "gold/intro-dp",
+      "lessonId": "usaco-gold-intro-dp",
+      "title": "Programación dinámica desde el estado",
+      "url": "https://usaco.guide/gold/intro-dp"
+    },
+    {
+      "key": "gold/knapsack",
+      "lessonId": "usaco-gold-knapsack",
+      "title": "Mochila y elecciones con capacidad",
+      "url": "https://usaco.guide/gold/knapsack"
+    },
+    {
+      "key": "gold/paths-grids",
+      "lessonId": "usaco-gold-paths-grids",
+      "title": "Caminos y estados en cuadrículas",
+      "url": "https://usaco.guide/gold/paths-grids"
+    },
+    {
+      "key": "gold/lis",
+      "lessonId": "usaco-gold-lis",
+      "title": "Subsecuencia creciente más larga",
+      "url": "https://usaco.guide/gold/lis"
+    },
+    {
+      "key": "gold/dp-bitmasks",
+      "lessonId": "usaco-gold-dp-bitmasks",
+      "title": "DP con máscaras de bits",
+      "url": "https://usaco.guide/gold/dp-bitmasks"
+    },
+    {
+      "key": "gold/dp-ranges",
+      "lessonId": "usaco-gold-dp-ranges",
+      "title": "Programación dinámica en intervalos",
+      "url": "https://usaco.guide/gold/dp-ranges"
+    },
+    {
+      "key": "gold/digit-dp",
+      "lessonId": "usaco-gold-digit-dp",
+      "title": "DP por dígitos y límites numéricos",
+      "url": "https://usaco.guide/gold/digit-dp"
+    },
+    {
+      "key": "gold/unweighted-shortest-paths",
+      "lessonId": "usaco-gold-unweighted-shortest-paths",
+      "title": "BFS y caminos con pesos cero o uno",
+      "url": "https://usaco.guide/gold/unweighted-shortest-paths"
+    },
+    {
+      "key": "gold/dsu",
+      "lessonId": "usaco-gold-dsu",
+      "title": "Conjuntos disjuntos y conectividad",
+      "url": "https://usaco.guide/gold/dsu"
+    },
+    {
+      "key": "gold/toposort",
+      "lessonId": "usaco-gold-toposort",
+      "title": "Orden topológico y DP en DAG",
+      "url": "https://usaco.guide/gold/toposort"
+    },
+    {
+      "key": "gold/shortest-paths",
+      "lessonId": "usaco-gold-shortest-paths",
+      "title": "Dijkstra y rutas con pesos",
+      "url": "https://usaco.guide/gold/shortest-paths"
+    },
+    {
+      "key": "gold/mst",
+      "lessonId": "usaco-gold-mst",
+      "title": "Árbol de expansión mínima",
+      "url": "https://usaco.guide/gold/mst"
+    },
+    {
+      "key": "gold/intro-sorted-sets",
+      "lessonId": "usaco-gold-intro-sorted-sets",
+      "title": "Conjuntos ordenados y búsquedas por vecino",
+      "url": "https://usaco.guide/gold/intro-sorted-sets"
+    },
+    {
+      "key": "gold/custom-cpp-stl",
+      "lessonId": "usaco-gold-custom-cpp-stl",
+      "title": "Comparadores personalizados en contenedores",
+      "url": "https://usaco.guide/gold/custom-cpp-stl"
+    },
+    {
+      "key": "gold/stacks",
+      "lessonId": "usaco-gold-stacks",
+      "title": "Pilas monótonas y vecinos relevantes",
+      "url": "https://usaco.guide/gold/stacks"
+    },
+    {
+      "key": "gold/sliding-window",
+      "lessonId": "usaco-gold-sliding-window",
+      "title": "Ventanas deslizantes y deque monótona",
+      "url": "https://usaco.guide/gold/sliding-window"
+    },
+    {
+      "key": "gold/PURS",
+      "lessonId": "usaco-gold-purs",
+      "title": "Actualización puntual y suma de rango",
+      "url": "https://usaco.guide/gold/PURS"
+    },
+    {
+      "key": "gold/dp-trees",
+      "lessonId": "usaco-gold-dp-trees",
+      "title": "Programación dinámica sobre árboles",
+      "url": "https://usaco.guide/gold/dp-trees"
+    },
+    {
+      "key": "gold/all-roots",
+      "lessonId": "usaco-gold-all-roots",
+      "title": "Reenraizar: respuestas para todos los vértices",
+      "url": "https://usaco.guide/gold/all-roots"
+    },
+    {
+      "key": "gold/tree-euler",
+      "lessonId": "usaco-gold-tree-euler",
+      "title": "Aplanar árboles con un recorrido de Euler",
+      "url": "https://usaco.guide/gold/tree-euler"
+    },
+    {
+      "key": "gold/lca-euler",
+      "lessonId": "usaco-gold-lca-euler",
+      "title": "Ancestro común más bajo mediante Euler y RMQ",
+      "url": "https://usaco.guide/gold/lca-euler"
+    },
+    {
+      "key": "gold/ternary-search",
+      "lessonId": "usaco-gold-ternary-search",
+      "title": "Búsqueda ternaria y funciones unimodales",
+      "url": "https://usaco.guide/gold/ternary-search"
+    },
+    {
+      "key": "gold/hashing",
+      "lessonId": "usaco-gold-hashing",
+      "title": "Huellas de cadenas y colisiones",
+      "url": "https://usaco.guide/gold/hashing"
+    },
+    {
+      "key": "gold/hashmaps",
+      "lessonId": "usaco-gold-hashmaps",
+      "title": "Tablas hash y frecuencias de estados",
+      "url": "https://usaco.guide/gold/hashmaps"
+    },
+    {
+      "key": "gold/meet-in-the-middle",
+      "lessonId": "usaco-gold-meet-in-the-middle",
+      "title": "Encontrarse a mitad del camino",
+      "url": "https://usaco.guide/gold/meet-in-the-middle"
+    },
+    {
+      "key": "gold/gold-conclusion",
+      "lessonId": "usaco-gold-gold-conclusion",
+      "title": "Taller de cierre de Oro",
+      "url": "https://usaco.guide/gold/gold-conclusion"
+    },
+    {
+      "key": "plat/segtree-ext",
+      "lessonId": "usaco-plat-segtree-ext",
+      "title": "Árboles de segmentos: buscar y combinar estados",
+      "url": "https://usaco.guide/plat/segtree-ext"
+    },
+    {
+      "key": "plat/range-sweep",
+      "lessonId": "usaco-plat-range-sweep",
+      "title": "Consultas por barrido y eventos ordenados",
+      "url": "https://usaco.guide/plat/range-sweep"
+    },
+    {
+      "key": "plat/RURQ",
+      "lessonId": "usaco-plat-rurq",
+      "title": "Actualizaciones y consultas de rangos",
+      "url": "https://usaco.guide/plat/RURQ"
+    },
+    {
+      "key": "plat/sparse-segtree",
+      "lessonId": "usaco-plat-sparse-segtree",
+      "title": "Árboles de segmentos dispersos",
+      "url": "https://usaco.guide/plat/sparse-segtree"
+    },
+    {
+      "key": "plat/2DRQ",
+      "lessonId": "usaco-plat-2drq",
+      "title": "Consultas de rangos en dos dimensiones",
+      "url": "https://usaco.guide/plat/2DRQ"
+    },
+    {
+      "key": "plat/DC-SRQ",
+      "lessonId": "usaco-plat-dc-srq",
+      "title": "Divide y vencerás para consultas estáticas",
+      "url": "https://usaco.guide/plat/DC-SRQ"
+    },
+    {
+      "key": "plat/sqrt",
+      "lessonId": "usaco-plat-sqrt",
+      "title": "Descomposición en bloques y algoritmo de Mo",
+      "url": "https://usaco.guide/plat/sqrt"
+    },
+    {
+      "key": "plat/binary-jump",
+      "lessonId": "usaco-plat-binary-jump",
+      "title": "Saltos binarios y ancestros",
+      "url": "https://usaco.guide/plat/binary-jump"
+    },
+    {
+      "key": "plat/merging",
+      "lessonId": "usaco-plat-merging",
+      "title": "Fusionar de pequeño a grande",
+      "url": "https://usaco.guide/plat/merging"
+    },
+    {
+      "key": "plat/hld",
+      "lessonId": "usaco-plat-hld",
+      "title": "Descomposición pesada y ligera",
+      "url": "https://usaco.guide/plat/hld"
+    },
+    {
+      "key": "plat/centroid",
+      "lessonId": "usaco-plat-centroid",
+      "title": "Descomposición por centroides",
+      "url": "https://usaco.guide/plat/centroid"
+    },
+    {
+      "key": "plat/VT",
+      "lessonId": "usaco-plat-vt",
+      "title": "Árboles virtuales para pocos vértices importantes",
+      "url": "https://usaco.guide/plat/VT"
+    },
+    {
+      "key": "plat/kruskal-tree",
+      "lessonId": "usaco-plat-kruskal-tree",
+      "title": "Árbol de reconstrucción de Kruskal",
+      "url": "https://usaco.guide/plat/kruskal-tree"
+    },
+    {
+      "key": "plat/geo-pri",
+      "lessonId": "usaco-plat-geo-pri",
+      "title": "Geometría con vectores y productos cruzados",
+      "url": "https://usaco.guide/plat/geo-pri"
+    },
+    {
+      "key": "plat/sweep-line",
+      "lessonId": "usaco-plat-sweep-line",
+      "title": "Barrido geométrico y longitud cubierta",
+      "url": "https://usaco.guide/plat/sweep-line"
+    },
+    {
+      "key": "plat/convex-hull",
+      "lessonId": "usaco-plat-convex-hull",
+      "title": "Envolvente convexa de un conjunto de puntos",
+      "url": "https://usaco.guide/plat/convex-hull"
+    },
+    {
+      "key": "plat/convex-hull-trick",
+      "lessonId": "usaco-plat-convex-hull-trick",
+      "title": "Optimizar DP con envolventes de rectas",
+      "url": "https://usaco.guide/plat/convex-hull-trick"
+    },
+    {
+      "key": "plat/PIE",
+      "lessonId": "usaco-plat-pie",
+      "title": "Principio de inclusión y exclusión",
+      "url": "https://usaco.guide/plat/PIE"
+    },
+    {
+      "key": "plat/matrix-expo",
+      "lessonId": "usaco-plat-matrix-expo",
+      "title": "Exponenciación de matrices y recurrencias",
+      "url": "https://usaco.guide/plat/matrix-expo"
+    },
+    {
+      "key": "plat/bitsets",
+      "lessonId": "usaco-plat-bitsets",
+      "title": "Bitsets y paralelismo por palabras",
+      "url": "https://usaco.guide/plat/bitsets"
+    },
+    {
+      "key": "plat/DC-DP",
+      "lessonId": "usaco-plat-dc-dp",
+      "title": "Optimización de DP con divide y vencerás",
+      "url": "https://usaco.guide/plat/DC-DP"
+    },
+    {
+      "key": "plat/dp-sos",
+      "lessonId": "usaco-plat-dp-sos",
+      "title": "DP sobre todos los submask: transformada SOS",
+      "url": "https://usaco.guide/plat/dp-sos"
+    },
+    {
+      "key": "plat/plat-conclusion",
+      "lessonId": "usaco-plat-plat-conclusion",
+      "title": "Taller de cierre de Platino",
+      "url": "https://usaco.guide/plat/plat-conclusion"
+    },
+    {
+      "key": "adv/springboards",
+      "lessonId": "usaco-adv-springboards",
+      "title": "Fronteras de dominancia y máximos de sufijo",
+      "url": "https://usaco.guide/adv/springboards"
+    },
+    {
+      "key": "adv/wavelet",
+      "lessonId": "usaco-adv-wavelet",
+      "title": "Wavelet tree: valores dentro de intervalos",
+      "url": "https://usaco.guide/adv/wavelet"
+    },
+    {
+      "key": "adv/count-min",
+      "lessonId": "usaco-adv-count-min",
+      "title": "Contar mínimos y medir cobertura",
+      "url": "https://usaco.guide/adv/count-min"
+    },
+    {
+      "key": "adv/segtree-beats",
+      "lessonId": "usaco-adv-segtree-beats",
+      "title": "Segment tree beats",
+      "url": "https://usaco.guide/adv/segtree-beats"
+    },
+    {
+      "key": "adv/persistent",
+      "lessonId": "usaco-adv-persistent",
+      "title": "Estructuras persistentes: consultar el pasado",
+      "url": "https://usaco.guide/adv/persistent"
+    },
+    {
+      "key": "adv/treaps",
+      "lessonId": "usaco-adv-treaps",
+      "title": "Treaps y secuencias implícitas",
+      "url": "https://usaco.guide/adv/treaps"
+    },
+    {
+      "key": "adv/line-container",
+      "lessonId": "usaco-adv-line-container",
+      "title": "Contenedores dinámicos de rectas",
+      "url": "https://usaco.guide/adv/line-container"
+    },
+    {
+      "key": "adv/lagrange",
+      "lessonId": "usaco-adv-lagrange",
+      "title": "Relajación lagrangiana: poner precio a una restricción",
+      "url": "https://usaco.guide/adv/lagrange"
+    },
+    {
+      "key": "adv/slope-trick",
+      "lessonId": "usaco-adv-slope-trick",
+      "title": "Slope trick: programar con funciones convexas",
+      "url": "https://usaco.guide/adv/slope-trick"
+    },
+    {
+      "key": "adv/sp-neg",
+      "lessonId": "usaco-adv-sp-neg",
+      "title": "Caminos mínimos con aristas negativas",
+      "url": "https://usaco.guide/adv/sp-neg"
+    },
+    {
+      "key": "adv/eulerian-tours",
+      "lessonId": "usaco-adv-eulerian-tours",
+      "title": "Recorridos eulerianos y algoritmo de Hierholzer",
+      "url": "https://usaco.guide/adv/eulerian-tours"
+    },
+    {
+      "key": "adv/BCC-2CC",
+      "lessonId": "usaco-adv-bcc-2cc",
+      "title": "Puentes, articulaciones y componentes biconexas",
+      "url": "https://usaco.guide/adv/BCC-2CC"
+    },
+    {
+      "key": "adv/SCC",
+      "lessonId": "usaco-adv-scc",
+      "title": "Componentes fuertemente conexas y 2-SAT",
+      "url": "https://usaco.guide/adv/SCC"
+    },
+    {
+      "key": "adv/offline-del",
+      "lessonId": "usaco-adv-offline-del",
+      "title": "Borrados offline y DSU con rollback",
+      "url": "https://usaco.guide/adv/offline-del"
+    },
+    {
+      "key": "adv/eulers-formula",
+      "lessonId": "usaco-adv-eulers-formula",
+      "title": "Fórmula de Euler y grafos planares",
+      "url": "https://usaco.guide/adv/eulers-formula"
+    },
+    {
+      "key": "adv/critical",
+      "lessonId": "usaco-adv-critical",
+      "title": "Dominadores: ciudades que toda ruta debe atravesar",
+      "url": "https://usaco.guide/adv/critical"
+    },
+    {
+      "key": "adv/link-cut-tree",
+      "lessonId": "usaco-adv-link-cut-tree",
+      "title": "Link-cut trees: bosques que cambian",
+      "url": "https://usaco.guide/adv/link-cut-tree"
+    },
+    {
+      "key": "adv/comb-sub",
+      "lessonId": "usaco-adv-comb-sub",
+      "title": "DP de árboles: combinar subárboles",
+      "url": "https://usaco.guide/adv/comb-sub"
+    },
+    {
+      "key": "adv/dp-broken-profile",
+      "lessonId": "usaco-adv-dp-broken-profile",
+      "title": "DP de perfiles: una frontera pequeña en una cuadrícula",
+      "url": "https://usaco.guide/adv/dp-broken-profile"
+    },
+    {
+      "key": "adv/dp-more",
+      "lessonId": "usaco-adv-dp-more",
+      "title": "Más técnicas de DP: Knuth y componentes",
+      "url": "https://usaco.guide/adv/dp-more"
+    },
+    {
+      "key": "adv/max-flow",
+      "lessonId": "usaco-adv-max-flow",
+      "title": "Flujo máximo y redes residuales",
+      "url": "https://usaco.guide/adv/max-flow"
+    },
+    {
+      "key": "adv/min-cut",
+      "lessonId": "usaco-adv-min-cut",
+      "title": "Corte mínimo y modelos de decisión",
+      "url": "https://usaco.guide/adv/min-cut"
+    },
+    {
+      "key": "adv/flow-lb",
+      "lessonId": "usaco-adv-flow-lb",
+      "title": "Flujo con cotas inferiores",
+      "url": "https://usaco.guide/adv/flow-lb"
+    },
+    {
+      "key": "adv/min-cost-flow",
+      "lessonId": "usaco-adv-min-cost-flow",
+      "title": "Flujo de costo mínimo",
+      "url": "https://usaco.guide/adv/min-cost-flow"
+    },
+    {
+      "key": "adv/fft",
+      "lessonId": "usaco-adv-fft",
+      "title": "FFT, NTT y convolución",
+      "url": "https://usaco.guide/adv/fft"
+    },
+    {
+      "key": "adv/fft-ext",
+      "lessonId": "usaco-adv-fft-ext",
+      "title": "Series formales y operaciones avanzadas con polinomios",
+      "url": "https://usaco.guide/adv/fft-ext"
+    },
+    {
+      "key": "adv/string-search",
+      "lessonId": "usaco-adv-string-search",
+      "title": "Buscar patrones: KMP, Z, palíndromos y Aho–Corasick",
+      "url": "https://usaco.guide/adv/string-search"
+    },
+    {
+      "key": "adv/suffix-array",
+      "lessonId": "usaco-adv-suffix-array",
+      "title": "Arreglos de sufijos y prefijos comunes",
+      "url": "https://usaco.guide/adv/suffix-array"
+    },
+    {
+      "key": "adv/string-suffix",
+      "lessonId": "usaco-adv-string-suffix",
+      "title": "Autómatas y árboles de sufijos",
+      "url": "https://usaco.guide/adv/string-suffix"
+    },
+    {
+      "key": "adv/extend-euclid",
+      "lessonId": "usaco-adv-extend-euclid",
+      "title": "Euclides extendido, ecuaciones e inversos",
+      "url": "https://usaco.guide/adv/extend-euclid"
+    },
+    {
+      "key": "adv/catalan",
+      "lessonId": "usaco-adv-catalan",
+      "title": "Números de Catalan y estructuras balanceadas",
+      "url": "https://usaco.guide/adv/catalan"
+    },
+    {
+      "key": "adv/xor-basis",
+      "lessonId": "usaco-adv-xor-basis",
+      "title": "Bases XOR y álgebra sobre bits",
+      "url": "https://usaco.guide/adv/xor-basis"
+    },
+    {
+      "key": "adv/fracturing-search",
+      "lessonId": "usaco-adv-fracturing-search",
+      "title": "Fracturing search: enumerar las mejores soluciones",
+      "url": "https://usaco.guide/adv/fracturing-search"
+    },
+    {
+      "key": "adv/game-theory",
+      "lessonId": "usaco-adv-game-theory",
+      "title": "Teoría de juegos: estados ganadores, Nim y Grundy",
+      "url": "https://usaco.guide/adv/game-theory"
+    },
+    {
+      "key": "adv/prefix-sums-nt-1",
+      "lessonId": "usaco-adv-prefix-sums-nt-1",
+      "title": "Sumas aritméticas I: cocientes y convolución de Dirichlet",
+      "url": "https://usaco.guide/adv/prefix-sums-nt-1"
+    },
+    {
+      "key": "adv/prefix-sums-nt-2",
+      "lessonId": "usaco-adv-prefix-sums-nt-2",
+      "title": "Sumas aritméticas II: contar primos sin llegar a N",
+      "url": "https://usaco.guide/adv/prefix-sums-nt-2"
+    },
+    {
+      "key": "adv/matroid",
+      "lessonId": "usaco-adv-matroid",
+      "title": "Matroides: cuándo un algoritmo voraz tiene garantía",
+      "url": "https://usaco.guide/adv/matroid"
+    },
+    {
+      "key": "adv/matroid-isect",
+      "lessonId": "usaco-adv-matroid-isect",
+      "title": "Intersección de matroides",
+      "url": "https://usaco.guide/adv/matroid-isect"
+    },
+    {
+      "key": "adv/random",
+      "lessonId": "usaco-adv-random",
+      "title": "Algoritmos aleatorizados y probabilidad de error",
+      "url": "https://usaco.guide/adv/random"
+    },
+    {
+      "key": "adv/interactive",
+      "lessonId": "usaco-adv-interactive",
+      "title": "Problemas interactivos y de comunicación",
+      "url": "https://usaco.guide/adv/interactive"
+    },
+    {
+      "key": "adv/vectorization",
+      "lessonId": "usaco-adv-vectorization",
+      "title": "Vectorización en C++ y rendimiento medido",
+      "url": "https://usaco.guide/adv/vectorization"
+    }
+  ]
+}
