@@ -67,6 +67,7 @@ import {
 import CurriculumBrowser from "./curriculum-browser";
 import PracticeCatalog from "./practice-catalog";
 import CppPlayground from "./cpp-playground";
+import LessonExercises from "./lesson-exercises";
 import { guideIndex } from "@/lib/curriculum/source-index";
 import { legacyLevelAliases } from "@/lib/curriculum/levels";
 import { publicAsset } from "@/lib/public-asset";
@@ -271,7 +272,6 @@ export default function LearningApp() {
       )
         setProgress((p) => ({ ...p, lastLesson: nextRoute.id! }));
       setMenu(false);
-      window.scrollTo(0, 0);
     };
     onRoute();
     window.addEventListener("hashchange", onRoute);
@@ -288,6 +288,10 @@ export default function LearningApp() {
       window.removeEventListener("keydown", keys);
     };
   }, []);
+  useEffect(() => {
+    // Long chapters must start at the top after React renders the new route.
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [route.view, route.id]);
   useEffect(() => {
     if (ready) saveProgress(progress);
   }, [progress, ready]);
@@ -1156,6 +1160,11 @@ function LessonPage({
               <Pill>A tu ritmo</Pill>
             )}
           </div>
+          <details className="mobile-lesson-contents">
+            <summary>Contenido y ejercicios de esta lección</summary>
+            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{i + 1}. {section.title}</button>)}
+            {!!lesson.exercises?.length && <button onClick={() => document.getElementById("practica-local")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Practicar: {lesson.exercises.length} ejercicios</button>}
+          </details>
           {lesson.optional && (
             <div className="optional-notice">
               <Compass size={17} />
@@ -1179,7 +1188,7 @@ function LessonPage({
             </section>
           )}
           {lesson.sections.map((s, i) => (
-            <section className="lesson-section" key={i}>
+            <section className="lesson-section" id={`lesson-part-${i}`} key={i}>
               <h2>{s.title}</h2>
               {s.body.split("\n\n").map((p, j) => (
                 <p key={j}>{p}</p>
@@ -1187,26 +1196,7 @@ function LessonPage({
               {s.code && <CodeBlock code={s.code} />}
             </section>
           ))}
-          {lesson.source && (
-            <section className="lesson-source">
-              <BookOpen size={20} />
-              <div>
-                <h3>Para seguir profundizando</h3>
-                <p>
-                  Esta lección desarrolla el tema en español. En el módulo
-                  original encontrarás más explicaciones y recursos
-                  complementarios en inglés.
-                </p>
-                <a
-                  href={lesson.source.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Consultar el módulo de USACO Guide <ArrowUpRight size={15} />
-                </a>
-              </div>
-            </section>
-          )}
+          {!!lesson.exercises?.length && <LessonExercises lessonId={lesson.id} exercises={lesson.exercises} />}
           <section className="quiz-card">
             <div className="eyebrow">
               <Lightbulb size={15} /> UNA PAUSA PARA PENSAR
@@ -1277,8 +1267,19 @@ function LessonPage({
               Responde la pregunta correctamente para registrar esta lección.
             </p>
           )}
+          {lesson.source && <details className="lesson-references">
+            <summary>Fuentes y lecturas opcionales</summary>
+            <p>La organización del temario toma como referencia USACO Guide, de Competitive Programming Initiative y sus colaboradores. Las explicaciones y los ejercicios de esta guía están redactados en español para estudiar aquí. El material educativo adaptado se comparte bajo CC BY-NC-SA 4.0.</p>
+            <a href={lesson.source.url} target="_blank" rel="noopener noreferrer">Tema de referencia en USACO Guide (inglés) <ArrowUpRight size={14} /></a>
+            <p>Esta lectura es opcional y no se necesita para completar la lección.</p>
+          </details>}
         </article>
         <aside className="lesson-aside">
+          <nav className="card lesson-contents" aria-label="Contenido de esta lección">
+            <div className="eyebrow"><BookOpen size={15} /> EN ESTA LECCIÓN</div>
+            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}><span>{String(i + 1).padStart(2, "0")}</span>{section.title}</button>)}
+            {!!lesson.exercises?.length && <button className="contents-practice" onClick={() => document.getElementById("practica-local")?.scrollIntoView({ behavior: "smooth", block: "start" })}><Code2 size={16} /> {lesson.exercises.length} ejercicios con solución</button>}
+          </nav>
           {!!lesson.prerequisites?.length && (
             <section className="card prerequisites-card">
               <div className="eyebrow">
@@ -1346,32 +1347,6 @@ function LessonPage({
               </button>
             </div>
           )}
-          {!!lesson.practice?.length && (
-            <section className="card practice-links">
-              <div className="eyebrow">
-                <Code2 size={15} /> SIGUE PRACTICANDO
-              </div>
-              <h3>
-                {lesson.level === "general"
-                  ? "Explora los recursos del tema"
-                  : "Lleva la idea a un problema"}
-              </h3>
-              <p>
-                Recursos externos; tu avance allí no modifica el de esta guía.
-              </p>
-              {lesson.practice.map((item) => (
-                <a
-                  key={item.url}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>{item.title}</span>
-                  <ArrowUpRight size={16} />
-                </a>
-              ))}
-            </section>
-          )}
           <div className="learning-tip">
             <Sprout size={18} />
             <p>
@@ -1385,7 +1360,7 @@ function LessonPage({
   );
 }
 function ProblemsPage({ progress }: { progress: Progress }) {
-  const [mode, setMode] = useState<"local" | "temas">("local");
+  const [mode, setMode] = useState<"local" | "temas">("temas");
   const [filter, setFilter] = useState("todos");
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("todos");
@@ -1420,7 +1395,7 @@ function ProblemsPage({ progress }: { progress: Progress }) {
           <Layers3 size={16} />
           Práctica por tema{" "}
           <span>
-            {lessons.filter((l) => l.source && l.level !== "general").length}
+            {lessons.filter((l) => l.exercises?.length).length}
           </span>
         </button>
       </div>
@@ -1682,11 +1657,13 @@ function ProblemPage({
           initialInput={problem.sampleInput}
           storageKey={`problem-${problem.id}`}
           title="Programa tu solución"
+          testCases={problem.tests}
+          onTestsPassed={onSolve}
         />
         <p className="compiler-problem-note">
-          Compara la salida de tu programa con la del ejemplo y prueba otros
-          casos. La ejecución libre no registra por sí sola el reto como
-          resuelto.
+          Ejecuta con tu propia entrada o comprueba todos los casos del reto.
+          Superarlos registra el reto como resuelto; explica también por qué
+          tu algoritmo funciona para cualquier entrada válida.
         </p>
         <button className="text-link" onClick={() => setSolution(!solution)}>
           <BookOpen size={16} />
@@ -1942,12 +1919,13 @@ function Resources() {
   );
 }
 function About() {
+  const exerciseCount = lessons.reduce((total, lesson) => total + (lesson.exercises?.length || 0), 0);
   return (
     <>
       <PageHeading
         eyebrow="TALENTO QUE CRECE EN MORELOS"
         title="Tu siguiente reto comienza aquí."
-        description="Un espacio para quienes tienen ganas de descubrir qué pueden crear con la informática."
+        description="Aprende programación en español, desde cero, con explicaciones, práctica y soluciones dentro de la guía."
       />
       <section className="about-hero">
         <img className="about-brand-logo" src={publicAsset("brand/omri-logo.png")}
@@ -1982,7 +1960,7 @@ function About() {
           {
             icon: GraduationCap,
             title: "Avanza a tu ritmo",
-            text: "Construye bases sólidas con lecciones, preguntas y retos que van aumentando de dificultad.",
+            text: "Estudia, pide una pista y compara tu razonamiento con la solución. Todo está en español y puedes practicar aquí mismo.",
           },
         ].map((x) => (
           <article className="card" key={x.title}>
@@ -2001,8 +1979,9 @@ function About() {
           </a>. Allí puedes consultar las convocatorias y la información oficial de la olimpiada.
         </p>
         <p>
-          El temario ampliado recorre {lessons.length} lecciones en{" "}
-          {levels.length} etapas y cubre los {guideIndex.length} módulos del
+          La ruta reúne {lessons.length} lecciones y {exerciseCount} ejercicios
+          propios en {levels.length} etapas, desde tus primeros programas hasta
+          algoritmos avanzados. Cubre los {guideIndex.length} temas del
           índice de{" "}
           <a
             className="inline-link"
@@ -2012,7 +1991,8 @@ function About() {
           >
             USACO Guide
           </a>
-          . Los nombres Bronce, Plata, Oro y Platino organizan el aprendizaje y
+          . Encontrarás ejemplos paso a paso, pistas y soluciones explicadas
+          para estudiar por tu cuenta. Los nombres Bronce, Plata, Oro y Platino organizan el aprendizaje y
           no representan categorías oficiales de la OMRI.
         </p>
         <p>
@@ -2026,19 +2006,33 @@ function About() {
           >
             CC BY-NC-SA 4.0
           </a>
-          . Los enlaces de cada lección permiten consultar el módulo original y
-          sus problemas.
+          . Las referencias de cada lección son lecturas opcionales. Las
+          explicaciones y los ejercicios de esta guía están disponibles aquí,
+          en español; no necesitas leer la referencia en inglés para hacerlos.
         </p>
         <p>
           Proyecto educativo independiente inspirado en la estructura de USACO Guide,
-          con contenido original en español y ejemplos contextualizados en
-          Morelos. Esta plataforma no sustituye las convocatorias, requisitos ni
+          con explicaciones y ejercicios originales en español sobre el mismo
+          temario. No es una traducción íntegra de los artículos o bancos de
+          problemas de otros sitios. Esta plataforma no sustituye las convocatorias, requisitos ni
           fechas oficiales de la olimpiada.
         </p>
         <p>
-          El avance y los borradores se guardan en tu navegador. Puedes ejecutar
-          C++17 directamente en el navegador, sin instalar nada. Para enviar soluciones a un juez de
-          concursos, usa omegaUp desde la sección de recursos.
+          En el catálogo de práctica por tema puedes resolver ejercicios sin
+          salir de la lección. Escribe C++17, ejecútalo y comprueba los casos
+          publicados, sin instalar nada. Superar esos casos ayuda a detectar
+          errores; también debes explicar por qué tu algoritmo funciona para
+          cualquier entrada válida. La comprobación no sustituye una evaluación
+          completa de un juez de concursos.
+        </p>
+        <p>
+          Tu avance, apuntes, razonamientos escritos, revisiones y borradores se
+          guardan en este navegador y se conservan al recargar si el guardado
+          local está disponible. No se sincronizan entre dispositivos; borrar
+          los datos del sitio los elimina. La descarga de progreso incluye el
+          perfil, los apuntes y el avance; los razonamientos de los ejercicios
+          y los borradores se guardan por separado. Puedes descargar cada
+          programa desde su editor.
         </p>
       </section>
     </>

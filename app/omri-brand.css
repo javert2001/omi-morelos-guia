@@ -232,3 +232,49 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   .welcome-card h2 { font-size: 29px; }
   .compiler-learning-tip > img { width: 48px; height: 48px; }
 }
+
+/* A complete chapter stays readable at every stage of the route. */
+.lesson-section { scroll-margin-top: 28px; }
+.lesson-section p, .exercise-prompt p, .exercise-solution p, .exercise-hint p { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.85; }
+.lesson-contents { padding: 22px; }
+.lesson-contents > .eyebrow { margin-bottom: 12px; }
+.lesson-contents > button, .mobile-lesson-contents button { display: flex; align-items: baseline; gap: 10px; width: 100%; text-align: left; background: none; border: 0; padding: 9px 0; color: var(--ink); font-size: 12px; line-height: 1.6; cursor: pointer; }
+.lesson-contents > button:hover, .mobile-lesson-contents button:hover { color: #487721; }
+.lesson-contents > button > span { color: #79948a; font-size: 10px; font-weight: 700; }
+.lesson-contents > .contents-practice { align-items: center; border-top: 1px solid #e3e9e5; margin-top: 10px; padding-top: 16px; color: #38651d; font-weight: 700; }
+.mobile-lesson-contents { display: none; margin: 20px 0; background: #f6f9f3; border: 1px solid #dfe8d6; border-radius: 12px; padding: 14px 18px; }
+.mobile-lesson-contents summary { cursor: pointer; font-size: 13px; font-weight: 650; }
+.lesson-exercises { border-top: 1px solid #dee5dd; padding-top: 34px; margin-top: 42px; scroll-margin-top: 25px; }
+.lesson-exercises > h2 { font-size: 28px; letter-spacing: -.7px; margin: 10px 0; }
+.exercise-intro { color: #63706d; line-height: 1.8; font-size: 14px; }
+.study-exercise { border: 1px solid #dfe7db; border-radius: 18px; margin: 26px 0; padding: 26px; background: #fff; min-width: 0; box-shadow: 0 3px 15px #1f402004; }
+.exercise-heading { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+.exercise-number { width: 37px; height: 37px; display: grid; place-items: center; border-radius: 11px; background: #eef5df; color: #477122; font-weight: 750; flex-shrink: 0; font-size: 14px; }
+.exercise-heading .eyebrow { font-size: 9px; letter-spacing: 1.1px; }
+.exercise-heading h3 { font-size: 19px; letter-spacing: -.4px; margin: 4px 0 0; line-height: 1.35; }
+.exercise-reviewed { margin-left: auto; display: flex; gap: 4px; align-items: center; font-size: 10px; color: #49722c; }
+.exercise-prompt p, .exercise-solution-body p { font-size: 14px; color: #3d4b47; }
+.exercise-sample { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; min-width: 0; }
+.exercise-sample > div { min-width: 0; }
+.exercise-sample strong { font-size: 11px; color: #596d64; }
+.exercise-sample pre { background: #f4f7f4; border: 1px solid #e3e9e2; border-radius: 8px; padding: 13px; font-size: 12px; overflow: auto; max-height: 200px; }
+.exercise-answer-label { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 650; margin: 22px 0 10px; }
+.study-exercise > textarea { width: 100%; min-height: 100px; border: 1px solid #d8e1d5; border-radius: 10px; padding: 14px; resize: vertical; font: inherit; font-size: 13px; line-height: 1.8; background: #fdfefb; }
+.study-exercise > textarea:focus { outline: 2px solid #84c229; outline-offset: 2px; }
+.exercise-save-status { display: block; color: #6c7c73; font-size: 10px; margin-top: 7px; }
+.exercise-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 14px; }
+.exercise-hint { background: #fff9e7; border-left: 3px solid #ebc655; padding: 13px 16px; margin-top: 12px; border-radius: 0 8px 8px 0; font-size: 13px; }
+.exercise-hint > strong { color: #84681f; font-size: 11px; }
+.exercise-hint p { margin: 5px 0 0; }
+.exercise-solution { border-top: 1px solid #e6eade; margin-top: 22px; padding-top: 17px; }
+.exercise-solution > summary { cursor: pointer; font-size: 13px; font-weight: 650; color: #45692f; }
+.exercise-solution-body { padding-top: 10px; }
+.exercise-solution-code { padding: 19px; background: #172827; color: #e4f3e6; font-size: 12px; border-radius: 12px; overflow: auto; line-height: 1.75; max-height: 500px; }
+.exercise-review { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.7; background: #f1f7e9; padding: 16px; border-radius: 10px; margin-top: 22px; cursor: pointer; }
+.exercise-review input { accent-color: #5b8a29; margin-top: 4px; }
+.lesson-references { margin-top: 32px; border-top: 1px solid #e3e8e1; padding-top: 18px; color: #718076; font-size: 11px; line-height: 1.8; }
+.lesson-references summary { cursor: pointer; font-weight: 600; }
+.lesson-references a { display: inline-flex; gap: 5px; align-items: center; color: #5b725d; text-decoration: underline; }
+.practice-exercise-count { display: flex; gap: 7px; align-items: center; font-size: 11px; color: #527333; margin-bottom: 15px; }
+@media (max-width: 1100px) { .mobile-lesson-contents { display: block; } .lesson-aside .lesson-contents { display: none; } }
+@media (max-width: 600px) { .study-exercise { padding: 18px 15px; border-radius: 14px; margin-left: -3px; margin-right: -3px; } .exercise-heading { gap: 10px; flex-wrap: wrap; } .exercise-heading h3 { font-size: 17px; } .exercise-heading > div { flex: 1; } .exercise-reviewed { margin-left: 47px; } .exercise-sample { grid-template-columns: 1fr; gap: 2px; } .exercise-actions .button { flex: 1; justify-content: center; } }

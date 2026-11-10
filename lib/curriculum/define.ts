@@ -55,14 +55,6 @@ export function guideLesson(
       title: "USACO Guide · " + section.toUpperCase(),
       url: referenceModule.url,
     },
-    practice: content.practice || [
-      {
-        title:
-          section === "general"
-            ? "Recursos del módulo en USACO Guide"
-            : "Problemas del módulo en USACO Guide",
-        url: referenceModule.url + (section === "general" ? "" : "#problems"),
-      },
-    ],
+    practice: content.practice,
   };
 }

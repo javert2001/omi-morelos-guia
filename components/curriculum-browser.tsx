@@ -348,8 +348,8 @@ export default function CurriculumBrowser({
             month: "long",
             year: "numeric",
           })}
-          . El contenido en español es una introducción a cada tema; cada
-          lección enlaza la referencia para profundizar.{" "}
+          . Cada tema tiene explicaciones, ejemplos y ejercicios locales
+          en español. La referencia se conserva como lectura opcional.{" "}
           <a
             href="https://github.com/cpinitiative/usaco-guide/blob/master/content/ordering.ts"
             target="_blank"

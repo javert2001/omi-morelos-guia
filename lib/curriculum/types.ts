@@ -28,6 +28,29 @@ export interface Lesson {
   optional?: boolean;
   source?: { key: string; title: string; url: string };
   practice?: { title: string; url: string }[];
+  exercises?: LessonExercise[];
+}
+
+export interface LessonExercise {
+  id: string;
+  title: string;
+  prompt: string;
+  hints: string[];
+  solution: string;
+  /** Complete, runnable C++17 solution; omitted for reasoning exercises. */
+  code?: string;
+  starterCode?: string;
+  sampleInput?: string;
+  sampleOutput?: string;
+  tests?: { input: string; output: string }[];
+}
+
+/** Spanish self-study chapters preserve the original route's stable IDs. */
+export interface LessonExpansion {
+  sections: Lesson["sections"];
+  exercises: LessonExercise[];
+  minutes?: number;
+  objectives?: string[];
 }
 
 export interface Problem {

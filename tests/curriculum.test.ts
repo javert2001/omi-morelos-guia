@@ -129,11 +129,29 @@ test("source links and practice links are valid and matched to the reference", (
     if (l.source) {
       const m = guideIndex.find((m) => m.key === l.source!.key);
       assert.equal(l.source.url, m?.url, l.id);
-      assert.ok((l.practice?.length || 0) > 0, l.id);
     }
     for (const p of l.practice || []) {
       assert.equal(new URL(p.url).protocol, "https:", l.id);
       assert.ok(p.title.trim(), l.id);
+    }
+  }
+});
+test("every lesson supports Spanish self-study with local worked exercises", () => {
+  for (const lesson of lessons) {
+    assert.ok(lesson.sections.length >= 6, `${lesson.id}: developed chapter`);
+    assert.ok((lesson.exercises?.length || 0) >= 2, `${lesson.id}: local practice`);
+    const exerciseIds = new Set<string>();
+    for (const exercise of lesson.exercises || []) {
+      assert.ok(/^[a-z0-9-]+$/.test(exercise.id), `${lesson.id}/${exercise.id}`);
+      assert.ok(!exerciseIds.has(exercise.id), `${lesson.id}: duplicate exercise ID`);
+      exerciseIds.add(exercise.id);
+      assert.ok(exercise.prompt.length >= 60 && exercise.solution.length >= 100, `${lesson.id}/${exercise.id}: explained task`);
+      assert.ok(exercise.hints.length >= 1 && exercise.hints.every(h=>h.trim()), `${lesson.id}/${exercise.id}: hints`);
+      if (exercise.code) {
+        assert.match(exercise.code, /\bmain\s*\(/, `${lesson.id}/${exercise.id}: runnable program`);
+        assert.ok((exercise.tests?.length || 0) >= 3, `${lesson.id}/${exercise.id}: test cases`);
+        assert.ok(exercise.tests!.some(t => t.input === exercise.sampleInput && t.output === exercise.sampleOutput), `${lesson.id}/${exercise.id}: sample is verified`);
+      }
     }
   }
 });

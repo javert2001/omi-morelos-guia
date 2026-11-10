@@ -1,6 +1,8 @@
 # OMRI · Guía de programación
 
-Plataforma educativa en español para estudiantes de secundaria y preparatoria, inspirada en la estructura de USACO Guide. Incluye una entrada desde cero y una introducción a cada uno de los **149 módulos** de su índice público, cotejado el 10 de noviembre de 2026. Es un proyecto educativo independiente, sin afiliación con USACO Guide. No es una convocatoria oficial; los niveles de USACO sirven para organizar el aprendizaje, no representan categorías oficiales de la OMI.
+Guía autodidacta en español para estudiantes de secundaria y preparatoria: **169 lecciones y 340 ejercicios propios integrados**, desde los primeros programas hasta algoritmos avanzados. El temario cubre los **149 módulos** del índice público de USACO Guide, cotejado el 10 de noviembre de 2026, y conserva 20 lecciones de la ruta inicial. Las explicaciones, ejemplos, pistas y soluciones se estudian dentro del sitio; las referencias externas son lecturas opcionales.
+
+Es un proyecto educativo independiente, sin afiliación con USACO Guide. El contenido se redactó originalmente en español sobre el mismo temario; no constituye una traducción íntegra ni una reproducción de artículos y bancos de problemas ajenos. Los niveles de USACO organizan el aprendizaje y no representan categorías oficiales de la OMRI. La guía no sustituye las convocatorias oficiales.
 
 Los alumnos solo necesitan abrir la página en un navegador moderno: pueden leer, escribir C++17 y ejecutar sus programas sin instalar compiladores ni crear una cuenta. El sitio puede alojarse en **GitHub Pages** porque la compilación y la ejecución ocurren en el navegador mediante WebAssembly; GitHub sirve los archivos estáticos.
 
@@ -48,28 +50,41 @@ Abre la dirección que indique Vite, normalmente `http://127.0.0.1:4173/`. Para 
 | Oro            |        30 | 29 módulos de referencia y una introducción a programación dinámica |
 | Platino        |        23 | Consultas, árboles, geometría y optimizaciones                      |
 | Avanzado       |        41 | Especialidades opcionales: flujos, cadenas, polinomios y más        |
-| **Total**      |   **169** | **149 módulos de referencia + 20 lecciones originales conservadas** |
+| **Total**      |   **169** | **149 temas del índice de referencia + 20 lecciones iniciales conservadas** |
 
-Cada módulo nuevo tiene objetivos, prerrequisitos, explicaciones propias en español, un ejemplo trabajado, una pregunta con explicación y un enlace directo a la fuente para profundizar. Las lecciones son introducciones: no constituyen una traducción íntegra de todos los artículos, soluciones y bancos de problemas de USACO Guide. Los módulos sobre procesos de USACO y contribución a su sitio se presentan como recursos opcionales con su contexto original.
+Cada lección reúne explicaciones en español, ejemplos trabajados, preguntas de comprensión y ejercicios locales con pistas progresivas y soluciones explicadas. Los capítulos de algoritmos desarrollan sus estados o invariantes, justificación, complejidad, límites y errores frecuentes. Los ejercicios de programación incluyen enunciado, formato de entrada y salida, solución completa en C++17 y casos publicados que se pueden comprobar en el navegador. Los temas de orientación y herramientas incluyen actividades de razonamiento o aplicación apropiadas a su contenido.
+
+Las referencias se encuentran en un apartado opcional y no son un paso necesario para resolver los ejercicios locales. Los módulos sobre procesos de USACO y contribución a su sitio conservan su contexto y carácter opcional. La cobertura del índice organiza los temas; no implica reproducir cada problema o cada variante del material externo.
 
 La ruta permite buscar sin acentos, filtrar por avance, incluir u ocultar módulos opcionales y desplegar capítulos por etapa. Las especialidades avanzadas se pueden abrir libremente; los prerrequisitos son recomendaciones.
 
 ## Funcionamiento
 
 - Panel con estadísticas reales, mapa de actividad, racha y meta semanal.
-- 169 lecciones con preguntas de comprensión; ejemplos completos de C++17 en los temas que incluyen código.
-- 10 retos originales de razonamiento, 43 casos de entrada/salida, pistas y soluciones.
-- Catálogo de 120 módulos de práctica externa, de Bronce a Avanzado, con acceso a la explicación local y a los problemas originales.
+- 169 lecciones y 340 ejercicios integrados de razonamiento y programación, con pistas progresivas y soluciones explicadas.
+- 10 retos originales adicionales con práctica de salida esperada, editor C++17 y comprobación de sus casos publicados.
+- Catálogo local de práctica por tema, desde Primeros pasos hasta Avanzado, con búsqueda y filtros por etapa.
 - Búsqueda global, apuntes por lección y perfil con meta semanal.
 - Laboratorio C++17 con editor, entrada, salida, diagnósticos, cancelación y borradores locales.
+- Comprobación de casos de programación dentro de cada ejercicio y guardado del razonamiento escrito y su revisión.
 - Botón «Probar código» en los ejemplos y editor con plantilla/entrada en cada problema.
 - Copia de código y descarga de programas `.cpp`.
-- Exportación del progreso como JSON y reinicio con confirmación.
+- Exportación del perfil, apuntes y progreso como JSON, y reinicio con confirmación; los borradores y respuestas de ejercicios tienen almacenamiento separado.
 - Diseño adaptable a computadora y móvil; navegación por teclado.
 
-Los retos locales conservan el ejercicio de predecir la **salida que escribe el alumno** y ahora incluyen un editor para compilar y ejecutar C++17. El laboratorio permite experimentar con entrada libre; ejecutar un programa no equivale a que un juez haya aceptado la solución ni marca automáticamente el reto como resuelto. Los problemas externos se resuelven y evalúan en sus propias plataformas; sus enunciados pueden estar en inglés y sus resultados no se sincronizan con el progreso local.
+Los retos locales permiten predecir la **salida que escribe el alumno** y comprobar su programa C++17 contra los casos publicados. Superar todos esos casos registra el reto como resuelto. Los ejercicios de las lecciones también permiten comprobar sus casos y marcar que se comparó el razonamiento con la solución. Ejecutar con entrada libre es una acción distinta: no comprueba el resto de los casos.
 
-El perfil, los apuntes y el progreso se guardan en `localStorage` con la clave `omi-morelos-progress-v1`. Los identificadores de las 20 lecciones y los 10 problemas originales se conservan. Las rutas anteriores `algoritmos` y `olimpiada` siguen funcionando y llevan a Bronce y Plata. Los borradores de código y entrada se guardan por separado bajo `omi-morelos-cpp-draft-v1:<clave>`; no se borran al reiniciar el progreso de las lecciones. No hay cuentas, backend de alumnos ni sincronización entre dispositivos. Borrar los datos del navegador borra estos avances. El sitio local y el publicado tienen almacenamientos separados; publicar la página no transfiere automáticamente los datos guardados en localhost. Las fuentes, la ilustración y el compilador se sirven desde el propio sitio; los recursos externos requieren internet.
+La comprobación compara palabras y números de la salida, ignorando diferencias de espacios y saltos de línea; no acepta resultados distintos ni aplica tolerancia numérica. Se detiene ante el primer fallo y muestra entrada, salida esperada, salida obtenida o diagnóstico de ejecución. Superar los casos publicados ayuda a detectar errores, pero no demuestra corrección para todas las entradas válidas ni equivale a la evaluación completa de un juez de concursos. La explicación del algoritmo y sus límites sigue siendo parte del ejercicio. Los recursos externos son opcionales y sus resultados no se sincronizan con la guía.
+
+El almacenamiento local conserva los datos al recargar, siempre que el navegador permita guardarlos:
+
+- `omi-morelos-progress-v1`: perfil, apuntes, lecciones completadas, retos resueltos y actividad.
+- `omi-morelos-cpp-draft-v1:<clave>`: código y entrada de cada editor.
+- `omi-morelos-exercise-v1:<lección>:<ejercicio>`: razonamiento escrito y marca de revisión de cada ejercicio de lección.
+
+Los identificadores de las 20 lecciones y los 10 problemas originales se conservan. Las rutas anteriores `algoritmos` y `olimpiada` siguen funcionando y llevan a Bronce y Plata. Reiniciar el progreso no elimina las respuestas de ejercicios ni los borradores de código guardados en claves separadas. La descarga de progreso JSON tampoco incluye esas respuestas o borradores; los programas pueden descargarse individualmente como `.cpp`.
+
+No hay cuentas, backend de alumnos ni sincronización entre dispositivos. Borrar los datos del navegador elimina estos avances. El sitio local y el publicado tienen almacenamientos separados; publicar no transfiere automáticamente lo guardado en localhost. Las fuentes, imágenes y herramientas del compilador se sirven desde el propio sitio; los recursos externos requieren internet.
 
 ## Compilador en el navegador
 
@@ -83,7 +98,7 @@ Cada programa recibe un sistema de archivos virtual nuevo. El ejecutor no le exp
 
 Límites: código de 64 KiB, entrada de 32 KiB, salida de 64 KiB por fase, hasta 120 segundos para cargar el compilador, 30 segundos para compilar y 3 segundos para ejecutar. Cancelar o superar el tiempo detiene el Worker. La memoria lineal de WebAssembly está limitada a 256 MiB para cada herramienta de compilación, 64 MiB para el sistema de archivos y 128 MiB para el programa del alumno; **estos límites no son una cota de la RAM total que consume la pestaña**.
 
-El lenguaje es C++17 con libc++; se incluye una cabecera de compatibilidad `bits/stdc++.h` con bibliotecas estándar, pero no extensiones GNU como `__gnu_pbds`. El entorno WebAssembly no reproduce todas las funciones de un sistema operativo ni la arquitectura de un juez de concursos. El laboratorio es para aprender y experimentar; no evalúa automáticamente todas las pruebas de un problema.
+El lenguaje es C++17 con libc++; se incluye una cabecera de compatibilidad `bits/stdc++.h` con bibliotecas estándar, pero no extensiones GNU como `__gnu_pbds`. El entorno WebAssembly no reproduce todas las funciones de un sistema operativo ni la arquitectura de un juez de concursos. El laboratorio permite experimentar con entradas propias y comprobar los casos publicados cuando el ejercicio los incluye; no dispone de un banco oculto que certifique todas las entradas posibles.
 
 ### Servicio nativo opcional para desarrollo
 
@@ -92,12 +107,16 @@ Se conserva la API local de Apple Clang en `lib/server/compiler.ts` y `scripts/v
 ## Editar
 
 - `lib/curriculum.ts`: punto de entrada del catálogo completo.
-- `lib/curriculum/{general,bronze,silver,gold,platinum,advanced}.ts`: lecciones de cada división.
+- `lib/curriculum/{general,bronze,silver,gold,platinum,advanced}.ts`: catálogo base e información de cada división.
+- `lib/curriculum/expanded/`: capítulos de estudio y ejercicios locales; sus ampliaciones se integran por identificador estable desde `lib/curriculum.ts`.
+- `lib/curriculum/types.ts`: contratos de lecciones, ampliaciones y ejercicios, incluidos soluciones ejecutables y casos de prueba.
 - `lib/curriculum/levels.ts`: etapas y prerrequisitos generales.
 - `lib/curriculum/foundations.ts` y `legacy.ts`: contenido previo e integración con las nuevas etapas.
 - `lib/curriculum/source-index.ts`: índice de referencia y fecha de cotejo.
 - `components/curriculum-browser.tsx`: capítulos, búsqueda y filtros del temario.
-- `components/practice-catalog.tsx`: práctica externa por tema.
+- `components/practice-catalog.tsx`: catálogo de práctica local por tema.
+- `components/lesson-exercises.tsx`: razonamiento escrito, pistas progresivas, soluciones, revisión y editores dentro de las lecciones.
+- `lib/exercise-judge.ts`: comprobación secuencial de los casos publicados, comparación de salida por tokens y cancelación.
 - `components/learning-app.tsx`: panel, lector, problemas, apuntes y perfil.
 - `components/cpp-playground.tsx` y `.css`: editor, borradores y resultados.
 - `lib/browser-compiler.ts`: integración del compilador WebAssembly y límites del laboratorio.
@@ -105,7 +124,9 @@ Se conserva la API local de Apple Clang en `lib/server/compiler.ts` y `scripts/v
 - `lib/server/compiler.ts` y `scripts/vite/compiler-plugin.ts`: API nativa opcional para desarrollo en macOS.
 - `vite.pages.config.ts` y `.github/workflows/pages.yml`: construcción estática y publicación en Pages.
 - `lib/progress.ts`: persistencia, actividad, rachas y metas.
-- `app/globals.css`: diseño adaptable y estilos.
+- `app/globals.css` y `app/omri-brand.css`: diseño adaptable, lector, ejercicios y estilo de la OMRI.
+- `scripts/validate-curriculum-cpp.mjs`: sintaxis C++17 de ejemplos y ejecución nativa de cada solución con sus casos publicados.
+- `scripts/validate-browser-cpp.mjs`: verificación de ejemplos y casos mediante el mismo compilador WebAssembly que usa el navegador.
 
 Tecnologías: React 19, TypeScript, Vite y Lucide. La construcción para Pages es una aplicación estática independiente de la configuración de Vinext/Sites que se conserva para el servidor de desarrollo y la construcción alternativa de Workers. `npm run build:pages` es el comando de publicación en GitHub; `npm run build` genera la alternativa de Workers.
 
@@ -115,17 +136,21 @@ Tecnologías: React 19, TypeScript, Vite y Lucide. La construcción para Pages e
 npm test
 npx tsc --noEmit
 npm run check:cpp
-npm run build
+node --experimental-strip-types scripts/validate-browser-cpp.mjs
 npm run build:pages
 ```
 
 Las pruebas del compilador nativo cubren ejecución, errores, límites, cancelación, recuperación, origen de solicitudes y aislamiento mediante archivos de prueba desechables. Los casos de integración nativa se omiten en plataformas distintas de macOS; no sustituyen una comprobación del laboratorio WebAssembly en el navegador y en la versión estática.
 
-Las pruebas del temario comprueban la correspondencia exacta de los 149 módulos, identificadores estables, integridad y ciclos de prerrequisitos, enlaces, preguntas y estructura de las lecciones. También cubren almacenamiento ausente o dañado, fechas locales y registro de avances sin duplicados. `check:cpp` requiere `clang++`: valida la sintaxis de cada ejemplo completo en C++17 y compila/ejecuta las 10 soluciones con sus 43 casos.
+Las pruebas del temario comprueban la correspondencia exacta de los 149 módulos, identificadores estables, integridad y ciclos de prerrequisitos, enlaces, preguntas y estructura de las lecciones y sus ejercicios. También cubren almacenamiento ausente o dañado, fechas locales y registro de avances sin duplicados. Las pruebas de comprobación de ejercicios verifican comparación de salidas, detención ante errores y cancelación.
+
+`check:cpp` requiere `clang++`: valida la sintaxis de cada ejemplo completo y compila y ejecuta cada solución con sus casos publicados, tanto en los retos como en las lecciones. El validador WebAssembly usa `tests/helpers/browser-worker.mjs` para probar el ejecutor real; conserva en el directorio temporal una caché de verificaciones satisfactorias identificadas por contenido, casos y versión del ejecutor. Los cambios de código o resultados esperados requieren una comprobación nueva. Ninguno de estos validadores prueba exhaustivamente todas las entradas posibles: las justificaciones y límites de cada capítulo también deben revisarse.
+
+Para cambios de interfaz, comprueba además la versión estática en el navegador: navegación, lectura en móvil, guardado al recargar, pistas, solución y editor. La construcción alternativa para Workers se puede verificar por separado con `npm run build`.
 
 ## Referencias y atribución
 
-El índice curricular se basa en [USACO Guide](https://usaco.guide/), de Competitive Programming Initiative y sus colaboradores. La referencia, la licencia CC BY-NC-SA 4.0 y el inventario utilizado están conservados en `data/reference/`; consulta `data/reference/ATTRIBUTION.md`. El texto local se redactó en español para introducir cada tema y cada módulo enlaza su referencia.
+El índice curricular se basa en [USACO Guide](https://usaco.guide/), de Competitive Programming Initiative y sus colaboradores. La referencia, la licencia CC BY-NC-SA 4.0 y el inventario utilizado están conservados en `data/reference/`; consulta `data/reference/ATTRIBUTION.md`. Las explicaciones, actividades y soluciones locales son contenido original en español para estudiar cada tema sin depender de la lectura externa. Cada módulo conserva su atribución y enlace de consulta opcional; la guía no reproduce íntegramente los artículos ni bancos de problemas externos.
 
 El compilador WebAssembly se basa en [binji/wasm-clang](https://github.com/binji/wasm-clang), con las adaptaciones y la versión de origen documentadas en `public/compiler/NOTICE` y `public/compiler/manifest.json`. Se conservan `public/compiler/LICENSE` y `public/compiler/LICENSE.llvm`; estas licencias de software son independientes de la licencia del material educativo.
 

@@ -514,3 +514,12 @@
   font-size: 0.76rem;
   line-height: 1.6;
 }
+
+.cpp-case-results { padding: 20px; border-top: 1px solid var(--border, #dae2e0); background: #f4f9f5; }
+.cpp-case-results h3 { font-size: 16px; margin: 0 0 14px; }
+.cpp-case-results details { border: 1px solid #d8e3da; background: white; border-radius: 10px; margin: 8px 0; overflow: hidden; }
+.cpp-case-results summary { cursor: pointer; padding: 12px 14px; font-size: 13px; font-weight: 650; }
+.cpp-case-results > p { font-size: 12px; line-height: 1.7; color: #50625c; margin: 14px 0 0; }
+.cpp-case-comparison { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 0 14px 14px; font-size: 12px; }
+.cpp-case-comparison pre { margin: 8px 0 0; padding: 10px; background: #f5f7f8; border-radius: 6px; overflow: auto; max-height: 180px; }
+@media(max-width: 600px) { .cpp-case-comparison { grid-template-columns: 1fr; } }

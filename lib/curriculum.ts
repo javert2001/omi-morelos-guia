@@ -7,9 +7,13 @@ import { goldLessons } from './curriculum/gold.ts';
 import { platinumLessons } from './curriculum/platinum.ts';
 import { advancedLessons } from './curriculum/advanced.ts';
 import type { Lesson } from './curriculum/types.ts';
-export type { Level, Lesson, Problem } from './curriculum/types.ts';
+import { basicsExpansions } from './curriculum/expanded/basics.ts';
+import { intermediateExpansions } from './curriculum/expanded/intermediate.ts';
+import { advancedExpansions } from './curriculum/expanded/advanced.ts';
+export type { Level, Lesson, Problem, LessonExercise } from './curriculum/types.ts';
 export const levels = expandedLevels;
 const allLessons:Lesson[]=[...legacyLessons,...generalLessons,...bronzeLessons,...silverLessons,...goldLessons,...platinumLessons,...advancedLessons];
 // Preserve stable legacy IDs, and order the expanded path by stage.
-export const lessons:Lesson[]=levels.flatMap(level=>allLessons.filter(lesson=>lesson.level===level.id));
+const expansions = { ...basicsExpansions, ...intermediateExpansions, ...advancedExpansions };
+export const lessons:Lesson[]=levels.flatMap(level=>allLessons.filter(lesson=>lesson.level===level.id)).map(lesson => ({ ...lesson, ...expansions[lesson.id] }));
 export const problems=legacyProblems;

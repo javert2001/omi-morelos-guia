@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ArrowUpRight, BookOpen, Search } from "lucide-react";
+import { ArrowRight, BookOpen, Code2, Search } from "lucide-react";
 import { lessons, levels } from "@/lib/curriculum";
 const normalize = (s: string) =>
   s
@@ -10,7 +10,7 @@ const normalize = (s: string) =>
 export default function PracticeCatalog() {
   const [stage, setStage] = useState("todos");
   const [query, setQuery] = useState("");
-  const modules = lessons.filter((l) => l.source && l.level !== "general");
+  const modules = lessons.filter((l) => l.exercises?.length);
   const filtered = modules.filter(
     (l) =>
       (stage === "todos" || stage === l.level) &&
@@ -23,11 +23,10 @@ export default function PracticeCatalog() {
       <div className="practice-catalog-notice">
         <BookOpen size={22} />
         <p>
-          <strong>Practica todos los temas, de Bronce a Avanzado.</strong>{" "}
-          Repasa primero la explicación en español y abre después la colección
-          de recursos del módulo original y sus problemas disponibles. Los
-          enunciados externos pueden estar en inglés; los envíos y resultados se
-          gestionan en sus plataformas.
+          <strong>Aprende y practica sin salir de la guía.</strong>{" "}
+          Cada tema incluye ejercicios en español, pistas progresivas y soluciones
+          explicadas. En los ejercicios de programación puedes escribir C++ y
+          comprobar los casos dentro de la misma lección.
         </p>
       </div>
       <div className="problem-toolbar">
@@ -41,7 +40,7 @@ export default function PracticeCatalog() {
           />
         </div>
         <select
-          aria-label="Etapa de práctica externa"
+          aria-label="Etapa de práctica"
           value={stage}
           onChange={(e) => setStage(e.target.value)}
         >
@@ -65,17 +64,11 @@ export default function PracticeCatalog() {
             </div>
             <h2>{l.title}</h2>
             <p>{l.description}</p>
+            <span className="practice-exercise-count"><Code2 size={14} /> {l.exercises!.length} ejercicios · pistas y soluciones</span>
             <div>
               <a href={`#/leccion/${l.id}`}>
                 <BookOpen size={14} />
-                Lección en español
-              </a>
-              <a
-                href={l.source!.url + "#problems"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Problemas <ArrowUpRight size={15} />
+                Estudiar y practicar <ArrowRight size={15} />
               </a>
             </div>
           </article>

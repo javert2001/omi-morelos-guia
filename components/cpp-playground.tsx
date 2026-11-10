@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import type { CompilerHealth, CompilerResult } from "@/lib/compiler-contract";
 import { getBrowserCompilerHealth, executeBrowserCpp } from "@/lib/browser-compiler";
+import { checkExerciseCases, type CaseResult, type ExerciseCase } from "@/lib/exercise-judge";
 import "./cpp-playground.css";
 
 export type CppPlaygroundProps = {
@@ -22,6 +23,8 @@ export type CppPlaygroundProps = {
   storageKey?: string;
   title?: string;
   compact?: boolean;
+  testCases?: ExerciseCase[];
+  onTestsPassed?: () => void;
 };
 
 const starterCode = `#include <iostream>
@@ -89,6 +92,8 @@ function PlaygroundSession({
   storageKey = "libre",
   title = "Tu espacio para programar",
   compact = false,
+  testCases,
+  onTestsPassed,
 }: CppPlaygroundProps) {
   const id = useId();
   const draftKey = `omi-morelos-cpp-draft-v1:${storageKey}`;
@@ -103,6 +108,8 @@ function PlaygroundSession({
   const [running, setRunning] = useState(false);
   const [runProgress, setRunProgress] = useState("");
   const [result, setResult] = useState<CompilerResult | null>(null);
+  const [caseResults, setCaseResults] = useState<CaseResult[]>([]);
+  const [testsPassed, setTestsPassed] = useState(false);
   const [notice, setNotice] = useState("");
   const [confirmReset, setConfirmReset] = useState(false);
   const requestRef = useRef<AbortController | null>(null);
@@ -173,10 +180,12 @@ function PlaygroundSession({
     runningRef.current = false;
     setRunning(false);
     setResult(null);
+    setCaseResults([]);
+    setTestsPassed(false);
     setConfirmReset(false);
   }
 
-  async function run() {
+  async function run(checkCases = false) {
     if (runningRef.current || !ready || !health?.available || checking) return;
     setNotice("");
     setConfirmReset(false);
@@ -193,7 +202,8 @@ function PlaygroundSession({
     }
     if (
       bytes.encode(code).length > health.limits.codeBytes ||
-      bytes.encode(stdin).length > health.limits.inputBytes
+      (!(checkCases && testCases?.length) &&
+        bytes.encode(stdin).length > health.limits.inputBytes)
     ) {
       setResult(
         emptyResult(
@@ -210,7 +220,26 @@ function PlaygroundSession({
     setRunning(true);
     setRunProgress("Preparando el compilador…");
     setResult(null);
+    setCaseResults([]);
+    setTestsPassed(false);
     try {
+      if (checkCases && testCases?.length) {
+        const passed = await checkExerciseCases(code, testCases, executeBrowserCpp, controller.signal,
+          (item) => {
+            if (request === sequenceRef.current && !controller.signal.aborted) {
+              setCaseResults(previous => [...previous, item]);
+              setResult(item.execution);
+            }
+          },
+          (message) => {
+            if (request === sequenceRef.current && !controller.signal.aborted) setRunProgress(message);
+          });
+        if (request === sequenceRef.current && !controller.signal.aborted) {
+          setTestsPassed(passed);
+          if (passed) onTestsPassed?.();
+        }
+        return;
+      }
       const data = await executeBrowserCpp({ code, stdin }, controller.signal, (message) => {
         if (request === sequenceRef.current && !controller.signal.aborted)
           setRunProgress(message);
@@ -241,6 +270,7 @@ function PlaygroundSession({
     requestRef.current = null;
     runningRef.current = false;
     setRunning(false);
+    setTestsPassed(false);
     setResult(emptyResult("cancelled"));
     setNotice("");
   }
@@ -516,6 +546,12 @@ function PlaygroundSession({
             código
           </button>
         )}
+        {!!testCases?.length && !running && (
+          <button type="button" className="cpp-secondary" disabled={!compilerAvailable || !ready}
+            onClick={() => void run(true)}>
+            <Check size={16} /> Comprobar {testCases.length} casos
+          </button>
+        )}
         <button
           type="button"
           className="cpp-secondary"
@@ -534,6 +570,22 @@ function PlaygroundSession({
           <RotateCcw size={14} aria-hidden="true" /> Restaurar
         </button>
       </div>
+      {caseResults.length > 0 && (
+        <section className="cpp-case-results" aria-label="Resultados de los casos">
+          <h3 role="status">{testsPassed ? `¡Superaste los ${testCases!.length} casos!` : `${caseResults.filter(item => item.status === "passed").length} de ${testCases?.length} casos superados`}</h3>
+          {caseResults.map(item => (
+            <details key={item.index} open={item.status !== "passed"}>
+              <summary>Caso {item.index + 1} · {item.status === "passed" ? "Correcto" : item.status === "wrong_answer" ? "La salida no coincide" : statusLabels[item.execution.status]}</summary>
+              <div className="cpp-case-comparison">
+                <div><strong>Entrada</strong><pre>{item.input || "(sin entrada)"}</pre></div>
+                <div><strong>Salida esperada</strong><pre>{item.expected || "(vacía)"}</pre></div>
+                <div><strong>Tu salida</strong><pre>{item.actual || "(vacía)"}</pre></div>
+              </div>
+            </details>
+          ))}
+          <p>Se comparan las palabras y los números, ignorando espacios y saltos de línea. Estos casos ayudan a detectar errores; justifica también por qué funciona tu algoritmo.</p>
+        </section>
+      )}
       {confirmReset && (
         <div
           className="cpp-reset-confirm"
@@ -561,8 +613,8 @@ function PlaygroundSession({
       )}
       <p className="cpp-footnote">
         Tu código se compila y ejecuta en este navegador, sin enviarlo a un servidor.
-        El borrador se guarda en este dispositivo. Ejecutar no marca una lección
-        o problema como completado.
+        El borrador se guarda en este dispositivo.{" "}
+        {onTestsPassed ? "Superar todos los casos registra este reto como resuelto." : "Estudiar los casos y explicar el algoritmo es parte de resolver el ejercicio."}
       </p>
     </section>
   );
