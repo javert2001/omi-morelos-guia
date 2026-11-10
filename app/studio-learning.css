@@ -1,0 +1,2051 @@
+/* Learning surfaces. Imported after the legacy theme; no shell or route styling. */
+.lesson-layout,
+.lesson-exercises,
+.problem-layout,
+.code-practice,
+.studio-shell .cpp-playground {
+  --study-ink: #14172b;
+  --study-body: #373c50;
+  --study-muted: #656b7d;
+  --study-line: #e6e8ef;
+  --study-paper: #f7f8fc;
+  --study-blue: #3037df;
+  --study-blue-soft: #f0f1ff;
+  --study-green: #b7ed72;
+  --study-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  color: var(--study-ink);
+}
+
+/* A quiet reading column, with reference material alongside it. */
+.lesson-layout {
+  grid-template-columns: minmax(0, 1fr) 248px;
+  gap: clamp(28px, 3.5vw, 56px);
+  align-items: start;
+}
+.lesson-layout .lesson-article,
+.lesson-layout .lesson-aside,
+.lesson-layout .lesson-section,
+.lesson-layout .study-exercise {
+  min-width: 0;
+  max-width: 100%;
+}
+.lesson-layout .lesson-article > .eyebrow {
+  color: var(--study-blue);
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.lesson-layout .lesson-article > h1 {
+  margin: 15px 0 0;
+  max-width: 23ch;
+  color: var(--study-ink);
+  font-size: clamp(32px, 3.15vw, 48px);
+  line-height: 1.14;
+  font-weight: 750;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.lesson-layout .lesson-description {
+  color: var(--study-muted);
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 20px 0 0;
+}
+.lesson-layout .lesson-badges {
+  gap: 10px 20px;
+  flex-wrap: wrap;
+  margin: 22px 0 0;
+  color: var(--study-muted);
+  font-size: 12px;
+}
+.lesson-layout .lesson-badges .pill {
+  color: #38521d;
+  background: #edf7e2;
+  border: 1px solid #d6e8c5;
+  padding: 5px 10px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.lesson-layout .lesson-reading-mode {
+  color: var(--study-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 14px 0 0;
+}
+.lesson-layout .lesson-reading-mode svg {
+  color: var(--study-blue);
+  flex-shrink: 0;
+}
+.lesson-layout .lesson-takeaway {
+  margin: 28px 0 22px;
+  padding: 22px 25px;
+  background: var(--study-blue-soft);
+  border: 1px solid #dfe1fb;
+  border-left: 3px solid var(--study-blue);
+  border-radius: 3px 14px 14px 3px;
+}
+.lesson-layout .lesson-takeaway > span {
+  color: var(--study-blue);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: .12em;
+  font-weight: 750;
+}
+.lesson-layout .lesson-takeaway p {
+  margin: 10px 0 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--study-ink);
+  font-weight: 500;
+}
+.lesson-layout .lesson-prerequisite-links {
+  margin: 0 0 30px;
+  gap: 8px;
+  color: var(--study-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.lesson-layout .lesson-prerequisite-links > span {
+  flex-basis: 100%;
+}
+.lesson-layout .lesson-prerequisite-links button {
+  max-width: 100%;
+  padding: 7px 10px;
+  color: #41475f;
+  background: #fff;
+  border: 1px solid var(--study-line);
+  border-radius: 6px;
+  font-size: 12px;
+  text-align: left;
+}
+.lesson-layout .lesson-prerequisite-links button svg {
+  flex-shrink: 0;
+  color: var(--study-blue);
+}
+.lesson-layout .lesson-prerequisite-links button:hover {
+  background: var(--study-blue-soft);
+  border-color: #c8ccfa;
+  color: var(--study-blue);
+}
+.lesson-layout .lesson-article .lesson-section {
+  margin: 0 0 36px;
+  padding: 36px 0 0;
+  border-top: 1px solid var(--study-line);
+  scroll-margin-top: 90px;
+}
+.lesson-layout .lesson-article .lesson-section h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0 0 20px;
+  color: var(--study-ink);
+  font-size: clamp(22px, 2vw, 26px);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+.lesson-layout .lesson-step-number {
+  position: static;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 34px;
+  min-width: 34px;
+  min-height: 32px;
+  padding: 5px 4px;
+  border: 1px solid #dfe1fc;
+  border-radius: 7px;
+  background: var(--study-blue-soft);
+  color: var(--study-blue);
+  font: 600 12px/1.4 var(--study-mono);
+  letter-spacing: 0;
+}
+.lesson-layout .lesson-article .lesson-section > p,
+.lesson-layout .lesson-depth-body p {
+  max-width: 68ch;
+  margin: 0 0 18px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--study-body);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.lesson-layout .optional-notice,
+.lesson-layout .lesson-objectives {
+  padding: 22px;
+  border: 1px solid var(--study-line);
+  border-radius: 12px;
+  background: var(--study-paper);
+  color: var(--study-body);
+}
+.lesson-layout .optional-notice p,
+.lesson-layout .lesson-objectives li {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--study-body);
+}
+.lesson-layout .lesson-objectives h2 {
+  color: var(--study-ink);
+}
+.lesson-layout .lesson-objectives li svg,
+.lesson-layout .optional-notice > svg {
+  color: var(--study-blue);
+}
+
+/* Diagrams share their colors with the editor and the rest of the lesson. */
+.lesson-layout :is(.lesson-drawing, .lesson-visual) {
+  margin: 26px 0;
+  padding: 24px;
+  border: 1px solid var(--study-line);
+  border-radius: 14px;
+  background: var(--study-paper);
+  color: var(--study-ink);
+  box-shadow: none;
+  max-width: 100%;
+  min-width: 0;
+}
+.lesson-layout .lesson-drawing > figcaption {
+  margin: 0 0 18px;
+  color: var(--study-ink);
+  font-size: 14px;
+  line-height: 1.65;
+  font-weight: 650;
+}
+.lesson-layout .visual-eyebrow {
+  color: var(--study-blue);
+  font-size: 10px;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}
+.lesson-layout .visual-heading {
+  gap: 16px;
+}
+.lesson-layout .visual-heading > div {
+  min-width: 0;
+}
+.lesson-layout .visual-heading h3 {
+  color: var(--study-ink);
+  margin: 8px 0 0;
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+.lesson-layout .visual-counter {
+  flex-shrink: 0;
+  color: var(--study-blue);
+  background: #fff;
+  border: 1px solid #dbdef6;
+  border-radius: 6px;
+  padding: 7px 9px;
+  font: 600 12px/1.5 var(--study-mono);
+}
+.lesson-layout .visual-progress {
+  gap: 5px;
+  margin: 22px 0 16px;
+}
+.lesson-layout .visual-progress span {
+  background: #e2e5ef;
+  height: 3px;
+  border-radius: 2px;
+}
+.lesson-layout .visual-progress .filled {
+  background: var(--study-blue);
+}
+.lesson-layout .visual-edge {
+  stroke: #818da8;
+  stroke-width: 2.5;
+}
+.lesson-layout .visual-node rect {
+  fill: #fff;
+  stroke: #818da8;
+  stroke-width: 2;
+}
+.lesson-layout .visual-node.is-active rect {
+  fill: var(--study-blue);
+  stroke: #222ab8;
+  stroke-width: 3;
+}
+.lesson-layout .visual-node.is-done rect {
+  fill: var(--study-green);
+  stroke: #668d32;
+  stroke-width: 2;
+}
+.lesson-layout .visual-node.is-muted rect {
+  fill: #eef0f6;
+  stroke: #aab1c3;
+  stroke-dasharray: 5 4;
+}
+.lesson-layout .visual-node-value {
+  fill: var(--study-ink);
+  font: 650 27px var(--study-mono);
+}
+.lesson-layout .visual-node.is-active .visual-node-value {
+  fill: #fff;
+}
+.lesson-layout .visual-node.is-muted .visual-node-value {
+  fill: #60697f;
+}
+.lesson-layout .visual-node-label {
+  fill: #515970;
+  font-size: 18px;
+}
+.lesson-layout .visual-rows-scroll {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 3px;
+  overscroll-behavior-x: contain;
+  scrollbar-color: #bac1da transparent;
+  scrollbar-width: thin;
+}
+.lesson-layout .visual-rows {
+  gap: 18px;
+  margin: 10px 0 4px;
+}
+.lesson-layout .visual-row-label {
+  color: #596076;
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.lesson-layout .visual-cells {
+  display: grid;
+  gap: 6px;
+}
+.lesson-layout .visual-cell {
+  min-width: 0;
+  min-height: 45px;
+  padding: 10px 9px;
+  color: var(--study-ink);
+  background: #fff;
+  border: 1px solid #dfe3ed;
+  border-radius: 7px;
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+.lesson-layout .visual-cell.is-active {
+  color: #fff;
+  background: var(--study-blue);
+  border: 2px solid #222ab8;
+  padding: 9px 8px;
+}
+.lesson-layout .visual-cell.is-muted {
+  color: #60697e;
+  background: #edf0f6;
+  border-color: #dde1ec;
+  text-decoration-color: #8b93a8;
+}
+.lesson-layout .visual-explanation {
+  min-height: 0;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid var(--study-line);
+  border-radius: 10px;
+  background: #fff;
+}
+.lesson-layout .visual-explanation h4 {
+  color: var(--study-ink);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+.lesson-layout .lesson-section .visual-explanation p {
+  color: var(--study-body);
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+}
+.lesson-layout .visual-result {
+  display: block;
+  color: #35551d;
+  background: #eff8e5;
+  border-left: 2px solid #83ae4a;
+  padding: 9px 12px;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.lesson-layout .visual-controls {
+  gap: 8px;
+  margin-top: 18px;
+}
+.lesson-layout .visual-controls button {
+  min-height: 42px;
+  color: var(--study-body);
+  background: #fff;
+  border: 1px solid #d6dbe8;
+  border-radius: 7px;
+  padding: 10px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.lesson-layout .visual-controls button:hover:not(:disabled) {
+  border-color: #9b9feb;
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+}
+.lesson-layout .visual-controls .visual-next {
+  background: var(--study-blue);
+  border-color: var(--study-blue);
+  color: #fff;
+}
+.lesson-layout .visual-controls .visual-next:hover:not(:disabled) {
+  color: #fff;
+  background: #242bc0;
+  border-color: #242bc0;
+}
+.lesson-layout .visual-controls button:disabled {
+  opacity: 1;
+  color: #626b80;
+  background: #edf0f6;
+  border-color: #e0e4ee;
+  cursor: not-allowed;
+}
+.lesson-layout .lesson-section .visual-caption {
+  color: var(--study-muted);
+  font-size: 12px;
+  line-height: 1.75;
+  margin: 15px 0 0;
+}
+
+/* Small pauses and optional depth stay visually distinct from the six steps. */
+.lesson-layout .lesson-check {
+  margin: 26px 0 0;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid #d8dcf5;
+  border-radius: 12px;
+  box-shadow: inset 3px 0 0 var(--study-blue);
+}
+.lesson-layout .lesson-check > span {
+  color: var(--study-blue);
+  font-size: 10px;
+  letter-spacing: .12em;
+  font-weight: 750;
+}
+.lesson-layout .lesson-section .lesson-check p {
+  color: var(--study-body);
+  margin: 12px 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.lesson-layout .lesson-check details > summary {
+  color: var(--study-blue);
+  padding: 5px 0;
+  font-size: 13px;
+  font-weight: 650;
+}
+.lesson-layout .lesson-check details p {
+  border-top: 1px solid var(--study-line);
+  padding: 15px 0 0;
+}
+.lesson-layout .lesson-depth {
+  margin: 40px 0;
+  border: 1px solid var(--study-line);
+  border-radius: 12px;
+  background: #fff;
+}
+.lesson-layout .lesson-depth > summary {
+  padding: 23px 24px;
+  color: var(--study-ink);
+  background: var(--study-paper);
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 650;
+}
+.lesson-layout .lesson-depth > summary::marker,
+.lesson-layout .lesson-depth-body > details > summary::marker {
+  color: var(--study-blue);
+}
+.lesson-layout .lesson-depth > summary span {
+  color: var(--study-muted);
+  margin: 6px 0 0 18px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.lesson-layout .lesson-depth[open] > summary {
+  border-bottom: 1px solid var(--study-line);
+}
+.lesson-layout .lesson-depth-body {
+  padding: 18px 24px 8px;
+}
+.lesson-layout .lesson-depth-body > p {
+  font-size: 14px;
+  color: var(--study-muted);
+}
+.lesson-layout .lesson-depth-body > details {
+  padding: 18px 0;
+  border-color: var(--study-line);
+}
+.lesson-layout .lesson-depth-body > details > summary {
+  color: var(--study-ink);
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 600;
+}
+.lesson-layout .lesson-depth-body > details[open] > summary {
+  color: var(--study-blue);
+  margin-bottom: 18px;
+}
+.lesson-layout .lesson-depth-body > details p {
+  font-size: 16px;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .code-block {
+  margin: 22px 0;
+  border: 1px solid #2c344c;
+  border-radius: 10px;
+  background: #151a2d;
+  min-width: 0;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .code-heading {
+  padding: 12px 16px;
+  background: #1c2238;
+  border-color: #30384e;
+  color: #b4bdd3;
+  font-size: 12px;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .code-heading button {
+  color: #d9dff0;
+  font-size: 12px;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .code-block pre {
+  color: #e5e9f5;
+  background: #151a2d;
+  padding: 20px;
+  font: 13px/1.85 var(--study-mono);
+  max-width: 100%;
+  overflow: auto;
+}
+
+/* Exercises are work sheets, with generous input areas and restrained feedback. */
+.lesson-layout .lesson-exercises {
+  scroll-margin-top: 90px;
+  border-color: var(--study-line);
+  padding-top: 40px;
+  margin-top: 48px;
+}
+.lesson-exercises > .eyebrow {
+  color: var(--study-blue);
+  font-size: 11px;
+  letter-spacing: .1em;
+}
+.lesson-exercises > h2 {
+  color: var(--study-ink);
+  margin: 14px 0 10px;
+  font-size: clamp(26px, 2.5vw, 34px);
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -.035em;
+}
+.lesson-exercises .exercise-intro {
+  color: var(--study-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 65ch;
+}
+.lesson-exercises .study-exercise {
+  margin: 28px 0;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid var(--study-line);
+  border-radius: 14px;
+  box-shadow: 0 3px 12px #14172b03;
+  min-width: 0;
+}
+.lesson-exercises .exercise-heading {
+  gap: 13px;
+  margin-bottom: 22px;
+}
+.lesson-exercises .exercise-heading > div {
+  min-width: 0;
+}
+.lesson-exercises .exercise-number {
+  width: 36px;
+  height: 36px;
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+  border: 1px solid #dfe2fc;
+  border-radius: 7px;
+  font: 600 12px/1 var(--study-mono);
+}
+.lesson-exercises .exercise-heading .eyebrow {
+  color: var(--study-muted);
+  font-size: 10px;
+  letter-spacing: .09em;
+  line-height: 1.5;
+}
+.lesson-exercises .exercise-heading h3 {
+  margin: 7px 0 0;
+  color: var(--study-ink);
+  font-size: 21px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+.lesson-exercises .exercise-reviewed {
+  color: #3a5c23;
+  background: #edf7e3;
+  border: 1px solid #d8e8ca;
+  border-radius: 5px;
+  padding: 5px 7px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.lesson-exercises .exercise-prompt p,
+.lesson-exercises .exercise-solution-body > p {
+  margin: 0 0 16px;
+  color: var(--study-body);
+  font-size: 17px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.lesson-exercises .exercise-sample {
+  gap: 14px;
+  margin: 24px 0;
+}
+.lesson-exercises .exercise-sample strong {
+  color: var(--study-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+.lesson-exercises .exercise-sample pre {
+  color: var(--study-ink);
+  border: 1px solid var(--study-line);
+  background: var(--study-paper);
+  padding: 15px;
+  margin: 10px 0 0;
+  border-radius: 8px;
+  font: 13px/1.8 var(--study-mono);
+  max-width: 100%;
+  overflow: auto;
+}
+.lesson-exercises .exercise-answer-label {
+  color: var(--study-ink);
+  font-size: 14px;
+  margin: 26px 0 11px;
+}
+.lesson-exercises .exercise-answer-label svg {
+  color: var(--study-blue);
+}
+.lesson-exercises .study-exercise > textarea,
+.lesson-layout .takeaway textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 130px;
+  padding: 16px;
+  color: var(--study-ink);
+  background: #fff;
+  border: 1px solid #ccd2e0;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.8;
+  resize: vertical;
+  box-shadow: 0 1px 2px #14172b03;
+}
+.lesson-exercises .study-exercise > textarea::placeholder,
+.lesson-layout .takeaway textarea::placeholder {
+  color: #687187;
+  opacity: 1;
+}
+.lesson-exercises .study-exercise > textarea:focus,
+.lesson-layout .takeaway textarea:focus {
+  border-color: var(--study-blue);
+  outline: 2px solid #3037df;
+  outline-offset: 3px;
+  box-shadow: none;
+}
+.lesson-exercises .exercise-save-status {
+  color: var(--study-muted);
+  margin-top: 9px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.lesson-exercises .exercise-actions {
+  gap: 10px;
+  margin: 24px 0 17px;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button,
+.lesson-exercises .button {
+  min-height: 42px;
+  font-size: 13px;
+  line-height: 1.5;
+  border-radius: 7px;
+  box-shadow: none;
+  transform: none;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button.primary,
+.lesson-exercises .button.primary {
+  color: #fff;
+  background: var(--study-blue);
+  border: 1px solid var(--study-blue);
+  box-shadow: 0 2px 4px #3037df12;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button.primary:hover:not(:disabled),
+.lesson-exercises .button.primary:hover:not(:disabled) {
+  color: #fff;
+  background: #252cc4;
+  border-color: #252cc4;
+  box-shadow: none;
+  transform: none;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button.subtle,
+.lesson-exercises .button.subtle {
+  color: var(--study-body);
+  background: #fff;
+  border: 1px solid #d6dbe7;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button.subtle:hover:not(:disabled),
+.lesson-exercises .button.subtle:hover:not(:disabled) {
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+  border-color: #c9cdf5;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .button:disabled,
+.lesson-exercises .button:disabled {
+  color: #626b80;
+  background: #eff1f7;
+  border-color: #e2e5ee;
+  opacity: 1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.lesson-exercises .exercise-hint {
+  padding: 17px 19px;
+  border-left: 3px solid #8991e8;
+  border-radius: 0 9px 9px 0;
+  background: var(--study-paper);
+  color: var(--study-body);
+  margin-top: 14px;
+}
+.lesson-exercises .exercise-hint > strong {
+  color: var(--study-blue);
+  font-size: 12px;
+}
+.lesson-exercises .exercise-hint p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--study-body);
+  margin: 7px 0 0;
+}
+.lesson-exercises .exercise-solution {
+  border-color: var(--study-line);
+  padding-top: 22px;
+  margin-top: 25px;
+}
+.lesson-exercises .exercise-solution > summary {
+  color: var(--study-blue);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.lesson-exercises .exercise-solution-body {
+  padding-top: 20px;
+}
+.lesson-exercises .exercise-solution-code {
+  margin: 22px 0;
+  padding: 21px;
+  border: 1px solid #30384f;
+  border-radius: 9px;
+  color: #e5e9f5;
+  background: #151a2d;
+  font: 13px/1.85 var(--study-mono);
+  max-width: 100%;
+  overflow: auto;
+}
+.lesson-exercises .exercise-review {
+  background: #f0f7e9;
+  border: 1px solid #dce9ce;
+  padding: 17px;
+  color: #3c562d;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.lesson-exercises .exercise-review input {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  accent-color: #527b26;
+  margin-top: 4px;
+}
+
+/* Quiz selection, success and retry each have an explicit visual state. */
+.lesson-layout .quiz-card {
+  margin: 38px 0 26px;
+  padding: 28px;
+  border: 1px solid #dce0f1;
+  background: var(--study-paper);
+  border-radius: 14px;
+}
+.lesson-layout .quiz-card > .eyebrow {
+  color: var(--study-blue);
+  font-size: 10px;
+  letter-spacing: .11em;
+}
+.lesson-layout .quiz-card h2 {
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--study-ink);
+  margin: 16px 0 24px;
+  letter-spacing: -.025em;
+}
+.lesson-layout .quiz-options {
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.lesson-layout .quiz-options button {
+  min-width: 0;
+  padding: 15px;
+  gap: 13px;
+  color: var(--study-body);
+  border: 1px solid #dfe3ed !important;
+  background: #fff;
+  border-radius: 9px;
+  font-size: 15px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+.lesson-layout .quiz-options button > span {
+  width: 28px;
+  height: 28px;
+  color: #60687f;
+  background: #f0f2f8;
+  border-radius: 5px;
+  font: 600 12px/1 var(--study-mono);
+}
+.lesson-layout .quiz-options button:hover {
+  border-color: #aab0ef !important;
+  background: #fafaff;
+}
+.lesson-layout .quiz-options .chosen {
+  border-color: var(--study-blue) !important;
+  background: #eff0ff;
+}
+.lesson-layout .quiz-options .chosen > span {
+  color: #fff;
+  background: var(--study-blue);
+}
+.lesson-layout .quiz-options .correct {
+  border-color: #7ea449 !important;
+  background: #f0f8e7;
+  color: #314d21;
+}
+.lesson-layout .quiz-options .correct > span {
+  color: #263b19;
+  background: var(--study-green);
+}
+.lesson-layout .quiz-options .incorrect {
+  border-color: #c97c88 !important;
+  background: #fff3f4;
+  color: #8a3447;
+}
+.lesson-layout .quiz-options .incorrect > span {
+  color: #8a3447;
+  background: #f8dce1;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .answer-feedback {
+  margin-top: 20px;
+  padding: 17px;
+  border-radius: 9px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .answer-feedback.success {
+  background: #eaf4df;
+  color: #3a5628;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .answer-feedback.try-again {
+  background: #fff0f2;
+  color: #8a3447;
+}
+.lesson-layout .lesson-finish {
+  flex-wrap: wrap;
+  padding-top: 8px;
+  gap: 16px;
+}
+.lesson-layout .lesson-finish .text-link {
+  color: var(--study-blue);
+  font-size: 13px;
+}
+.lesson-layout .lesson-article > .small-muted {
+  font-size: 12px;
+  color: var(--study-muted);
+  line-height: 1.7;
+}
+.lesson-layout .lesson-references {
+  color: var(--study-muted);
+  border-color: var(--study-line);
+  padding-top: 22px;
+  margin-top: 36px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.lesson-layout .lesson-references a {
+  color: var(--study-blue);
+  text-underline-offset: 3px;
+}
+
+/* Supporting notes and contents use the same neutral paper as the exercises. */
+.lesson-layout .lesson-aside {
+  padding-top: 4px;
+}
+.lesson-layout .lesson-aside .card {
+  border: 1px solid var(--study-line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+}
+.lesson-layout .lesson-contents {
+  padding: 21px;
+  margin-bottom: 20px;
+}
+.lesson-layout .lesson-contents > .eyebrow,
+.lesson-layout .prerequisites-card > .eyebrow {
+  color: var(--study-muted);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: .1em;
+}
+.lesson-layout .lesson-contents > button,
+.lesson-layout .mobile-lesson-contents button {
+  padding: 10px 0;
+  gap: 10px;
+  color: #41475e;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.lesson-layout .lesson-contents > button > span {
+  flex: 0 0 18px;
+  color: #757c91;
+  font: 500 10px/1.7 var(--study-mono);
+}
+.lesson-layout .lesson-contents > button:hover,
+.lesson-layout .mobile-lesson-contents button:hover {
+  color: var(--study-blue);
+}
+.lesson-layout .lesson-contents > .contents-practice {
+  color: var(--study-blue);
+  border-color: var(--study-line);
+  margin-top: 14px;
+  padding-top: 18px;
+  font-weight: 650;
+}
+.lesson-layout .takeaway,
+.lesson-layout .prerequisites-card {
+  padding: 21px;
+}
+.lesson-layout .takeaway .level-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--study-blue-soft);
+  color: var(--study-blue);
+  border-radius: 8px;
+}
+.lesson-layout .takeaway h3,
+.lesson-layout .prerequisites-card h3 {
+  color: var(--study-ink);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.lesson-layout .takeaway p,
+.lesson-layout .prerequisites-card > p {
+  color: var(--study-muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 10px 0 17px;
+}
+.lesson-layout .prerequisites-card > button {
+  color: var(--study-body);
+  border-color: var(--study-line);
+  background: transparent;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.lesson-layout .prerequisites-card > button:hover {
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+}
+.lesson-layout .takeaway .button {
+  font-size: 12px;
+  margin-top: 14px;
+}
+.lesson-layout .lesson-practice {
+  color: var(--study-blue);
+  border: 1px solid #dfe1fb;
+  background: var(--study-blue-soft);
+  border-radius: 12px;
+  padding: 22px;
+}
+.lesson-layout .lesson-practice h3 {
+  color: var(--study-ink);
+  font-size: 16px;
+}
+.lesson-layout .lesson-practice p,
+.lesson-layout .learning-tip p {
+  color: var(--study-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.lesson-layout .lesson-practice .text-link,
+.lesson-layout .learning-tip > svg {
+  color: var(--study-blue);
+}
+.lesson-layout .mobile-lesson-contents {
+  margin: 22px 0;
+  padding: 16px 19px;
+  background: var(--study-paper);
+  border: 1px solid var(--study-line);
+  border-radius: 9px;
+}
+.lesson-layout .mobile-lesson-contents > summary {
+  color: var(--study-ink);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Compiler: shell scope keeps these overrides ahead of late component styles. */
+.studio-shell .cpp-playground {
+  margin-top: 28px;
+  border: 1px solid #dce0eb;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 24px #14172b05;
+  max-width: 100%;
+  min-width: 0;
+  color-scheme: light;
+}
+.studio-shell .cpp-playground .cpp-heading {
+  gap: 13px;
+  padding: 25px 25px 18px;
+}
+.studio-shell .cpp-playground .cpp-heading > div:not(.cpp-heading-icon) {
+  min-width: 0;
+}
+.studio-shell .cpp-playground .cpp-heading-icon {
+  width: 42px;
+  height: 42px;
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+  border: 1px solid #dfe2fb;
+  border-radius: 9px;
+}
+.studio-shell .cpp-playground .cpp-heading h2 {
+  margin: 0;
+  color: var(--study-ink);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -.025em;
+  overflow-wrap: anywhere;
+}
+.studio-shell .cpp-playground .cpp-heading p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: var(--study-muted);
+  line-height: 1.7;
+}
+.studio-shell .cpp-playground .cpp-language {
+  color: var(--study-blue);
+  background: var(--study-blue-soft);
+  border: 1px solid #e0e2fb;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font: 600 11px/1.5 var(--study-mono);
+}
+.studio-shell .cpp-playground .cpp-connection {
+  gap: 8px;
+  padding: 0 25px 18px;
+  color: #496437;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.studio-shell .cpp-playground .cpp-connected-dot {
+  width: 7px;
+  height: 7px;
+  background: #6b963c;
+  box-shadow: 0 0 0 3px #f0f7e8;
+}
+.studio-shell .cpp-playground .cpp-limits {
+  color: var(--study-muted);
+  font-size: 11px;
+}
+.studio-shell .cpp-playground .cpp-connection--offline {
+  color: #8a3447;
+}
+.studio-shell .cpp-playground .cpp-connection button {
+  color: var(--study-blue);
+  text-underline-offset: 3px;
+}
+.studio-shell .cpp-playground .cpp-download-note {
+  color: var(--study-muted);
+  background: var(--study-paper);
+  border-top: 1px solid var(--study-line);
+  border-bottom: 1px solid var(--study-line);
+  padding: 12px 25px;
+  font-size: 12px;
+  line-height: 1.75;
+  margin: 0;
+}
+.studio-shell .cpp-playground .cpp-workspace {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  border-top: 0;
+  border-bottom: 1px solid var(--study-line);
+}
+.studio-shell .cpp-playground .cpp-source-panel {
+  min-width: 0;
+  border-right: 1px solid #30374e;
+  background: #151a2d;
+}
+.studio-shell .cpp-playground .cpp-panel-header {
+  min-height: 47px;
+  padding: 12px 16px;
+  color: var(--study-muted);
+  background: #f4f6fb;
+  border-color: var(--study-line);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.studio-shell .cpp-playground .cpp-panel-header label {
+  color: #3c435b;
+  font-size: 12px;
+  font-weight: 600;
+}
+.studio-shell .cpp-playground .cpp-source-panel > .cpp-panel-header {
+  color: #aab4cf;
+  background: #1c2238;
+  border-bottom: 1px solid #30384f;
+}
+.studio-shell .cpp-playground .cpp-source-panel > .cpp-panel-header label {
+  color: #e4e8f7;
+}
+.studio-shell .cpp-playground .cpp-source-panel > .cpp-panel-header label svg {
+  color: #a6adff;
+}
+.studio-shell .cpp-playground .cpp-draft-status {
+  color: #b4bdd3;
+  font-size: 10px;
+  line-height: 1.5;
+}
+.studio-shell .cpp-playground .cpp-draft-status svg {
+  color: #b7ed72;
+  flex-shrink: 0;
+}
+.studio-shell .cpp-playground .cpp-editor {
+  grid-template-columns: 45px minmax(0, 1fr);
+  background: #151a2d;
+  color-scheme: dark;
+}
+.studio-shell .cpp-playground .cpp-gutter {
+  background: #13182a;
+  border-color: #282f45;
+}
+.studio-shell .cpp-playground .cpp-line-numbers {
+  color: #99a4be;
+  padding: 18px 11px 18px 0;
+  font: 13px/24px var(--study-mono);
+}
+.studio-shell .cpp-playground .cpp-code {
+  color: #e6eaf7;
+  background: #151a2d;
+  caret-color: #b7ed72;
+  padding: 18px 16px;
+  border: 0;
+  border-radius: 0;
+  height: 390px;
+  min-height: 250px;
+  font: 13px/24px var(--study-mono);
+  box-shadow: none;
+  scrollbar-color: #4f5875 #151a2d;
+}
+.studio-shell .cpp-playground .cpp-code::selection {
+  color: #fff;
+  background: #454cc1;
+}
+.studio-shell .cpp-playground .cpp-code:focus-visible {
+  outline: 2px solid #9198ff;
+  outline-offset: -3px;
+}
+.studio-shell .cpp-playground .cpp-editor-help {
+  border-color: #30374e;
+  background: #191f33;
+  color: #abb5cc;
+  padding: 11px 15px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.studio-shell .cpp-playground .cpp-input-panel {
+  background: #fff;
+  border-bottom: 1px solid var(--study-line);
+}
+.studio-shell .cpp-playground .cpp-input {
+  color: var(--study-ink);
+  background: #fff;
+  padding: 16px;
+  height: 115px;
+  font: 13px/1.85 var(--study-mono);
+  box-shadow: none;
+  caret-color: var(--study-blue);
+}
+.studio-shell .cpp-playground .cpp-input::placeholder {
+  color: #687187;
+  opacity: 1;
+}
+.studio-shell .cpp-playground .cpp-input:focus-visible {
+  outline: 2px solid var(--study-blue);
+  outline-offset: -3px;
+}
+.studio-shell .cpp-playground .cpp-input-help {
+  padding: 0 16px 15px;
+  color: var(--study-muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin: 0;
+}
+.studio-shell .cpp-playground .cpp-result {
+  padding: 20px 17px;
+  min-height: 200px;
+  background: #fafbfe;
+}
+.studio-shell .cpp-playground .cpp-result-heading {
+  color: var(--study-ink);
+  gap: 10px;
+}
+.studio-shell .cpp-playground .cpp-result-heading strong {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.studio-shell .cpp-playground .cpp-result-heading > span,
+.studio-shell .cpp-playground .cpp-exit-code {
+  color: var(--study-muted);
+  font: 11px/1.7 var(--study-mono);
+}
+.studio-shell .cpp-playground .cpp-output-placeholder {
+  color: var(--study-muted);
+  max-width: 36ch;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-top: 12px;
+}
+.studio-shell .cpp-playground .cpp-result-help {
+  color: #596178;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 9px;
+}
+.studio-shell .cpp-playground .cpp-result--success .cpp-result-heading {
+  color: #426326;
+}
+.studio-shell .cpp-playground :is(.cpp-result--compile_error, .cpp-result--runtime_error,
+  .cpp-result--timeout, .cpp-result--output_limit, .cpp-result--invalid_request)
+  .cpp-result-heading {
+  color: #a13851;
+}
+.studio-shell .cpp-playground .cpp-output-block h3 {
+  margin-bottom: 9px;
+  color: #596178;
+  font-size: 11px;
+  letter-spacing: .03em;
+}
+.studio-shell .cpp-playground .cpp-output-block pre {
+  color: #25304a;
+  background: #fff;
+  border: 1px solid #dfe3ee;
+  border-radius: 7px;
+  padding: 14px;
+  font: 13px/1.85 var(--study-mono);
+  max-width: 100%;
+  overflow: auto;
+}
+.studio-shell .cpp-playground .cpp-no-output {
+  color: var(--study-muted);
+  background: #fff;
+  border-color: #d4d9e6;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.studio-shell .cpp-playground .cpp-actions {
+  padding: 20px 24px 16px;
+  gap: 9px;
+  background: #fff;
+}
+.studio-shell .cpp-playground .cpp-run {
+  min-height: 42px;
+  padding: 11px 17px;
+  color: #fff;
+  background: var(--study-blue);
+  border: 1px solid var(--study-blue);
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  box-shadow: 0 2px 4px #3037df14;
+  transform: none;
+}
+.studio-shell .cpp-playground .cpp-run:hover:not(:disabled) {
+  color: #fff;
+  background: #252cc4;
+  border-color: #252cc4;
+  transform: none;
+  box-shadow: none;
+}
+.studio-shell .cpp-playground .cpp-stop,
+.studio-shell .cpp-playground .cpp-stop:hover:not(:disabled) {
+  color: #fff;
+  background: #a13851;
+  border-color: #a13851;
+  box-shadow: none;
+}
+.studio-shell .cpp-playground .cpp-secondary {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #dce1ed;
+  border-radius: 7px;
+  color: #41495f;
+  background: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.studio-shell .cpp-playground .cpp-secondary:hover:not(:disabled) {
+  background: var(--study-paper);
+  color: var(--study-blue);
+  border-color: #c5cbed;
+}
+.studio-shell .cpp-playground .cpp-actions button:disabled {
+  color: #626b80;
+  background: #f0f2f8;
+  border-color: #e2e6ef;
+  box-shadow: none;
+  opacity: 1;
+  cursor: not-allowed;
+}
+.studio-shell .cpp-playground .cpp-case-results {
+  padding: 24px;
+  color: var(--study-ink);
+  border-top: 1px solid var(--study-line);
+  background: var(--study-paper);
+}
+.studio-shell .cpp-playground .cpp-case-results h3 {
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: -.02em;
+}
+.studio-shell .cpp-playground .cpp-case-results details {
+  border: 1px solid #dfe3ee;
+  border-radius: 8px;
+  background: #fff;
+  margin: 10px 0;
+}
+.studio-shell .cpp-playground .cpp-case-results summary {
+  padding: 14px 16px;
+  color: #333b52;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.studio-shell .cpp-playground .cpp-case-results details[open] summary {
+  border-bottom: 1px solid #eef0f6;
+  color: var(--study-blue);
+}
+.studio-shell .cpp-playground .cpp-case-comparison {
+  padding: 16px;
+  gap: 12px;
+  min-width: 0;
+}
+.studio-shell .cpp-playground .cpp-case-comparison > div {
+  min-width: 0;
+}
+.studio-shell .cpp-playground .cpp-case-comparison strong {
+  color: #596178;
+  font-size: 11px;
+  font-weight: 600;
+}
+.studio-shell .cpp-playground .cpp-case-comparison pre {
+  padding: 12px;
+  color: #27314a;
+  background: var(--study-paper);
+  border: 1px solid var(--study-line);
+  font: 12px/1.8 var(--study-mono);
+  max-width: 100%;
+}
+.studio-shell .cpp-playground .cpp-case-results > p {
+  color: var(--study-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.studio-shell .cpp-playground .cpp-reset-confirm {
+  margin: 0 24px 18px;
+  border-color: #e9d7d8;
+  background: #fff7f8;
+  border-radius: 8px;
+}
+.studio-shell .cpp-playground .cpp-reset-confirm p {
+  color: #784452;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.studio-shell .cpp-playground .cpp-reset-confirm button {
+  min-height: 36px;
+  color: #8b354b;
+  background: #f8e2e6;
+  padding: 8px 11px;
+  font-size: 12px;
+}
+.studio-shell .cpp-playground .cpp-reset-confirm button + button {
+  color: #4c536b;
+  background: #fff;
+  border: 1px solid #e4dce2;
+}
+.studio-shell .cpp-playground .cpp-notice {
+  color: #8b354b;
+  margin: 0 24px 15px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.studio-shell .cpp-playground .cpp-footnote {
+  color: var(--study-muted);
+  padding: 0 24px 22px;
+  font-size: 11px;
+  line-height: 1.8;
+  margin: 0;
+}
+.studio-shell .cpp-playground--compact .cpp-workspace {
+  grid-template-columns: minmax(0, 1fr);
+}
+.studio-shell .cpp-playground--compact .cpp-source-panel {
+  border-right: 0;
+  border-bottom: 1px solid #30374e;
+}
+.studio-shell .cpp-playground--compact .cpp-code {
+  height: 330px;
+}
+.compiler-learning-tip {
+  background: #f7f8fc;
+  border: 1px solid #e6e8ef;
+  color: #656b7d;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+.compiler-learning-tip p,
+.compiler-problem-note {
+  color: #656b7d;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.compiler-learning-tip .mascot-tip-title {
+  color: #14172b;
+}
+
+/* Keyboard affordances remain visible against both paper and the dark editor. */
+.lesson-layout :is(button, a, summary, input, textarea, pre):focus-visible,
+.studio-shell .cpp-playground :is(button, summary):focus-visible {
+  outline: 2px solid #3037df;
+  outline-offset: 4px;
+}
+:is(.lesson-layout, .problem-layout, .code-practice) .code-block pre:focus-visible,
+.lesson-layout .exercise-solution-code:focus-visible {
+  outline-color: #939aff;
+  outline-offset: -4px;
+}
+
+@media (max-width: 1100px) {
+  .lesson-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .lesson-layout .lesson-article > h1 {
+    max-width: 24ch;
+  }
+  .lesson-layout .lesson-aside {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px;
+    padding-top: 0;
+  }
+  .lesson-layout .lesson-aside .lesson-contents {
+    display: none;
+  }
+  .lesson-layout .mobile-lesson-contents {
+    display: block;
+  }
+  .lesson-layout .lesson-aside :is(.takeaway, .prerequisites-card, .lesson-practice, .learning-tip) {
+    margin: 0;
+  }
+  .studio-shell .cpp-playground .cpp-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-shell .cpp-playground .cpp-source-panel {
+    border-right: 0;
+    border-bottom: 1px solid #30374e;
+  }
+}
+
+@media (max-width: 600px) {
+  .lesson-layout {
+    display: block;
+  }
+  .lesson-layout .lesson-article > h1 {
+    font-size: clamp(29px, 8vw, 36px);
+    line-height: 1.18;
+    margin-top: 12px;
+    letter-spacing: -.04em;
+  }
+  .lesson-layout .lesson-badges {
+    gap: 10px 14px;
+    margin-top: 19px;
+    font-size: 12px;
+  }
+  .lesson-layout .lesson-takeaway {
+    padding: 19px 18px;
+    margin-top: 25px;
+  }
+  .lesson-layout .lesson-takeaway p {
+    font-size: 17px;
+  }
+  .lesson-layout .lesson-article .lesson-section {
+    padding-top: 29px;
+    margin-bottom: 29px;
+  }
+  .lesson-layout .lesson-article .lesson-section h2 {
+    gap: 10px;
+    font-size: 22px;
+    line-height: 1.4;
+    margin-bottom: 17px;
+  }
+  .lesson-layout .lesson-step-number {
+    flex-basis: 30px;
+    min-width: 30px;
+    min-height: 29px;
+    font-size: 11px;
+  }
+  .lesson-layout .lesson-article .lesson-section > p,
+  .lesson-exercises .exercise-prompt p,
+  .lesson-exercises .exercise-solution-body > p {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+  .lesson-layout :is(.lesson-drawing, .lesson-visual) {
+    padding: 17px 14px;
+    border-radius: 11px;
+    margin: 23px 0;
+  }
+  .lesson-layout .visual-heading {
+    gap: 10px;
+  }
+  .lesson-layout .visual-heading h3 {
+    font-size: 18px;
+  }
+  .lesson-layout .visual-counter {
+    font-size: 11px;
+    padding: 5px 7px;
+  }
+  .lesson-layout .visual-cell {
+    font-size: 14px;
+    min-height: 42px;
+    padding: 9px 6px;
+  }
+  .lesson-layout .visual-cell.is-active {
+    padding: 8px 5px;
+  }
+  .lesson-layout .visual-explanation {
+    min-height: 0;
+    padding: 16px 14px;
+    margin-top: 15px;
+  }
+  .lesson-layout .visual-controls {
+    gap: 6px;
+  }
+  .lesson-layout .visual-controls button {
+    min-height: 42px;
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+  .lesson-layout .visual-controls .visual-play {
+    min-width: 42px;
+  }
+  .lesson-layout .visual-controls .visual-play span {
+    display: none;
+  }
+  .lesson-layout .visual-controls .visual-reset {
+    min-width: 38px;
+    padding: 9px;
+  }
+  .lesson-layout .lesson-check {
+    padding: 19px 17px;
+  }
+  .lesson-layout .lesson-depth > summary {
+    padding: 19px 17px;
+  }
+  .lesson-layout .lesson-depth-body {
+    padding: 16px 17px 6px;
+  }
+  .lesson-layout .lesson-exercises {
+    margin-top: 36px;
+    padding-top: 30px;
+  }
+  .lesson-exercises .study-exercise {
+    margin: 23px 0;
+    padding: 20px 16px;
+    border-radius: 11px;
+  }
+  .lesson-exercises .exercise-heading {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .lesson-exercises .exercise-heading > div {
+    flex: 1 1 160px;
+  }
+  .lesson-exercises .exercise-heading h3 {
+    font-size: 19px;
+  }
+  .lesson-exercises .exercise-reviewed {
+    margin-left: 46px;
+  }
+  .lesson-exercises .exercise-sample {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 17px;
+  }
+  .lesson-exercises .exercise-actions {
+    gap: 9px;
+  }
+  .lesson-exercises .exercise-actions .button {
+    flex: 1 1 160px;
+    white-space: normal;
+  }
+  .lesson-layout .quiz-card {
+    padding: 22px 17px;
+    border-radius: 11px;
+  }
+  .lesson-layout .quiz-card h2 {
+    font-size: 20px;
+    line-height: 1.55;
+  }
+  .lesson-layout .quiz-options button {
+    padding: 13px 11px;
+    gap: 11px;
+    align-items: flex-start;
+    font-size: 15px;
+  }
+  .lesson-layout .quiz-card > .button {
+    width: 100%;
+    white-space: normal;
+  }
+  .lesson-layout .lesson-finish {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .lesson-layout .lesson-finish .button {
+    width: 100%;
+    justify-content: center;
+    font-size: 13px;
+    white-space: normal;
+  }
+  .lesson-layout .lesson-finish .text-link {
+    justify-content: center;
+    padding: 10px 0;
+  }
+  .lesson-layout .lesson-aside {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    margin-top: 35px;
+  }
+  .studio-shell .cpp-playground {
+    border-radius: 11px;
+  }
+  .studio-shell .cpp-playground .cpp-heading {
+    padding: 19px 15px 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .studio-shell .cpp-playground .cpp-heading > div:not(.cpp-heading-icon) {
+    flex: 1 1 150px;
+  }
+  .studio-shell .cpp-playground .cpp-heading h2 {
+    font-size: 17px;
+  }
+  .studio-shell .cpp-playground .cpp-heading p {
+    font-size: 12px;
+  }
+  .studio-shell .cpp-playground .cpp-heading-icon {
+    width: 35px;
+    height: 35px;
+  }
+  .studio-shell .cpp-playground .cpp-language {
+    margin-left: 45px;
+  }
+  .studio-shell .cpp-playground .cpp-connection {
+    padding: 0 16px 16px;
+    font-size: 11px;
+  }
+  .studio-shell .cpp-playground .cpp-connection > [role="status"] {
+    min-width: 0;
+    max-width: calc(100% - 24px);
+    overflow-wrap: anywhere;
+  }
+  .studio-shell .cpp-playground .cpp-limits {
+    margin-left: 15px;
+    flex-basis: 100%;
+  }
+  .studio-shell .cpp-playground .cpp-download-note {
+    padding: 12px 16px;
+    font-size: 11px;
+  }
+  .studio-shell .cpp-playground .cpp-panel-header {
+    padding: 11px 13px;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
+  .studio-shell .cpp-playground .cpp-panel-header label {
+    font-size: 11px;
+  }
+  .studio-shell .cpp-playground .cpp-draft-status {
+    font-size: 10px;
+  }
+  .studio-shell .cpp-playground .cpp-editor {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+  .studio-shell .cpp-playground .cpp-code,
+  .studio-shell .cpp-playground .cpp-line-numbers {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .studio-shell .cpp-playground .cpp-code {
+    padding: 18px 12px;
+    height: 330px;
+  }
+  .studio-shell .cpp-playground .cpp-line-numbers {
+    padding-right: 7px;
+  }
+  .studio-shell .cpp-playground .cpp-input {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .studio-shell .cpp-playground .cpp-editor-help {
+    font-size: 10px;
+    padding: 10px 12px;
+  }
+  .studio-shell .cpp-playground .cpp-actions {
+    padding: 16px 14px;
+    gap: 8px;
+  }
+  .studio-shell .cpp-playground .cpp-actions button {
+    flex: 1 1 120px;
+    white-space: normal;
+    min-height: 42px;
+    font-size: 12px;
+  }
+  .studio-shell .cpp-playground .cpp-reset {
+    margin-left: 0;
+  }
+  .studio-shell .cpp-playground .cpp-case-results {
+    padding: 19px 14px;
+  }
+  .studio-shell .cpp-playground .cpp-case-comparison {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 13px;
+  }
+  .studio-shell .cpp-playground .cpp-footnote {
+    padding: 0 16px 18px;
+    font-size: 11px;
+  }
+  .studio-shell .cpp-playground .cpp-reset-confirm {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 14px 16px;
+  }
+  .studio-shell .cpp-playground .cpp-reset-confirm > div {
+    flex-wrap: wrap;
+  }
+  .studio-shell .cpp-playground .cpp-notice {
+    margin: 0 16px 15px;
+  }
+  .compiler-learning-tip {
+    padding: 17px;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-layout *,
+  .studio-shell .cpp-playground * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+  .lesson-layout .visual-node rect,
+  .studio-shell .cpp-playground .cpp-spinner {
+    animation: none;
+  }
+}
+
+/* Standalone challenge pages use the same reading and practice treatment. */
+.problem-detail-heading {
+  margin-bottom: 32px;
+}
+.problem-detail-heading h1 {
+  max-width: 26ch;
+  margin: 14px 0;
+  color: #14172b;
+  font-size: clamp(32px, 3.2vw, 46px);
+  font-weight: 750;
+  line-height: 1.17;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+.problem-detail-heading .eyebrow {
+  color: #3037df;
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: .1em;
+}
+.problem-detail-heading .lesson-badges {
+  margin: 20px 0 0;
+  color: #656b7d;
+  font-size: 12px;
+  gap: 10px 16px;
+  flex-wrap: wrap;
+}
+.problem-detail-heading .lesson-badges .pill {
+  color: #4148b7;
+  background: #eff0ff;
+  border: 1px solid #e0e2fb;
+  font-size: 11px;
+  padding: 5px 9px;
+}
+.problem-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.problem-layout :is(.problem-statement, .practice-panel) {
+  min-width: 0;
+  max-width: 100%;
+  padding: 30px;
+  border: 1px solid #e6e8ef;
+  background: #fff;
+  border-radius: 13px;
+  box-shadow: none;
+}
+.problem-layout .practice-panel {
+  background: #f7f8fc;
+}
+.problem-layout :is(.problem-statement, .practice-panel) h2 {
+  margin: 0 0 20px;
+  color: #14172b;
+  font-size: 23px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+.problem-layout .problem-statement p {
+  color: #373c50;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 0 0 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.problem-layout .problem-statement h3 {
+  color: #14172b;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 27px 0 12px;
+  font-weight: 650;
+}
+.problem-layout .sample-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+  margin: 25px 0;
+}
+.problem-layout .sample-grid > div {
+  min-width: 0;
+  background: #f7f8fc;
+  border: 1px solid #e2e6ef;
+  border-radius: 8px;
+}
+.problem-layout .sample-grid strong {
+  color: #596178;
+  background: #f0f2f9;
+  border-bottom: 1px solid #e2e6ef;
+  padding: 11px 13px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.problem-layout .sample-grid pre {
+  padding: 15px 13px;
+  margin: 0;
+  color: #27314a;
+  font: 13px/1.8 var(--study-mono);
+  max-width: 100%;
+  overflow: auto;
+}
+:is(.problem-layout, .code-practice) .hint-box {
+  padding: 19px;
+  border: 1px solid #dfe2f5;
+  border-left: 3px solid #858ce4;
+  border-radius: 3px 8px 8px 3px;
+  background: #f5f6ff;
+  color: #414960;
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.problem-layout .practice-panel > .eyebrow {
+  color: #3037df;
+  font-size: 10px;
+  line-height: 1.7;
+  letter-spacing: .08em;
+  margin-bottom: 13px;
+}
+.problem-layout .practice-panel > p {
+  color: #656b7d;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.problem-layout .test-cases {
+  margin: 24px 0;
+}
+.problem-layout .test-case {
+  padding: 22px 0;
+  border-top: 1px solid #e0e4ed;
+  min-width: 0;
+}
+.problem-layout .test-case > div {
+  margin: 0 0 17px;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.problem-layout .test-case strong {
+  color: #343c53;
+  font-size: 13px;
+}
+.problem-layout .test-case .test-pass {
+  color: #3d6025;
+  background: #eaf4df;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+.problem-layout .test-case .test-fail {
+  color: #8a3447;
+  background: #fbe8ec;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+.problem-layout .test-case label {
+  color: #596178;
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: 500;
+}
+.problem-layout .test-case pre {
+  margin: 8px 0 17px;
+  padding: 14px;
+  color: #27314a;
+  background: #fff;
+  border: 1px solid #dfe3ee;
+  border-radius: 7px;
+  font: 13px/1.8 var(--study-mono);
+  overflow: auto;
+  max-width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.problem-layout .test-case textarea {
+  margin-top: 8px;
+  padding: 14px;
+  width: 100%;
+  min-width: 0;
+  min-height: 90px;
+  color: #14172b;
+  background: #fff;
+  border: 1px solid #cbd2e1;
+  border-radius: 8px;
+  font: 16px/1.7 var(--study-mono);
+  resize: vertical;
+}
+.problem-layout .test-case textarea::placeholder {
+  color: #687187;
+  font-size: 14px;
+  opacity: 1;
+}
+.problem-layout :is(button, textarea):focus-visible {
+  outline: 2px solid #3037df;
+  outline-offset: 3px;
+}
+.code-practice {
+  min-width: 0;
+  margin-top: 28px;
+  padding: 29px;
+  border: 1px solid #e6e8ef;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: none;
+}
+.code-practice > .section-heading h2 {
+  color: #14172b;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: -.03em;
+}
+.code-practice > .section-heading p {
+  color: #656b7d;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.code-practice > .text-link {
+  font-size: 13px;
+  color: #3037df;
+  flex-wrap: wrap;
+  line-height: 1.7;
+}
+@media (max-width: 1100px) {
+  .problem-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .problem-detail-heading h1 {
+    font-size: 31px;
+  }
+  .problem-layout {
+    gap: 20px;
+  }
+  .problem-layout :is(.problem-statement, .practice-panel),
+  .code-practice {
+    padding: 22px 17px;
+    border-radius: 11px;
+  }
+  .problem-layout :is(.problem-statement, .practice-panel) h2 {
+    font-size: 21px;
+  }
+  .problem-layout .sample-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+  .problem-layout .practice-panel > .button {
+    white-space: normal;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .problem-layout *,
+  .code-practice * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

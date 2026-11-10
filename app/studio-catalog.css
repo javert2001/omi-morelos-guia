@@ -1,0 +1,165 @@
+/* Learning discovery: quiet surfaces, clear progress, a single blue accent. */
+.curriculum-studio,.practice-library{color:#14172b;min-width:0;--catalog-blue:#3037df;--catalog-muted:#656b7d;--catalog-line:#e6e8ef}
+.curriculum-studio :is(button,a,input,select):focus-visible,.practice-library :is(button,a,input,select):focus-visible{outline:3px solid #3037df;outline-offset:4px}
+.curriculum-studio button,.practice-library button{font:inherit;cursor:pointer}
+.curriculum-studio .route-heading{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:44px;align-items:center;padding:8px 0 35px}
+.curriculum-studio .route-kicker{display:flex;align-items:center;gap:9px;color:#656b7d;font-size:10px;font-weight:750;letter-spacing:1.8px;margin-bottom:18px}
+.curriculum-studio .route-kicker>span{width:6px;height:6px;border-radius:50%;background:#3037df}
+.curriculum-studio .route-heading h1{font-size:clamp(38px,4vw,58px);line-height:1.08;letter-spacing:-2.7px;font-weight:800;color:#14172b;margin:0}
+.curriculum-studio .route-heading h1>span{color:#3037df}
+.curriculum-studio .route-heading-copy>p{max-width:440px;margin:20px 0 0;color:#656b7d;font-size:14px;line-height:1.75}
+.curriculum-studio .route-start{background:#f7f8fc;border:1px solid #e6e8ef;border-radius:12px;padding:23px;display:flex;align-items:flex-start;flex-direction:column;position:relative;min-width:0}
+.curriculum-studio .route-start::before{content:"";position:absolute;left:23px;top:0;width:28px;height:3px;background:#3037df;border-radius:0 0 3px 3px}
+.curriculum-studio .route-start-label{font-size:9px;font-weight:750;letter-spacing:1.25px;color:#656b7d;margin:4px 0 12px}
+.curriculum-studio .route-start>strong{font-family:Manrope,"DM Sans",sans-serif;font-size:17px;line-height:1.5;font-weight:750;letter-spacing:-.4px}
+.curriculum-studio .route-start-description{font-size:11px;color:#656b7d;margin-top:6px}
+.curriculum-studio .route-start>button{display:flex;align-items:center;justify-content:space-between;width:100%;gap:10px;margin-top:22px;padding:12px 14px;background:#3037df;border:1px solid #3037df;border-radius:6px;color:#fff;font-size:11px;font-weight:650;line-height:1.4;min-height:42px}
+.curriculum-studio .route-start>button:hover{background:#252bc6;border-color:#252bc6;transform:translateY(-1px)}
+.curriculum-studio .route-overview{display:grid;grid-template-columns:1fr 1fr 1.2fr;padding:24px 0 27px;border-top:1px solid #e6e8ef;border-bottom:1px solid #e6e8ef;margin-bottom:42px}
+.curriculum-studio .route-overview>div{padding:0 32px;border-right:1px solid #e6e8ef;position:relative}
+.curriculum-studio .route-overview>div:first-child{padding-left:0}
+.curriculum-studio .route-overview>div:last-child{border:0;padding-right:0}
+.curriculum-studio .route-overview strong{display:block;font-family:Manrope,sans-serif;font-weight:750;font-size:30px;letter-spacing:-1px;line-height:1.3}
+.curriculum-studio .route-overview strong small{font-size:15px;font-weight:500;letter-spacing:-.2px;color:#656b7d}
+.curriculum-studio .route-overview>div>span{display:block;color:#656b7d;font-size:11px;margin-top:5px}
+.curriculum-studio .route-progress-track{height:3px;border-radius:4px;background:#e8eaf3;overflow:hidden}
+.curriculum-studio .route-progress-track>span{display:block;height:100%;background:#3037df;border-radius:inherit;min-width:0}
+.curriculum-studio .route-overview-progress .route-progress-track{width:120px;max-width:100%;margin-top:12px}
+.curriculum-studio .route-directory{display:grid;grid-template-columns:185px minmax(0,1fr);gap:32px;align-items:start}
+.curriculum-studio .route-stage-rail{position:sticky;top:24px;min-width:0}
+.curriculum-studio .route-rail-label,.curriculum-studio .route-section-label{display:block;font-size:9px;letter-spacing:1.35px;font-weight:750;color:#656b7d}
+.curriculum-studio .route-rail-label{margin:5px 10px 16px}
+.curriculum-studio .route-stage-nav{display:flex;flex-direction:column;gap:5px}
+.curriculum-studio .route-stage-nav>a{display:flex;align-items:center;gap:10px;min-height:42px;padding:11px 10px;border-radius:6px;color:#656b7d;font-size:12px;line-height:1.3;font-weight:550;white-space:nowrap}
+.curriculum-studio .route-stage-nav>a:hover{background:#f7f8fc;color:#14172b}
+.curriculum-studio .route-stage-nav>a.is-selected{background:#eeefff;color:#3037df;font-weight:700}
+.curriculum-studio .route-stage-nav>a>span:not(.route-stage-index){flex:1}
+.curriculum-studio .route-stage-nav>a>small{font-size:10px;font-weight:500;color:#656b7d}
+.curriculum-studio .route-stage-nav>a.is-selected>small{color:#3037df}
+.curriculum-studio .route-stage-index{font-size:10px;font-variant-numeric:tabular-nums;width:17px;color:#656b7d;flex-shrink:0}
+.curriculum-studio .route-stage-nav>a.is-selected .route-stage-index{color:#656b7d}
+.curriculum-studio .route-rail-note{border-top:1px solid #e6e8ef;display:flex;gap:9px;margin:22px 10px 0;padding-top:19px;color:#3037df}
+.curriculum-studio .route-rail-note p{font-size:10px;line-height:1.85;color:#656b7d;margin:0}
+.curriculum-studio .route-rail-note a{color:#3037df;text-decoration:underline;text-underline-offset:3px}
+.curriculum-studio .route-directory-main{min-width:0}
+.curriculum-studio .route-directory-heading{display:flex;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.curriculum-studio .route-directory-heading h2{margin:6px 0 0;font-size:25px;font-weight:750;letter-spacing:-.8px;line-height:1.35;color:#14172b}
+.curriculum-studio .route-filter-count{font-size:11px;white-space:nowrap;color:#656b7d;padding-bottom:3px}
+.curriculum-studio .route-selected-description{font-size:12px;line-height:1.7;color:#656b7d;margin:-10px 0 22px}
+.curriculum-studio .route-filter-bar{display:flex;align-items:center;gap:10px}
+.curriculum-studio .route-search,.practice-library .practice-library-search{display:flex;align-items:center;gap:10px;min-width:0;flex:1;background:#fff;border:1px solid #e6e8ef;border-radius:7px;height:44px;padding:0 13px;color:#656b7d;transition:border-color .18s,box-shadow .18s}
+.curriculum-studio .route-search:focus-within,.practice-library .practice-library-search:focus-within{border-color:#3037df;box-shadow:0 0 0 3px #3037df0a}
+.curriculum-studio .route-search input,.practice-library .practice-library-search input{min-width:0;width:100%;padding:10px 0;border:0;background:transparent;color:#14172b;font:inherit;font-size:12px;outline:0}
+.curriculum-studio .route-search input:focus-visible,.practice-library .practice-library-search input:focus-visible{outline:0}
+.curriculum-studio .route-search input::placeholder,.practice-library .practice-library-search input::placeholder{color:#656b7d}
+.curriculum-studio .route-search button,.practice-library .practice-library-search button{display:grid;place-items:center;width:26px;height:30px;border:0;border-radius:4px;padding:0;color:#656b7d;background:transparent;flex-shrink:0}
+.curriculum-studio .route-search button:hover,.practice-library .practice-library-search button:hover{background:#f0f1f8;color:#3037df}
+.curriculum-studio .route-filter-bar select,.practice-library .practice-library-toolbar select{font:inherit;font-size:11px;color:#656b7d;border:1px solid #e6e8ef;background:#fff;border-radius:7px;min-width:145px;max-width:100%;height:44px;padding:0 12px;cursor:pointer}
+.curriculum-studio .route-list-controls{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:14px 0 25px}
+.curriculum-studio .route-list-controls label{display:flex;align-items:center;gap:7px;color:#656b7d;font-size:10px;cursor:pointer;min-height:28px}
+.curriculum-studio .route-list-controls input{width:13px;height:13px;accent-color:#3037df;margin:0}
+.curriculum-studio .route-list-controls button{display:flex;align-items:center;gap:6px;color:#656b7d;font-size:10px;border:0;padding:6px 0;background:none}
+.curriculum-studio .route-list-controls button:hover{color:#3037df}
+.curriculum-studio .route-filter-summary{display:flex;align-items:center;gap:12px;padding:0 0 15px;font-size:10px;color:#656b7d;margin-top:-12px}
+.curriculum-studio .route-filter-summary button,.practice-library .practice-results button{display:inline-flex;align-items:center;gap:5px;color:#3037df;background:none;border:0;padding:5px 0;font-size:10px}
+.curriculum-studio .route-level-list{display:flex;flex-direction:column;gap:28px}
+.curriculum-studio .route-level{min-width:0;border:1px solid #e6e8ef;border-radius:10px;background:#fff;overflow:hidden}
+.curriculum-studio .route-level-heading{display:flex;align-items:flex-start;gap:15px;padding:24px 23px 21px}
+.curriculum-studio .route-level-index{font-family:Manrope,sans-serif;font-size:13px;line-height:1.5;letter-spacing:-.3px;color:#3037df;font-weight:750;border:1px solid #e2e4fe;background:#f6f6ff;min-width:35px;height:35px;display:grid;place-items:center;border-radius:7px;flex-shrink:0}
+.curriculum-studio .route-level-copy{min-width:0;flex:1}
+.curriculum-studio .route-level-copy>span{display:block;font-size:9px;line-height:1.4;letter-spacing:.15px;color:#656b7d;margin:0 0 3px}
+.curriculum-studio .route-level-copy h3{font-size:20px;line-height:1.35;letter-spacing:-.6px;font-weight:750;color:#14172b;margin:0}
+.curriculum-studio .route-level-copy p{font-size:11px;line-height:1.7;color:#656b7d;margin:8px 0 0;max-width:410px}
+.curriculum-studio .route-level-progress{min-width:68px;flex-shrink:0;text-align:right;padding-top:2px}
+.curriculum-studio .route-level-progress>span{font-size:12px;color:#656b7d;font-variant-numeric:tabular-nums}
+.curriculum-studio .route-level-progress>span strong{color:#14172b;font-weight:650}
+.curriculum-studio .route-level-progress .route-progress-track{margin:9px 0 5px}
+.curriculum-studio .route-level-progress>small{font-size:8px;color:#656b7d}
+.curriculum-studio .route-prerequisite{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:#656b7d;font-size:10px;line-height:1.6;padding:0 23px 18px}
+.curriculum-studio .route-prerequisite a{color:#656b7d;display:inline-flex;align-items:center;gap:3px;margin-left:3px;text-decoration:underline;text-decoration-color:#d5d8e3;text-underline-offset:3px}
+.curriculum-studio .route-prerequisite a:hover{color:#3037df}
+.curriculum-studio .route-prerequisite>small{font-size:9px;margin-left:auto;color:#656b7d}
+.curriculum-studio .route-chapter{border-top:1px solid #e6e8ef}
+.curriculum-studio .route-chapter-toggle{width:100%;display:flex;align-items:center;gap:9px;min-height:47px;padding:13px 21px;border:0;text-align:left;background:#f8f9fc;color:#656b7d}
+.curriculum-studio .route-chapter-toggle:hover{background:#f0f2fa}
+.curriculum-studio .route-chapter-toggle>svg{transform:rotate(-90deg);transition:transform .18s;color:#656b7d}
+.curriculum-studio .route-chapter-toggle>svg.is-open{transform:rotate(0)}
+.curriculum-studio .route-chapter-toggle>strong{font-size:11px;line-height:1.6;font-weight:650;color:#42485f;flex:1;min-width:0}
+.curriculum-studio .route-chapter-toggle>span{font-size:9px;font-weight:500;white-space:nowrap;color:#656b7d}
+.curriculum-studio .route-lesson{display:flex;align-items:center;gap:12px;min-height:82px;width:100%;text-align:left;padding:17px 21px;background:#fff;border:0;border-top:1px solid #eef0f5;color:#14172b;position:relative}
+.curriculum-studio .route-lesson:hover{background:#fafaff}
+.curriculum-studio .route-lesson:focus-visible{outline-offset:-3px;z-index:1}
+.curriculum-studio .route-lesson.is-current{background:#f8f8ff;box-shadow:inset 3px 0 #3037df}
+.curriculum-studio .route-lesson-state{width:20px;display:grid;place-items:center;color:#bbc0ce;flex-shrink:0}
+.curriculum-studio .route-lesson.is-current .route-lesson-state{color:#3037df}
+.curriculum-studio .route-lesson.is-completed .route-lesson-state{color:#467921;background:#eef8e6;border-radius:50%;height:20px}
+.curriculum-studio .route-lesson-copy{flex:1;min-width:0}
+.curriculum-studio .route-lesson-copy>strong{display:block;font-size:12px;line-height:1.55;font-weight:650;letter-spacing:-.1px}
+.curriculum-studio .route-lesson-copy>span:not(.route-lesson-mobile-meta){display:block;font-size:10px;line-height:1.65;color:#656b7d;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.curriculum-studio .route-lesson-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;min-width:67px}
+.curriculum-studio .route-lesson-meta>span:not(.route-lesson-time){font-size:8px;line-height:1.3}
+.curriculum-studio .route-status-done{color:#527938}
+.curriculum-studio .route-status-current{color:#3037df}
+.curriculum-studio .route-status-optional{color:#656b7d}
+.curriculum-studio .route-lesson-time{display:flex;align-items:center;gap:4px;font-size:9px;color:#656b7d;white-space:nowrap}
+.curriculum-studio .route-lesson-arrow{color:#b7bdcc;flex-shrink:0}
+.curriculum-studio .route-lesson:hover .route-lesson-arrow{color:#3037df}
+.curriculum-studio .route-lesson-copy>.route-lesson-mobile-meta{display:none}
+.curriculum-studio .route-reference{display:flex;gap:11px;border-top:1px solid #e6e8ef;margin-top:44px;padding-top:22px;color:#656b7d;align-items:flex-start}
+.curriculum-studio .route-reference p{font-size:10px;line-height:1.85;color:#656b7d;margin:0}
+.curriculum-studio .route-reference strong{font-weight:550;color:#656b7d}
+.curriculum-studio .route-reference a{display:inline-flex;gap:3px;align-items:center;color:#656b7d;margin-left:8px;text-decoration:underline;text-underline-offset:3px}
+.curriculum-studio .route-reference a:hover{color:#3037df}
+.curriculum-studio .route-empty,.practice-library .practice-library-empty{padding:58px 20px;text-align:center;background:#f8f9fc;border:1px solid #e6e8ef;border-radius:10px;color:#656b7d}
+.curriculum-studio .route-empty>svg,.practice-library .practice-library-empty>svg{margin:0 auto 16px;color:#3037df}
+.curriculum-studio .route-empty h3,.practice-library .practice-library-empty h2{font-size:20px;color:#14172b;letter-spacing:-.5px;margin-bottom:8px}
+.curriculum-studio .route-empty p,.practice-library .practice-library-empty p{color:#656b7d;font-size:12px;line-height:1.7}
+.curriculum-studio .route-empty button,.practice-library .practice-library-empty button{display:inline-flex;gap:9px;align-items:center;margin-top:20px;background:#3037df;color:#fff;border:1px solid #3037df;border-radius:6px;padding:11px 16px;font-size:12px;font-weight:550}
+/* Practice shares the route's rhythm, with compact topic cards. */
+.practice-mode{gap:6px;border-bottom:1px solid #e6e8ef;margin-bottom:25px;padding-bottom:0;background:none}
+.practice-mode>button{font-size:12px;color:#656b7d;border:0;border-radius:0;box-shadow:inset 0 -2px transparent;padding:15px 14px;background:none;line-height:1.5}
+.practice-mode>button.selected{background:none;color:#3037df;box-shadow:inset 0 -2px #3037df}
+.practice-mode>button>span{font-size:9px;border-radius:5px;background:#f0f1f7;color:#656b7d;padding:2px 6px}
+.practice-mode>button.selected>span{background:#eeefff;color:#3037df}
+.practice-mode>button:focus-visible{outline:3px solid #3037df;outline-offset:-3px}
+.practice-library .practice-library-intro{display:grid;grid-template-columns:49px minmax(0,1fr) auto;gap:18px;align-items:center;border:1px solid #e6e8ef;border-radius:10px;background:#f7f8fc;padding:25px 27px;margin-bottom:28px}
+.practice-library .practice-intro-icon{display:grid;place-items:center;width:49px;height:49px;color:#3037df;background:#eeefff;border-radius:10px}
+.practice-library .practice-kicker{display:block;font-size:8px;letter-spacing:1.2px;font-weight:750;color:#656b7d;margin-bottom:6px}
+.practice-library .practice-library-intro h2{font-size:18px;letter-spacing:-.5px;line-height:1.45;font-weight:750;color:#14172b;margin:0}
+.practice-library .practice-library-intro p{font-size:11px;color:#656b7d;line-height:1.85;max-width:570px;margin:7px 0 0}
+.practice-library .practice-total{text-align:right;border-left:1px solid #e1e4ee;padding-left:24px;margin-left:10px;white-space:nowrap}
+.practice-library .practice-total strong{display:block;color:#3037df;font-family:Manrope,sans-serif;font-size:33px;font-weight:750;letter-spacing:-1px;line-height:1.3}
+.practice-library .practice-total span{font-size:9px;color:#656b7d;display:block;margin-top:6px}
+.practice-library .practice-library-toolbar{display:flex;align-items:center;gap:12px}
+.practice-library .practice-library-toolbar select{min-width:190px}
+.practice-library .practice-results{display:flex;align-items:center;gap:14px;font-size:10px;color:#656b7d;padding:16px 0 5px;flex-wrap:wrap}
+.practice-library .practice-results strong{font-weight:650;color:#656b7d}
+.practice-library .practice-help-note{display:flex;gap:5px;align-items:center;margin-left:auto;font-size:10px;color:#656b7d}
+.practice-library .practice-stage-list{display:flex;flex-direction:column;gap:30px}
+.practice-library .practice-stage{min-width:0}
+.practice-library .practice-stage-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:25px 0 15px}
+.practice-library .practice-stage-heading>div{display:flex;align-items:baseline;gap:10px;min-width:0}
+.practice-library .practice-stage-heading>div>span{font-size:10px;color:#3037df;font-weight:650;font-variant-numeric:tabular-nums}
+.practice-library .practice-stage-heading h2{font-size:20px;font-weight:750;color:#14172b;letter-spacing:-.6px;line-height:1.4}
+.practice-library .practice-stage-heading small{font-size:10px;color:#656b7d;white-space:nowrap}
+.practice-library .practice-stage-heading>a{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:#656b7d;white-space:nowrap;padding:6px 0}
+.practice-library .practice-stage-heading>a:hover{color:#3037df}
+.practice-library .practice-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.practice-library .practice-topic-card{min-width:0;background:#fff;border:1px solid #e6e8ef;border-radius:9px;transition:border-color .18s,box-shadow .18s}
+.practice-library .practice-topic-card:hover{border-color:#c6c9f5;box-shadow:0 4px 20px #24288d05}
+.practice-library .practice-topic-card>a{height:100%;display:flex;flex-direction:column;padding:21px 22px;border-radius:inherit;min-width:0;min-height:185px}
+.practice-library .practice-topic-category{display:block;font-size:9px;line-height:1.6;color:#656b7d;letter-spacing:.2px;margin-bottom:8px}
+.practice-library .practice-topic-title{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.practice-library .practice-topic-title h3{font-size:14px;line-height:1.55;font-weight:750;letter-spacing:-.25px;color:#14172b;margin:0}
+.practice-library .practice-topic-title>svg{color:#bbc0d0;margin-top:3px}
+.practice-library .practice-topic-card:hover .practice-topic-title>svg{color:#3037df}
+.practice-library .practice-topic-card p{font-size:11px;line-height:1.8;color:#656b7d;margin:8px 20px 20px 0;flex:1}
+.practice-library .practice-topic-footer{display:flex;align-items:center;justify-content:space-between;gap:9px;padding-top:13px;border-top:1px solid #eef0f5}
+.practice-library .practice-topic-footer>span{display:flex;align-items:center;gap:5px;font-size:9px;line-height:1.4;color:#656b7d}
+.practice-library .practice-topic-footer>.practice-has-code{color:#6269bd}
+.practice-library .practice-library-empty{margin-top:25px}
+@media(min-width:1500px){.curriculum-studio .route-directory{grid-template-columns:200px minmax(0,1fr);gap:40px}.curriculum-studio .route-lesson{min-height:84px}.curriculum-studio .route-lesson-copy>strong{font-size:13px}.practice-library .practice-topic-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1100px){.curriculum-studio .route-directory{grid-template-columns:165px minmax(0,1fr);gap:22px}.curriculum-studio .route-stage-nav>a{font-size:11px;gap:7px;padding-left:8px;padding-right:8px}.curriculum-studio .route-heading{grid-template-columns:minmax(0,1fr) 230px;gap:26px}.curriculum-studio .route-heading h1{font-size:43px;letter-spacing:-2px}.curriculum-studio .route-start{padding:20px}.curriculum-studio .route-lesson{gap:9px;padding:16px}.curriculum-studio .route-level-heading{padding:22px 17px;gap:11px}.curriculum-studio .route-level-progress{min-width:55px}.curriculum-studio .route-level-copy h3{font-size:18px}.curriculum-studio .route-prerequisite{padding-left:17px;padding-right:17px}.curriculum-studio .route-chapter-toggle{padding-left:16px;padding-right:16px}.practice-library .practice-total{padding-left:17px;margin-left:0}.practice-library .practice-library-intro{padding:22px;gap:14px}.practice-library .practice-topic-card>a{padding:19px}.practice-library .practice-topic-title h3{font-size:13px}}
+@media(max-width:900px){.curriculum-studio .route-directory{grid-template-columns:minmax(0,1fr);gap:26px}.curriculum-studio .route-stage-rail{position:static;min-width:0}.curriculum-studio .route-rail-label{margin:0 0 11px}.curriculum-studio .route-stage-nav{flex-direction:row;gap:6px;overflow-x:auto;max-width:100%;padding:4px 3px 12px;scrollbar-width:thin;scrollbar-color:#d9dcee transparent;overscroll-behavior-x:contain}.curriculum-studio .route-stage-nav>a{flex:0 0 auto;min-height:40px;border:1px solid #e6e8ef;padding:10px 12px;gap:8px;background:#fff}.curriculum-studio .route-stage-nav>a.is-selected{border-color:#d6d9fb}.curriculum-studio .route-stage-nav>a>small{margin-left:3px}.curriculum-studio .route-rail-note{display:none}.curriculum-studio .route-overview{margin-bottom:27px}.curriculum-studio .route-heading{gap:24px}.curriculum-studio .route-heading h1{font-size:40px}.curriculum-studio .route-heading-copy>p{font-size:12px}.practice-library .practice-library-intro{grid-template-columns:42px minmax(0,1fr)}.practice-library .practice-total{display:none}.practice-library .practice-intro-icon{width:42px;height:42px}.practice-library .practice-library-intro h2{font-size:17px}}
+@media(max-width:580px){.curriculum-studio .route-heading{grid-template-columns:minmax(0,1fr);gap:23px;padding:4px 0 26px}.curriculum-studio .route-kicker{font-size:9px;letter-spacing:1.5px;margin-bottom:16px}.curriculum-studio .route-heading h1{font-size:43px;letter-spacing:-2.2px;line-height:1.08}.curriculum-studio .route-heading-copy>p{font-size:12px;line-height:1.8;margin-top:17px;max-width:330px}.curriculum-studio .route-start{padding:19px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 13px;align-items:center}.curriculum-studio .route-start-label{grid-column:1/-1;font-size:8px;margin:0 0 3px}.curriculum-studio .route-start>strong{font-size:14px;grid-column:1;line-height:1.5}.curriculum-studio .route-start-description{font-size:10px;margin-top:0;grid-column:1}.curriculum-studio .route-start>button{grid-column:2;grid-row:2 / 4;width:auto;margin:0;font-size:10px;max-width:121px;padding:11px;gap:7px;text-align:left}.curriculum-studio .route-start>button>svg{width:14px}.curriculum-studio .route-overview{padding:20px 0;grid-template-columns:.85fr 1fr 1.3fr;margin-bottom:23px}.curriculum-studio .route-overview>div{padding:0 15px}.curriculum-studio .route-overview strong{font-size:25px;letter-spacing:-.6px}.curriculum-studio .route-overview strong small{font-size:11px}.curriculum-studio .route-overview>div>span{font-size:9px;line-height:1.6;max-width:100px}.curriculum-studio .route-overview-progress .route-progress-track{margin-top:8px;width:95px}.curriculum-studio .route-directory{gap:20px}.curriculum-studio .route-stage-nav>a{font-size:11px}.curriculum-studio .route-directory-heading{gap:12px;margin-bottom:18px}.curriculum-studio .route-directory-heading h2{font-size:23px;letter-spacing:-.6px}.curriculum-studio .route-filter-count{font-size:10px}.curriculum-studio .route-section-label{font-size:8px}.curriculum-studio .route-filter-bar{gap:8px;flex-wrap:wrap}.curriculum-studio .route-search{flex-basis:100%;height:44px}.curriculum-studio .route-filter-bar select{width:100%;height:40px;min-width:0;font-size:11px}.curriculum-studio .route-list-controls{margin:12px 0 20px;gap:8px}.curriculum-studio .route-list-controls label,.curriculum-studio .route-list-controls button{font-size:9px}.curriculum-studio .route-level-list{gap:20px}.curriculum-studio .route-level-heading{padding:19px 16px;gap:10px;flex-wrap:wrap}.curriculum-studio .route-level-index{min-width:30px;height:30px;font-size:11px;border-radius:6px}.curriculum-studio .route-level-copy>span{font-size:8px}.curriculum-studio .route-level-copy h3{font-size:18px}.curriculum-studio .route-level-copy p{font-size:10px;line-height:1.8;margin-top:7px}.curriculum-studio .route-level-progress{min-width:46px}.curriculum-studio .route-level-progress>span{font-size:10px}.curriculum-studio .route-level-progress>small{font-size:7px}.curriculum-studio .route-prerequisite{font-size:9px;padding:0 16px 15px;gap:5px}.curriculum-studio .route-prerequisite>small{margin-left:0;flex-basis:100%;padding-left:18px;font-size:8px}.curriculum-studio .route-chapter-toggle{padding:12px 15px;gap:8px;min-height:45px}.curriculum-studio .route-chapter-toggle>strong{font-size:10px}.curriculum-studio .route-chapter-toggle>span{font-size:8px}.curriculum-studio .route-lesson{padding:16px 13px;gap:9px;align-items:flex-start;min-height:0}.curriculum-studio .route-lesson-state{width:17px;margin-top:3px}.curriculum-studio .route-lesson-copy>strong{font-size:12px;line-height:1.6}.curriculum-studio .route-lesson-copy>span:not(.route-lesson-mobile-meta){font-size:10px;line-height:1.75;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;margin-top:4px}.curriculum-studio .route-lesson-copy>.route-lesson-mobile-meta{display:flex;align-items:center;gap:4px;color:#656b7d;font-size:9px;line-height:1.7;margin-top:7px;flex-wrap:wrap}.curriculum-studio .route-lesson-meta{display:none}.curriculum-studio .route-lesson-arrow{width:14px;margin-top:3px}.curriculum-studio .route-reference{margin-top:30px;gap:8px}.curriculum-studio .route-reference p{font-size:9px}.curriculum-studio .route-reference a{margin-left:0;margin-top:5px;display:flex;width:max-content;max-width:100%}.practice-mode{gap:3px;margin-bottom:20px}.practice-mode>button{font-size:10px;padding:13px 7px;gap:6px}.practice-mode>button>svg{width:14px}.practice-mode>button>span{font-size:8px;padding:2px 5px}.practice-library .practice-library-intro{padding:19px 17px;grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:21px}.practice-library .practice-intro-icon{width:36px;height:36px;border-radius:8px}.practice-library .practice-intro-icon>svg{width:21px}.practice-library .practice-kicker{font-size:8px;letter-spacing:1px}.practice-library .practice-library-intro h2{font-size:19px;line-height:1.45}.practice-library .practice-library-intro p{font-size:11px;line-height:1.85}.practice-library .practice-library-toolbar{flex-wrap:wrap;gap:8px}.practice-library .practice-library-search{flex-basis:100%}.practice-library .practice-library-toolbar select{width:100%;min-width:0;height:40px}.practice-library .practice-results{gap:8px;padding-top:13px;font-size:9px}.practice-library .practice-help-note{display:none}.practice-library .practice-stage-list{gap:20px}.practice-library .practice-stage-heading{padding:23px 0 13px;gap:12px}.practice-library .practice-stage-heading>div{gap:8px}.practice-library .practice-stage-heading h2{font-size:19px}.practice-library .practice-stage-heading small{font-size:9px}.practice-library .practice-stage-heading>a{font-size:9px}.practice-library .practice-topic-grid{grid-template-columns:minmax(0,1fr);gap:10px}.practice-library .practice-topic-card>a{padding:19px 20px;min-height:0}.practice-library .practice-topic-title h3{font-size:14px;line-height:1.5}.practice-library .practice-topic-category{font-size:9px;margin-bottom:7px}.practice-library .practice-topic-card p{font-size:11px;margin:8px 12px 18px 0}.practice-library .practice-topic-footer>span{font-size:9px}.curriculum-studio .route-empty,.practice-library .practice-library-empty{padding:40px 20px}.curriculum-studio .route-empty h3,.practice-library .practice-library-empty h2{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.curriculum-studio *, .practice-library *{transition:none!important}.curriculum-studio .route-start>button:hover{transform:none}}

@@ -5,8 +5,8 @@ import {
   useState,
   useCallback,
   type ReactNode,
-  type CSSProperties,
 } from "react";
+import { flushSync } from "react-dom";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -31,18 +31,12 @@ import {
   Play,
   Search,
   Settings2,
-  Sparkles,
   Sprout,
-  Target,
   Trophy,
   X,
-  Zap,
   Copy,
   Circle,
-  Network,
   Layers3,
-  Binary,
-  Medal,
   Terminal,
 } from "lucide-react";
 import {
@@ -59,12 +53,11 @@ import {
   completeLesson,
   solveProblem,
   streak,
-  weekCount,
-  localDateKey,
   type Progress,
 } from "@/lib/progress";
 
 import CurriculumBrowser from "./curriculum-browser";
+import StudioDashboard from "./studio-dashboard";
 import PracticeCatalog from "./practice-catalog";
 import CppPlayground from "./cpp-playground";
 import LessonExercises from "./lesson-exercises";
@@ -84,7 +77,6 @@ type View =
   | "problema"
   | "compilador";
 type Route = { view: View; id?: string };
-const icons = [Sprout, Code2, Compass, Medal, Network, Trophy, Layers3, Binary];
 const viewNames: Record<View, string> = {
   dashboard: "Mi panel",
   ruta: "Ruta de aprendizaje",
@@ -259,6 +251,38 @@ export default function LearningApp() {
   const [modal, setModal] = useState<"search" | "profile" | null>(null);
   const [query, setQuery] = useState("");
   const [toast, setToast] = useState("");
+  const navigationRef = useRef<HTMLElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchResultsRef = useRef<HTMLDivElement>(null);
+  const openModal = useCallback((kind: "search" | "profile") => {
+    // Finish the drawer's focus restoration before mounting another focus trap.
+    flushSync(() => setMenu(false));
+    setModal(kind);
+  }, []);
+  useEffect(() => {
+    if (!menu) return;
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const links = () => Array.from(navigationRef.current?.querySelectorAll<HTMLElement>("a[href],button:not(:disabled)") || []);
+    links()[0]?.focus();
+    const keepFocus = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const items = links(), first = items[0], last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    const desktop = window.matchMedia("(min-width: 741px)");
+    const onDesktop = () => { if (desktop.matches) setMenu(false); };
+    document.addEventListener("keydown", keepFocus);
+    desktop.addEventListener("change", onDesktop);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", keepFocus);
+      desktop.removeEventListener("change", onDesktop);
+      previousFocus?.focus();
+    };
+  }, [menu]);
   useEffect(() => {
     // Read browser storage after hydration so the server and first client render match.
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -279,7 +303,7 @@ export default function LearningApp() {
     const keys = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        setModal("search");
+        openModal("search");
       }
       if (e.key === "Escape") setMenu(false);
     };
@@ -288,7 +312,7 @@ export default function LearningApp() {
       window.removeEventListener("hashchange", onRoute);
       window.removeEventListener("keydown", keys);
     };
-  }, []);
+  }, [openModal]);
   useEffect(() => {
     // Long chapters must start at the top after React renders the new route.
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -303,6 +327,7 @@ export default function LearningApp() {
   }, [toast]);
   const update = (p: Progress) => setProgress(p);
   const openLesson = (id: string) => {
+    setMenu(false);
     setProgress((p) => ({ ...p, lastLesson: id }));
     go("leccion", id);
   };
@@ -327,13 +352,13 @@ export default function LearningApp() {
   const closeModal = useCallback(() => setModal(null), []);
   const nav = [
     { view: "dashboard", label: "Mi panel", icon: LayoutDashboard },
-    { view: "ruta", label: "Ruta de aprendizaje", icon: Compass },
+    { view: "ruta", label: "Ruta de estudio", icon: Compass },
     { view: "problemas", label: "Problemas", icon: Code2 },
     { view: "compilador", label: "Laboratorio C++", icon: Terminal },
     { view: "apuntes", label: "Mis apuntes", icon: NotebookPen },
   ] as const;
   return (
-    <div className="app-shell">
+    <div className="app-shell studio-shell" data-view={route.view}>
       <a
         className="skip-link"
         href="#main-content"
@@ -354,19 +379,25 @@ export default function LearningApp() {
         />
       )}
       <aside
+        ref={navigationRef}
+        id="workspace-navigation"
         className={`sidebar ${menu ? "open" : ""}`}
         aria-label="Navegación principal"
+        onClick={(event) => {
+          if ((event.target as HTMLElement).closest("a[href]")) setMenu(false);
+        }}
       >
+        <button className="sidebar-close icon-button" onClick={() => setMenu(false)} aria-label="Cerrar navegación"><X size={18} /></button>
         <a className="brand" href="#/dashboard" aria-label="OMRI · Guía de programación · Ir al panel">
           <img className="brand-logo" src={publicAsset("brand/omri-logo.png")}
             alt="OMRI · Olimpiada Morelense de Informática" width={1080} height={270} />
-          <small>GUÍA DE PROGRAMACIÓN</small>
+          <small>APRENDE · PRACTICA · CREA</small>
         </a>
         <div className="workspace-label">
-          <span className="tiny-dot" /> Tu espacio de aprendizaje{" "}
+          <span className="tiny-dot" /> Escuela de programación{" "}
           <ChevronDown size={14} />
         </div>
-        <div className="nav-label">APRENDE A TU RITMO</div>
+        <div className="nav-label">TU ESPACIO</div>
         <nav>
           {nav.map((item) => (
             <a
@@ -402,27 +433,14 @@ export default function LearningApp() {
           </a>
         </nav>
         <div className="sidebar-bottom">
-          <div className="sidebar-tip">
-            <span className="tip-icon">
-              <Sparkles size={18} />
-            </span>
-            <strong>
-              Un poco cada día,
-              <br />
-              un gran camino por delante.
-            </strong>
-            <p>
-              No necesitas saber programar.
-              <br />
-              Solo necesitas curiosidad.
-            </p>
-            <a href="#/ruta">
-              Da tu primer paso <ArrowRight size={15} />
-            </a>
+          <div className="sidebar-journey">
+            <div className="sidebar-journey-label"><span>Tu recorrido</span><strong>{completed} / {lessons.length}</strong></div>
+            <ProgressBar value={completed / lessons.length * 100} />
+            <button onClick={() => openLesson(next.id)}><Play size={13} />{completed ? "Retomar mi lección" : "Mi primera lección"}<ArrowUpRight size={14} /></button>
           </div>
           <button
             className="profile-button"
-            onClick={() => setModal("profile")}
+            onClick={() => openModal("profile")}
           >
             <span className="avatar">
               {progress.name ? progress.name.charAt(0).toUpperCase() : "Tú"}
@@ -435,12 +453,14 @@ export default function LearningApp() {
           </button>
         </div>
       </aside>
-      <div className="main-shell">
+      <div className="main-shell" inert={menu}>
         <header className="topbar">
           <div className="breadcrumb">
             <button
               className="icon-button mobile-menu"
-              aria-label="Abrir menú"
+              aria-label={menu ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={menu}
+              aria-controls="workspace-navigation"
               onClick={() => setMenu(!menu)}
             >
               <Menu size={21} />
@@ -455,7 +475,7 @@ export default function LearningApp() {
             <button
               className="search-button"
               aria-label="Buscar en la guía"
-              onClick={() => setModal("search")}
+              onClick={() => openModal("search")}
             >
               <Search size={16} />
               <span>Buscar en la guía...</span>
@@ -470,7 +490,7 @@ export default function LearningApp() {
             <button
               className="avatar small-avatar"
               aria-label="Editar mi perfil"
-              onClick={() => setModal("profile")}
+              onClick={() => openModal("profile")}
             >
               {progress.name ? progress.name.charAt(0).toUpperCase() : "Tú"}
             </button>
@@ -478,259 +498,7 @@ export default function LearningApp() {
         </header>
         <main id="main-content" tabIndex={-1} className="main-content">
           {route.view === "dashboard" && (
-            <>
-              <div className="page-heading">
-                <div>
-                  <div className="eyebrow">TU CAMINO EN LA INFORMÁTICA</div>
-                  <h1>
-                    {progress.name
-                      ? `¡Hola, ${progress.name}!`
-                      : "Un gran futuro empieza aquí."}
-                    <span className="hello-spark">✳</span>
-                  </h1>
-                  <p>
-                    Aprende a programar, resuelve retos y prepárate para la OMRI.
-                  </p>
-                </div>
-                <span className="local-badge">
-                  <span />
-                  Hecho para aprender
-                </span>
-              </div>
-              <section className="welcome-card">
-                <div className="welcome-copy">
-                  <span className="hero-tag">
-                    <Sprout size={14} /> DESDE CERO, A TU RITMO
-                  </span>
-                  <h2>
-                    Las grandes ideas
-                    <br />
-                    empiezan con un <span>hola.</span>
-                  </h2>
-                  <p>
-                    No importa si nunca has escrito una línea de código.
-                    <br className="desktop-br" /> Este es tu lugar para empezar
-                    y llegar más lejos.
-                  </p>
-                  <button
-                    className="button primary"
-                    onClick={() => openLesson(next.id)}
-                  >
-                    {completed ? "Continuar aprendiendo" : "Comenzar mi camino"}
-                    <ArrowRight size={17} />
-                  </button>
-                  <span className="hero-footnote">
-                    <Check size={13} /> Gratis · En español · Sin experiencia
-                    previa
-                  </span>
-                </div>
-                <div className="omri-hero-art">
-                  <span className="omri-code-note" aria-hidden="true">cout &lt;&lt; "¡Hola, Morelos!";</span>
-                  <img className="hero-mascot" src={publicAsset("brand/entrenator.png")}
-                    alt="Entrenator, la mascota de la OMRI, listo para acompañarte a programar"
-                    width={512} height={512} />
-                  <span className="mascot-caption">ENTRENATOR <span>· Aprendemos juntos</span></span>
-                </div>
-              </section>
-              <div className="stats-grid">
-                <Stat
-                  icon={<BookOpen />}
-                  color="green"
-                  label="Lecciones completadas"
-                  value={completed}
-                  suffix={`/ ${lessons.length}`}
-                  foot={
-                    completed ? "Cada idea cuenta" : "Tu primera idea te espera"
-                  }
-                />
-                <Stat
-                  icon={<Code2 />}
-                  color="purple"
-                  label="Problemas resueltos"
-                  value={solved}
-                  suffix={`/ ${problems.length}`}
-                  foot={
-                    solved
-                      ? "¡Buen trabajo, sigue así!"
-                      : "Convierte ideas en soluciones"
-                  }
-                />
-                <Stat
-                  icon={<Flame />}
-                  color="orange"
-                  label="Racha de aprendizaje"
-                  value={streak(progress.activity)}
-                  suffix={streak(progress.activity) === 1 ? "día" : "días"}
-                  foot="La constancia hace la diferencia"
-                />
-                <Stat
-                  icon={<Target />}
-                  color="blue"
-                  label="Meta de la semana"
-                  value={weekCount(progress.activity)}
-                  suffix={`/ ${progress.goal}`}
-                  foot="Pequeños pasos, grandes logros"
-                />
-              </div>
-              <div className="dashboard-columns">
-                <div className="dashboard-primary">
-                  <section className="card path-section">
-                    <div className="section-heading">
-                      <div>
-                        <h2>
-                          Tu ruta de aprendizaje{" "}
-                          <span className="muted-number">
-                            {String(levels.length).padStart(2, "0")}
-                          </span>
-                        </h2>
-                        <p>De tu primer programa a tu primer gran reto.</p>
-                      </div>
-                      <a className="text-link" href="#/ruta">
-                        Ver ruta completa <ArrowRight size={15} />
-                      </a>
-                    </div>
-                    <div className="level-list">
-                      {levels.map((level, i) => {
-                        const Icon = icons[i % icons.length];
-                        const count = lessons.filter(
-                          (l) => l.level === level.id,
-                        ).length;
-                        const done = lessons.filter(
-                          (l) =>
-                            l.level === level.id &&
-                            progress.completedLessons.includes(l.id),
-                        ).length;
-                        return (
-                          <a
-                            className="level-row"
-                            key={level.id}
-                            href={`#/ruta/${level.id}`}
-                          >
-                            <span className={`level-icon color-${i % 8}`}>
-                              <Icon size={22} />
-                            </span>
-                            <div className="level-info">
-                              <div>
-                                <h3>{level.title}</h3>
-                                {i === 0 && <Pill>Empieza aquí</Pill>}
-                              </div>
-                              <p>{level.description}</p>
-                              <div className="level-meta">
-                                <span>{count} lecciones</span>
-                                <span>·</span>
-                                <span>{level.eyebrow}</span>
-                              </div>
-                            </div>
-                            <div className="level-progress">
-                              <span>
-                                {done}/{count}
-                              </span>
-                              <ProgressBar value={(done / count) * 100} />
-                            </div>
-                            <ChevronRight size={18} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </section>
-                  {ready && <Activity progress={progress} />}
-                </div>
-                <aside className="dashboard-secondary">
-                  <section className="card weekly-card">
-                    <div className="section-heading">
-                      <h2>Tu meta, tu ritmo</h2>
-                      <Target size={19} />
-                    </div>
-                    <div
-                      className="goal-ring"
-                      style={
-                        {
-                          "--progress": `${Math.min(100, (weekCount(progress.activity) / progress.goal) * 100)}%`,
-                        } as CSSProperties
-                      }
-                    >
-                      <div>
-                        <strong>
-                          {weekCount(progress.activity)}
-                          <span> / {progress.goal}</span>
-                        </strong>
-                        <small>esta semana</small>
-                      </div>
-                    </div>
-                    <h3>
-                      {weekCount(progress.activity) >= progress.goal
-                        ? "¡Meta cumplida!"
-                        : "Haz espacio para aprender"}
-                    </h3>
-                    <p>
-                      Completa {progress.goal} lecciones o retos esta semana.
-                      ¡Cada avance cuenta!
-                    </p>
-                    <button
-                      className="button subtle"
-                      onClick={() => setModal("profile")}
-                    >
-                      Ajustar mi meta <Settings2 size={14} />
-                    </button>
-                  </section>
-                  <section className="daily-card">
-                    <div className="challenge-kicker">
-                      <Zap size={15} /> TU PRIMER RETO
-                    </div>
-                    <div className="challenge-code">&lt; / &gt;</div>
-                    <h2>¡Hola, Morelos!</h2>
-                    <p>
-                      Todo gran programador empezó con un saludo. Escribe el
-                      tuyo.
-                    </p>
-                    <div className="challenge-meta">
-                      <Pill tone="orange">Inicial</Pill>
-                      <span>
-                        <Clock3 size={13} />5 min
-                      </span>
-                    </div>
-                    <button
-                      className="button challenge-button"
-                      onClick={() => go("problema", "hola-morelos")}
-                    >
-                      Resolver el reto <ArrowRight size={16} />
-                    </button>
-                  </section>
-                </aside>
-              </div>
-              <div className="section-heading recommendation-heading">
-                <div>
-                  <h2>Un buen lugar para empezar</h2>
-                  <p>Lo esencial, explicado paso a paso.</p>
-                </div>
-                <span className="small-muted">SELECCIONADO PARA TI</span>
-              </div>
-              <div className="recommend-grid">
-                {lessons.slice(0, 3).map((item, i) => (
-                  <button
-                    className="recommend-card"
-                    key={item.id}
-                    onClick={() => openLesson(item.id)}
-                  >
-                    <span className={`recommend-symbol color-${i}`}>
-                      {i === 0 ? <Lightbulb /> : i === 1 ? <Code2 /> : <Play />}
-                    </span>
-                    <span className="recommend-label">
-                      PRIMEROS PASOS · LECCIÓN {i + 1}
-                    </span>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <span className="recommend-footer">
-                      <span>
-                        <Clock3 size={14} />
-                        {item.minutes} min de estudio
-                      </span>
-                      <ArrowUpRight size={19} />
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </>
+            <StudioDashboard progress={progress} next={next} completed={completed} solved={solved} onOpenLesson={openLesson} onProfile={() => openModal("profile")} />
           )}
           {route.view === "ruta" && (
             <CurriculumBrowser
@@ -863,13 +631,31 @@ export default function LearningApp() {
           <div className="search-field">
             <Search size={20} />
             <input
+              ref={searchInputRef}
               aria-label="Buscar lecciones y problemas"
+              aria-controls="command-results"
+              aria-describedby="command-help"
               placeholder="Busca variables, ciclos, algoritmos..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(event) => {
+                const first = searchResultsRef.current?.querySelector<HTMLButtonElement>("button");
+                if (first && (event.key === "ArrowDown" || event.key === "Enter")) {
+                  event.preventDefault();
+                  if (event.key === "Enter") first.click(); else first.focus();
+                }
+              }}
             />
           </div>
-          <div className="search-results">
+          <div className="search-results" id="command-results" ref={searchResultsRef} onKeyDown={(event) => {
+            if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+            const buttons = Array.from(searchResultsRef.current?.querySelectorAll<HTMLButtonElement>("button") || []);
+            const at = buttons.indexOf(document.activeElement as HTMLButtonElement);
+            if (at < 0) return;
+            event.preventDefault();
+            if (event.key === "ArrowUp" && at === 0) searchInputRef.current?.focus();
+            else buttons[Math.min(buttons.length - 1, at + (event.key === "ArrowDown" ? 1 : -1))]?.focus();
+          }}>
             {!query && (
               <p className="search-hint">
                 Explora las primeras lecciones o escribe un tema.
@@ -961,9 +747,9 @@ export default function LearningApp() {
                 </p>
               )}
           </div>
-          <div className="modal-footer">
-            <kbd>esc</kbd> para cerrar{" "}
-            <span>Aprender empieza con una pregunta.</span>
+          <div className="modal-footer" id="command-help">
+            <kbd>↑ ↓</kbd> explorar <kbd>↵</kbd> abrir
+            <span><kbd>esc</kbd> cerrar</span>
           </div>
         </Modal>
       )}
@@ -988,35 +774,6 @@ export default function LearningApp() {
     </div>
   );
 }
-function Stat({
-  icon,
-  color,
-  label,
-  value,
-  suffix,
-  foot,
-}: {
-  icon: ReactNode;
-  color: string;
-  label: string;
-  value: number;
-  suffix: string;
-  foot: string;
-}) {
-  return (
-    <section className="stat-card">
-      <div className="stat-heading">
-        <span>{label}</span>
-        <span className={`stat-icon ${color}`}>{icon}</span>
-      </div>
-      <div className="stat-value">
-        {value}
-        <span>{suffix}</span>
-      </div>
-      <p>{foot}</p>
-    </section>
-  );
-}
 function PageHeading({
   eyebrow,
   title,
@@ -1034,80 +791,6 @@ function PageHeading({
         <p>{description}</p>
       </div>
     </div>
-  );
-}
-function Activity({ progress }: { progress: Progress }) {
-  const end = new Date();
-  const start = new Date(end);
-  start.setDate(end.getDate() - 168 - ((end.getDay() + 6) % 7));
-  const days = Array.from({ length: 175 }, (_, i) => {
-    const d = new Date(start);
-    d.setDate(start.getDate() + i);
-    return d;
-  });
-  const months = Array.from({ length: 25 }, (_, i) => {
-    const date = days[i * 7];
-    return i === 0 ||
-      date.getMonth() !== days[Math.max(0, i * 7 - 7)].getMonth()
-      ? date.toLocaleDateString("es-MX", { month: "short" }).replace(".", "")
-      : "";
-  });
-  return (
-    <section className="card activity-card">
-      <div className="section-heading">
-        <div>
-          <h2>
-            Cada día cuenta{" "}
-            <span className="activity-count">
-              {Object.values(progress.activity).reduce((a, b) => a + b, 0)}{" "}
-              avances
-            </span>
-          </h2>
-          <p>Así va creciendo tu constancia.</p>
-        </div>
-        <Flame size={19} />
-      </div>
-      <div className="heatmap-scroll">
-        <div className="heatmap-months">
-          {months.map((m, i) => (
-            <span key={i}>{m}</span>
-          ))}
-        </div>
-        <div className="heatmap-wrap">
-          <div className="heatmap-labels">
-            <span>Lun</span>
-            <span>Mié</span>
-            <span>Vie</span>
-            <span>Dom</span>
-          </div>
-          <div className="heatmap">
-            {days.map((d) => {
-              const key = localDateKey(d);
-              const count = progress.activity[key] || 0;
-              const future = key > localDateKey(end);
-              return (
-                <div
-                  key={key}
-                  className={`heat-cell heat-${Math.min(count, 4)} ${future ? "future" : ""}`}
-                  title={`${d.toLocaleDateString("es-MX")}: ${count} avances`}
-                  aria-label={`${d.toLocaleDateString("es-MX")}: ${count} avances`}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </div>
-      <div className="heatmap-footer">
-        <span>Un pequeño esfuerzo hoy. Una habilidad para siempre.</span>
-        <span>
-          Menos <i className="heat-0" />
-          <i className="heat-1" />
-          <i className="heat-2" />
-          <i className="heat-3" />
-          <i className="heat-4" /> Más
-        </span>
-      </div>
-    </section>
   );
 }
 function LessonPage({

@@ -1,38 +1,17 @@
 "use client";
+
 import { useState } from "react";
 import {
-  ArrowRight,
-  ArrowUpRight,
-  BookOpen,
-  Check,
-  ChevronDown,
-  ChevronRight,
-  Clock3,
-  Compass,
-  Layers3,
-  Lightbulb,
-  Search,
-  Sprout,
-  Code2,
-  Medal,
-  Network,
-  Trophy,
-  Binary,
+  ArrowRight, ArrowUpRight, BookOpen, Check, ChevronDown, Clock3,
+  Layers3, Search, X, Play, Circle, Sparkles,
 } from "lucide-react";
-import { levels, lessons, type Lesson } from "@/lib/curriculum";
+import { levels, lessons } from "@/lib/curriculum";
 import { guideIndex, guideCheckedAt } from "@/lib/curriculum/source-index";
 import type { Progress } from "@/lib/progress";
-const icons = [Sprout, Code2, Compass, Medal, Network, Trophy, Layers3, Binary];
-const normalize = (text: string) =>
-  text
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-export default function CurriculumBrowser({
-  selected,
-  progress,
-  openLesson,
-}: {
+
+const normalize = (text: string) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+export default function CurriculumBrowser({ selected, progress, openLesson }: {
   selected?: string;
   progress: Progress;
   openLesson: (id: string) => void;
@@ -40,325 +19,140 @@ export default function CurriculumBrowser({
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState("todos");
   const [showOptional, setShowOptional] = useState(true);
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
-  const [expandMode, setExpandMode] = useState<"auto" | "open" | "closed">(
-    "auto",
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [expandMode, setExpandMode] = useState<"auto" | "open" | "closed">("auto");
+  const complete = new Set(progress.completedLessons);
+  const sourceCount = new Set(lessons.flatMap((lesson) => lesson.source ? [lesson.source.key] : [])).size;
+  const completedCount = lessons.filter((lesson) => complete.has(lesson.id)).length;
+  const activeLevel = levels.find((level) => level.id === selected);
+  const selectedLessons = lessons.filter((lesson) => !selected || lesson.level === selected);
+  const lastLesson = selectedLessons.find((lesson) => lesson.id === progress.lastLesson && !complete.has(lesson.id));
+  const nextPending = selectedLessons.find((lesson) => !complete.has(lesson.id));
+  const nextLesson = lastLesson || nextPending || selectedLessons[0];
+  const filtered = selectedLessons.filter((lesson) =>
+    (showOptional || !lesson.optional) &&
+    (status === "todos" || (status === "completadas" ? complete.has(lesson.id) : !complete.has(lesson.id))) &&
+    normalize(`${lesson.title} ${lesson.description} ${lesson.category || ""} ${lesson.source?.key || ""}`).includes(normalize(query)),
   );
-  const sourceCount = new Set(
-    lessons.flatMap((l) => (l.source ? [l.source.key] : [])),
-  ).size;
-  const filtered = lessons.filter(
-    (l) =>
-      (!selected || l.level === selected) &&
-      (showOptional || !l.optional) &&
-      (status === "todos" ||
-        (status === "completadas"
-          ? progress.completedLessons.includes(l.id)
-          : !progress.completedLessons.includes(l.id))) &&
-      normalize(
-        `${l.title} ${l.description} ${l.category || ""} ${l.source?.key || ""}`,
-      ).includes(normalize(query)),
+  const searching = Boolean(query.trim()) || status !== "todos";
+  const hasFilters = Boolean(query) || status !== "todos" || !showOptional;
+  const chapterIsOpen = (key: string, levelIndex: number) => expanded[key] ?? (
+    expandMode === "open" || (expandMode === "auto" && (searching || Boolean(selected) || levelIndex < 2))
   );
-  const searching = Boolean(query) || status !== "todos";
-  function toggle(key: string) {
-    setExpanded((current) => {
-      const next = new Set(current);
-      if (next.has(key)) next.delete(key);
-      else next.add(key);
-      return next;
-    });
-  }
+  const visibleChapters = levels.flatMap((level, index) =>
+    [...new Set(filtered.filter((lesson) => lesson.level === level.id).map((lesson) => lesson.category || "Lecciones esenciales"))]
+      .map((category) => ({ key: `${level.id}/${category}`, index })),
+  );
+  const allExpanded = visibleChapters.length > 0 && visibleChapters.every(({ key, index }) => chapterIsOpen(key, index));
+  const clearQuery = () => { setQuery(""); setExpanded({}); setExpandMode("auto"); };
+  const resetFilters = () => { clearQuery(); setStatus("todos"); setShowOptional(true); };
+
   return (
-    <>
-      <div className="page-heading">
-        <div>
-          <div className="eyebrow">CADA NUEVA IDEA ABRE UN CAMINO</div>
-          <h1>De cero. Hasta donde quieras.</h1>
-          <p>
-            Un temario en español que te acompaña desde tu primer programa hasta
-            los algoritmos avanzados.
-          </p>
+    <div className="curriculum-studio">
+      <header className="route-heading">
+        <div className="route-heading-copy">
+          <span className="route-kicker"><span /> TU RUTA DE APRENDIZAJE</span>
+          <h1>De cero a tu<br /><span>siguiente reto.</span></h1>
+          <p>Una idea a la vez. Aprende con ejemplos, explora los dibujos y pon a prueba lo que sabes. Todo en español, a tu ritmo.</p>
         </div>
-      </div>
-      <div className="curriculum-summary">
-        <div>
-          <strong>{levels.length}</strong>
-          <span>etapas de aprendizaje</span>
+        <div className="route-start">
+          <span className="route-start-label">{lastLesson ? "DONDE TE QUEDASTE" : nextPending ? "TU SIGUIENTE PASO" : "VUELVE A PRACTICAR"}</span>
+          <strong>{nextLesson?.title || "Explora la ruta"}</strong>
+          <span className="route-start-description">{nextLesson ? levels.find((level) => level.id === nextLesson.level)?.title : "Elige una etapa para comenzar"}</span>
+          {nextLesson && <button type="button" onClick={() => openLesson(nextLesson.id)}>
+            {lastLesson ? "Continuar aprendiendo" : !nextPending ? "Repasar una lección" : completedCount ? "Seguir aprendiendo" : "Empezar por aquí"}<ArrowUpRight size={17} />
+          </button>}
         </div>
-        <div>
-          <strong>{lessons.length}</strong>
-          <span>lecciones con preguntas</span>
-        </div>
-        <div>
-          <strong>
-            {sourceCount}
-            <small> / {guideIndex.length}</small>
-          </strong>
-          <span>módulos de referencia cubiertos</span>
-        </div>
-        <a
-          href="https://usaco.guide/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Basado en el temario de
-          <br />
-          <b>USACO Guide</b>
-          <ArrowUpRight size={17} />
-        </a>
+      </header>
+
+      <div className="route-overview" aria-label="Resumen de la ruta">
+        <div><strong>{levels.length}</strong><span>etapas para crecer</span></div>
+        <div><strong>{lessons.length}</strong><span>lecciones paso a paso</span></div>
+        <div className="route-overview-progress"><strong>{completedCount}<small> / {lessons.length}</small></strong><span>lecciones completadas</span><div className="route-progress-track" aria-hidden="true"><span style={{ width: `${completedCount / lessons.length * 100}%` }} /></div></div>
       </div>
-      <div className="route-notice">
-        <Lightbulb size={21} />
-        <p>
-          <strong>No necesitas saber programar para empezar.</strong> Comienza
-          con Primeros pasos y Fundamentos. Después avanza por Bronce, Plata,
-          Oro y Platino. General te acompaña durante todo el camino; Avanzado
-          reúne especialidades para explorar con calma.
-        </p>
-      </div>
-      <nav
-        className="filter-tabs curriculum-tabs"
-        aria-label="Etapas del temario"
-      >
-        <a className={!selected ? "selected" : ""} href="#/ruta">
-          Toda la ruta
-        </a>
-        {levels.map((level, i) => (
-          <a
-            className={selected === level.id ? "selected" : ""}
-            href={`#/ruta/${level.id}`}
-            key={level.id}
-          >
-            <span>{String(i + 1).padStart(2, "0")}</span>
-            {level.title}
-          </a>
-        ))}
-      </nav>
-      <div className="curriculum-toolbar">
-        <div className="search-field">
-          <Search size={18} />
-          <input
-            aria-label="Buscar en el temario"
-            placeholder="Busca un tema: grafos, flujos, geometría..."
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          {query && (
-            <button
-              aria-label="Limpiar búsqueda del temario"
-              onClick={() => setQuery("")}
-            >
-              ×
-            </button>
-          )}
-        </div>
-        <select
-          aria-label="Filtrar lecciones por avance"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        >
-          <option value="todos">Todo el avance</option>
-          <option value="pendientes">Por aprender</option>
-          <option value="completadas">Completadas</option>
-        </select>
-        <label className="optional-filter">
-          <input
-            type="checkbox"
-            checked={showOptional}
-            onChange={(e) => setShowOptional(e.target.checked)}
-          />
-          Incluir opcionales
-        </label>
-      </div>
-      <div className="curriculum-controls">
-        <span>
-          {filtered.length}{" "}
-          {filtered.length === 1
-            ? "lección disponible"
-            : "lecciones disponibles"}
-        </span>
-        <button
-          onClick={() => {
-            setExpandMode(expandMode === "open" ? "closed" : "open");
-            setExpanded(new Set());
-          }}
-        >
-          <Layers3 size={14} />
-          {expandMode === "open" ? "Contraer capítulos" : "Desplegar capítulos"}
-        </button>
-      </div>
-      <div className="curriculum">
-        {levels
-          .filter(
-            (level) =>
-              (!selected || selected === level.id) &&
-              filtered.some((l) => l.level === level.id),
-          )
-          .map((level) => {
-            const i = levels.indexOf(level),
-              Icon = icons[i % icons.length];
-            const levelItems = lessons.filter((l) => l.level === level.id);
-            const visible = filtered.filter((l) => l.level === level.id);
-            const categories = [
-              ...new Set(
-                visible.map((l) => l.category || "Lecciones esenciales"),
-              ),
-            ];
-            const previous = levels.find((l) => l.id === level.prerequisite);
-            return (
-              <section
-                className="card curriculum-level expanded-curriculum"
-                key={level.id}
-              >
-                <div className="curriculum-title">
-                  <span className={`level-icon color-${i % 8}`}>
-                    <Icon size={24} />
-                  </span>
-                  <div>
-                    <span className="eyebrow">
-                      ETAPA {String(i + 1).padStart(2, "0")} · {level.eyebrow}
-                    </span>
-                    <h2>{level.title}</h2>
-                    <p>{level.description}</p>
-                  </div>
-                  <span className="level-total">
-                    {
-                      levelItems.filter((l) =>
-                        progress.completedLessons.includes(l.id),
-                      ).length
-                    }{" "}
-                    / {levelItems.length}
-                  </span>
-                </div>
-                {previous && (
-                  <div className="level-prerequisite">
-                    <Layers3 size={13} />
-                    Base recomendada:{" "}
-                    <a href={`#/ruta/${previous.id}`}>
-                      {previous.title}
-                      <ArrowRight size={12} />
-                    </a>
-                    {level.id === "avanzado" && (
-                      <span>Especialidades opcionales</span>
-                    )}
-                  </div>
-                )}
+
+      <div className="route-directory">
+        <aside className="route-stage-rail">
+          <span className="route-rail-label">EXPLORAR ETAPAS</span>
+          <nav aria-label="Etapas del temario" className="route-stage-nav">
+            <a href="#/ruta" className={!selected ? "is-selected" : ""} aria-current={!selected ? "page" : undefined}>
+              <Layers3 size={17} /><span>Toda la ruta</span><small>{lessons.length}</small>
+            </a>
+            {levels.map((level, index) => {
+              const items = lessons.filter((lesson) => lesson.level === level.id);
+              const done = items.filter((lesson) => complete.has(lesson.id)).length;
+              return <a href={`#/ruta/${level.id}`} key={level.id} className={selected === level.id ? "is-selected" : ""} aria-current={selected === level.id ? "page" : undefined}>
+                <span className="route-stage-index">{String(index + 1).padStart(2, "0")}</span><span>{level.title}</span>
+                {done === items.length ? <Check size={14} aria-label="Etapa completada" /> : <small>{items.length}</small>}
+              </a>;
+            })}
+          </nav>
+          <div className="route-rail-note"><Sparkles size={17} /><p>¿Es tu primera vez?<br />Empieza con <a href="#/ruta/inicio">Primeros pasos</a>. No necesitas experiencia.</p></div>
+        </aside>
+
+        <div className="route-directory-main">
+          <div className="route-directory-heading">
+            <div><span className="route-section-label">ELIGE QUÉ APRENDER</span><h2>{activeLevel?.title || "El camino completo"}</h2></div>
+            <span className="route-filter-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? "lección" : "lecciones"}</span>
+          </div>
+          {activeLevel && <p className="route-selected-description">{activeLevel.description}</p>}
+          <div className="route-filter-bar">
+            <div className="route-search"><Search size={17} /><input aria-label="Buscar en el temario" placeholder="Busca un tema o una idea…" value={query} onChange={(event) => { setQuery(event.target.value); setExpandMode("auto"); setExpanded({}); }} />{query && <button type="button" aria-label="Limpiar búsqueda del temario" onClick={clearQuery}><X size={15} /></button>}</div>
+            <select aria-label="Filtrar lecciones por avance" value={status} onChange={(event) => { setStatus(event.target.value); setExpandMode("auto"); setExpanded({}); }}><option value="todos">Todo el avance</option><option value="pendientes">Por aprender</option><option value="completadas">Completadas</option></select>
+          </div>
+          <div className="route-list-controls">
+            <label><input type="checkbox" checked={showOptional} onChange={(event) => setShowOptional(event.target.checked)} />Incluir opcionales</label>
+            <button type="button" disabled={!visibleChapters.length} onClick={() => { setExpandMode(allExpanded ? "closed" : "open"); setExpanded({}); }}><Layers3 size={14} />{allExpanded ? "Contraer capítulos" : "Desplegar capítulos"}</button>
+          </div>
+          {hasFilters && <div className="route-filter-summary"><span>Filtros aplicados</span><button type="button" onClick={resetFilters}>Limpiar filtros<X size={12} /></button></div>}
+
+          <div className="route-level-list">
+            {levels.filter((level) => (!selected || selected === level.id) && filtered.some((lesson) => lesson.level === level.id)).map((level) => {
+              const index = levels.indexOf(level);
+              const levelItems = lessons.filter((lesson) => lesson.level === level.id);
+              const visible = filtered.filter((lesson) => lesson.level === level.id);
+              const categories = [...new Set(visible.map((lesson) => lesson.category || "Lecciones esenciales"))];
+              const done = levelItems.filter((lesson) => complete.has(lesson.id)).length;
+              const previous = levels.find((stage) => stage.id === level.prerequisite);
+              return <section className="route-level" key={level.id} aria-labelledby={`route-level-${level.id}`}>
+                <header className="route-level-heading">
+                  <span className="route-level-index">{String(index + 1).padStart(2, "0")}</span>
+                  <div className="route-level-copy"><span>{level.eyebrow}</span><h3 id={`route-level-${level.id}`}>{level.title}</h3><p>{level.description}</p></div>
+                  <div className="route-level-progress"><span><strong>{done}</strong> / {levelItems.length}</span><div className="route-progress-track" aria-hidden="true"><span style={{ width: `${done / levelItems.length * 100}%` }} /></div><small>completadas</small></div>
+                </header>
+                {previous && <div className="route-prerequisite"><BookOpen size={13} /><span>Base recomendada: <a href={`#/ruta/${previous.id}`}>{previous.title}<ArrowUpRight size={12} /></a></span>{level.id === "avanzado" && <small>Especialidades opcionales</small>}</div>}
                 {categories.map((category, categoryIndex) => {
                   const key = `${level.id}/${category}`;
-                  const items = visible.filter(
-                    (l) => (l.category || "Lecciones esenciales") === category,
-                  );
-                  const defaultOpen =
-                    expandMode === "open" ||
-                    (expandMode === "auto" && (Boolean(selected) || i < 2));
-                  const isOpen =
-                    searching ||
-                    (expanded.has(key) ? !defaultOpen : defaultOpen);
-                  const completed = items.filter((l) =>
-                    progress.completedLessons.includes(l.id),
-                  ).length;
-                  return (
-                    <div className="curriculum-chapter" key={key}>
-                      <button
-                        className="chapter-toggle"
-                        aria-expanded={isOpen}
-                        aria-controls={`chapter-${i}-${categoryIndex}`}
-                        onClick={() => toggle(key)}
-                      >
-                        <span className="chapter-index">
-                          {String(categoryIndex + 1).padStart(2, "0")}
-                        </span>
-                        <strong>{category}</strong>
-                        <span>
-                          {completed}/{items.length}
-                        </span>
-                        <ChevronDown
-                          size={17}
-                          className={isOpen ? "rotated" : ""}
-                        />
-                      </button>
-                      {isOpen && (
-                        <div id={`chapter-${i}-${categoryIndex}`}>
-                          {items.map((lesson: Lesson) => (
-                            <button
-                              className="lesson-row"
-                              onClick={() => openLesson(lesson.id)}
-                              key={lesson.id}
-                            >
-                              <span
-                                className={`lesson-number ${progress.completedLessons.includes(lesson.id) ? "done" : ""}`}
-                              >
-                                {progress.completedLessons.includes(
-                                  lesson.id,
-                                ) ? (
-                                  <Check size={16} />
-                                ) : (
-                                  <BookOpen size={14} />
-                                )}
-                              </span>
-                              <span>
-                                <strong>
-                                  {lesson.title}
-                                  {lesson.optional && (
-                                    <em className="optional-chip">Opcional</em>
-                                  )}
-                                </strong>
-                                <small>{lesson.description}</small>
-                              </span>
-                              <span className="lesson-time">
-                                <Clock3 size={14} />
-                                {lesson.minutes} min
-                              </span>
-                              <ChevronRight size={17} />
-                            </button>
-                          ))}
-                        </div>
-                      )}
+                  const items = visible.filter((lesson) => (lesson.category || "Lecciones esenciales") === category);
+                  const isOpen = chapterIsOpen(key, index);
+                  const completed = items.filter((lesson) => complete.has(lesson.id)).length;
+                  const regionId = `chapter-${index}-${categoryIndex}`;
+                  return <div className="route-chapter" key={key}>
+                    <button type="button" className="route-chapter-toggle" aria-expanded={isOpen} aria-controls={regionId} onClick={() => setExpanded((current) => ({ ...current, [key]: !isOpen }))}>
+                      <ChevronDown size={15} className={isOpen ? "is-open" : ""} /><strong>{category}</strong><span>{completed > 0 ? `${completed} / ${items.length}` : `${items.length} ${items.length === 1 ? "lección" : "lecciones"}`}</span>
+                    </button>
+                    <div id={regionId} hidden={!isOpen} className="route-chapter-lessons">
+                      {items.map((lesson) => {
+                        const completed = complete.has(lesson.id);
+                        const current = !completed && progress.lastLesson === lesson.id;
+                        return <button type="button" className={`route-lesson ${completed ? "is-completed" : ""} ${current ? "is-current" : ""}`} onClick={() => openLesson(lesson.id)} key={lesson.id}>
+                          <span className="route-lesson-state" aria-hidden="true">{completed ? <Check size={15} /> : current ? <Play size={12} fill="currentColor" /> : <Circle size={14} />}</span>
+                          <span className="route-lesson-copy"><strong>{lesson.title}</strong><span>{lesson.description}</span><span className="route-lesson-mobile-meta"><Clock3 size={11} />{lesson.minutes} min{completed ? " · Completada" : current ? " · En curso" : ""}{lesson.optional ? " · Opcional" : ""}</span></span>
+                          <span className="route-lesson-meta">{completed ? <span className="route-status-done">Completada</span> : current ? <span className="route-status-current">En curso</span> : lesson.optional ? <span className="route-status-optional">Opcional</span> : null}<span className="route-lesson-time"><Clock3 size={12} />{lesson.minutes} min</span></span>
+                          <ArrowUpRight size={16} className="route-lesson-arrow" />
+                        </button>;
+                      })}
                     </div>
-                  );
+                  </div>;
                 })}
-              </section>
-            );
-          })}
-      </div>
-      {!filtered.length && (
-        <div className="empty-state">
-          <Search size={35} />
-          <h2>No encontramos lecciones con esos filtros</h2>
-          <p>Prueba con otro tema o cambia el estado de avance.</p>
-          <button
-            className="button primary"
-            onClick={() => {
-              setQuery("");
-              setStatus("todos");
-              setShowOptional(true);
-            }}
-          >
-            Limpiar filtros
-          </button>
+              </section>;
+            })}
+          </div>
+          {!filtered.length && <div className="route-empty"><Search size={27} /><h3>No encontramos ese tema</h3><p>Prueba con otra palabra o cambia los filtros de avance.</p><button type="button" onClick={resetFilters}>Limpiar filtros<ArrowRight size={15} /></button></div>}
         </div>
-      )}
-      <div className="curriculum-reference">
-        <BookOpen size={17} />
-        <p>
-          Cobertura cotejada con los {guideIndex.length} módulos del índice
-          público de USACO Guide el{" "}
-          {new Date(guideCheckedAt + "T12:00:00").toLocaleDateString("es-MX", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}
-          . Cada tema tiene explicaciones, ejemplos y ejercicios locales
-          en español. La referencia se conserva como lectura opcional.{" "}
-          <a
-            href="https://github.com/cpinitiative/usaco-guide/blob/master/content/ordering.ts"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ver índice de referencia <ArrowUpRight size={12} />
-          </a>
-        </p>
       </div>
-    </>
+
+      <footer className="route-reference"><BookOpen size={16} /><p><strong>{sourceCount} / {guideIndex.length} módulos de referencia cubiertos.</strong> Explicaciones y ejercicios propios en español. Temario cotejado el {new Date(guideCheckedAt + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" })}.<a href="https://github.com/cpinitiative/usaco-guide/blob/master/content/ordering.ts" target="_blank" rel="noopener noreferrer">Referencia: USACO Guide<ArrowUpRight size={12} /></a></p></footer>
+    </div>
   );
 }

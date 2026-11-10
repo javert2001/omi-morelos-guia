@@ -62,7 +62,7 @@ La ruta permite buscar sin acentos, filtrar por avance, incluir u ocultar módul
 
 ## Funcionamiento
 
-- Panel con estadísticas reales, mapa de actividad, racha y meta semanal.
+- Panel con siguiente lección, estadísticas reales, racha, meta semanal y accesos por etapa.
 - 169 lecciones y 340 ejercicios integrados de razonamiento y programación, con pistas progresivas y soluciones explicadas.
 - 10 retos originales adicionales con práctica de salida esperada, editor C++17 y comprobación de sus casos publicados.
 - Catálogo local de práctica por tema, desde Primeros pasos hasta Avanzado, con búsqueda y filtros por etapa.
@@ -119,14 +119,16 @@ Se conserva la API local de Apple Clang en `lib/server/compiler.ts` y `scripts/v
 - `components/practice-catalog.tsx`: catálogo de práctica local por tema.
 - `components/lesson-exercises.tsx`: razonamiento escrito, pistas progresivas, soluciones, revisión y editores dentro de las lecciones.
 - `lib/exercise-judge.ts`: comprobación secuencial de los casos publicados, comparación de salida por tokens y cancelación.
-- `components/learning-app.tsx`: panel, lector, problemas, apuntes y perfil.
+- `components/learning-app.tsx`: navegación, búsqueda, lector, problemas, apuntes y perfil.
+- `components/studio-dashboard.tsx`: inicio, siguiente lección, ruta y resumen de progreso.
 - `components/cpp-playground.tsx` y `.css`: editor, borradores y resultados.
 - `lib/browser-compiler.ts`: integración del compilador WebAssembly y límites del laboratorio.
 - `public/compiler/`: herramientas WebAssembly, ejecutor, manifiesto y licencias.
 - `lib/server/compiler.ts` y `scripts/vite/compiler-plugin.ts`: API nativa opcional para desarrollo en macOS.
 - `vite.pages.config.ts` y `.github/workflows/pages.yml`: construcción estática y publicación en Pages.
 - `lib/progress.ts`: persistencia, actividad, rachas y metas.
-- `app/globals.css` y `app/omri-brand.css`: diseño adaptable, lector, ejercicios y estilo de la OMRI.
+- `app/globals.css` y `app/omri-brand.css`: estilos base y recursos de la OMRI.
+- `app/studio*.css`: sistema visual actual, panel, catálogo, lector y laboratorio; se cargan después de los estilos base.
 - `scripts/validate-curriculum-cpp.mjs`: sintaxis C++17 de ejemplos y ejecución nativa de cada solución con sus casos publicados.
 - `scripts/validate-browser-cpp.mjs`: verificación de ejemplos y casos mediante el mismo compilador WebAssembly que usa el navegador.
 
@@ -156,6 +158,6 @@ El índice curricular se basa en [USACO Guide](https://usaco.guide/), de Competi
 
 El compilador WebAssembly se basa en [binji/wasm-clang](https://github.com/binji/wasm-clang), con las adaptaciones y la versión de origen documentadas en `public/compiler/NOTICE` y `public/compiler/manifest.json`. Se conservan `public/compiler/LICENSE` y `public/compiler/LICENSE.llvm`; estas licencias de software son independientes de la licencia del material educativo.
 
-El logotipo, la mascota Entrenator y el favicon proceden del [sitio de la Olimpiada Morelense de Informática](https://www.omri.org.mx/). Sus archivos originales, fuentes y condiciones de atribución se documentan en [public/brand/ATTRIBUTION.md](public/brand/ATTRIBUTION.md). La interfaz toma su paleta verde lima y azul oscuro como referencia para integrar estos recursos en la guía.
+El logotipo, la mascota Entrenator y el favicon proceden del [sitio de la Olimpiada Morelense de Informática](https://www.omri.org.mx/). Sus archivos originales, fuentes y condiciones de atribución se documentan en [public/brand/ATTRIBUTION.md](public/brand/ATTRIBUTION.md). El rediseño conserva estos recursos y usa una paleta cobalto sobre superficies claras. La tipografía amplia y la composición toman como referencias visuales [Wickret, de Cuberto](https://wickret.cuberto.com/) y la navegación y jerarquía de [Linear](https://linear.app/), sin reutilizar sus recursos gráficos ni código. Las animaciones de entrada son breves y respetan el movimiento reducido; los procesos de las lecciones conservan sus controles manuales.
 
 Fuentes DM Sans y Manrope bajo SIL Open Font License, con licencias en `public/fonts/`. Iconos de Lucide.
