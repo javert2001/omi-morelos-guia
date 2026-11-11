@@ -2049,3 +2049,13 @@
     transition: none !important;
   }
 }
+
+/* Plain introductions and descriptive headings for the course reader. */
+.lesson-layout .lesson-article .lesson-overview { font-size: 17px; line-height: 1.75; color: #454d65; margin: 18px 0 24px; max-width: 70ch; }
+.lesson-layout .lesson-article .lesson-section h2 { display: block; font-size: 23px; letter-spacing: -.5px; margin-bottom: 17px; }
+.lesson-layout .lesson-contents button { display: block; line-height: 1.6; padding: 9px 0; }
+.lesson-layout .lesson-contents .contents-practice { display: flex; padding-top: 14px; }
+@media (max-width: 600px) {
+  .lesson-layout .lesson-article .lesson-overview { font-size: 16px; }
+  .lesson-layout .lesson-article .lesson-section h2 { font-size: 21px; }
+}

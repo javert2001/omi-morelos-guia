@@ -5,7 +5,7 @@
 .curriculum-studio .route-heading{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:44px;align-items:center;padding:8px 0 35px}
 .curriculum-studio .route-kicker{display:flex;align-items:center;gap:9px;color:#656b7d;font-size:10px;font-weight:750;letter-spacing:1.8px;margin-bottom:18px}
 .curriculum-studio .route-kicker>span{width:6px;height:6px;border-radius:50%;background:#3037df}
-.curriculum-studio .route-heading h1{font-size:clamp(38px,4vw,58px);line-height:1.08;letter-spacing:-2.7px;font-weight:800;color:#14172b;margin:0}
+.curriculum-studio .route-heading h1{font-size:clamp(32px,3vw,42px);line-height:1.2;letter-spacing:-1.4px;font-weight:800;color:#14172b;margin:0}
 .curriculum-studio .route-heading h1>span{color:#3037df}
 .curriculum-studio .route-heading-copy>p{max-width:440px;margin:20px 0 0;color:#656b7d;font-size:14px;line-height:1.75}
 .curriculum-studio .route-start{background:#f7f8fc;border:1px solid #e6e8ef;border-radius:12px;padding:23px;display:flex;align-items:flex-start;flex-direction:column;position:relative;min-width:0}

@@ -79,13 +79,13 @@ type View =
 type Route = { view: View; id?: string };
 const viewNames: Record<View, string> = {
   dashboard: "Mi panel",
-  ruta: "Ruta de aprendizaje",
+  ruta: "Temario",
   problemas: "Problemas",
   apuntes: "Mis apuntes",
   recursos: "Recursos",
   acerca: "Acerca de la OMRI",
-  leccion: "Aprender",
-  problema: "Practicar",
+  leccion: "Lección",
+  problema: "Problema",
   compilador: "Laboratorio C++",
 };
 function routeFromHash(): Route {
@@ -235,7 +235,7 @@ function CodeBlock({ code }: { code: string }) {
           key={draftId}
           initialCode={code}
           storageKey={draftId}
-          title="Experimenta con este ejemplo"
+          title="Ejecutar ejemplo"
           compact
         />
       )}
@@ -352,7 +352,7 @@ export default function LearningApp() {
   const closeModal = useCallback(() => setModal(null), []);
   const nav = [
     { view: "dashboard", label: "Mi panel", icon: LayoutDashboard },
-    { view: "ruta", label: "Ruta de estudio", icon: Compass },
+    { view: "ruta", label: "Temario", icon: Compass },
     { view: "problemas", label: "Problemas", icon: Code2 },
     { view: "compilador", label: "Laboratorio C++", icon: Terminal },
     { view: "apuntes", label: "Mis apuntes", icon: NotebookPen },
@@ -391,13 +391,13 @@ export default function LearningApp() {
         <a className="brand" href="#/dashboard" aria-label="OMRI · Guía de programación · Ir al panel">
           <img className="brand-logo" src={publicAsset("brand/omri-logo.png")}
             alt="OMRI · Olimpiada Morelense de Informática" width={1080} height={270} />
-          <small>APRENDE · PRACTICA · CREA</small>
+          <small>GUÍA DE PROGRAMACIÓN</small>
         </a>
         <div className="workspace-label">
-          <span className="tiny-dot" /> Escuela de programación{" "}
+          <span className="tiny-dot" /> Curso de programación{" "}
           <ChevronDown size={14} />
         </div>
-        <div className="nav-label">TU ESPACIO</div>
+        <div className="nav-label">CURSO</div>
         <nav>
           {nav.map((item) => (
             <a
@@ -434,9 +434,9 @@ export default function LearningApp() {
         </nav>
         <div className="sidebar-bottom">
           <div className="sidebar-journey">
-            <div className="sidebar-journey-label"><span>Tu recorrido</span><strong>{completed} / {lessons.length}</strong></div>
+            <div className="sidebar-journey-label"><span>Avance del curso</span><strong>{completed} / {lessons.length}</strong></div>
             <ProgressBar value={completed / lessons.length * 100} />
-            <button onClick={() => openLesson(next.id)}><Play size={13} />{completed ? "Retomar mi lección" : "Mi primera lección"}<ArrowUpRight size={14} /></button>
+            <button onClick={() => openLesson(next.id)}><Play size={13} />{completed ? "Continuar lección" : "Abrir lección"}<ArrowUpRight size={14} /></button>
           </div>
           <button
             className="profile-button"
@@ -447,7 +447,7 @@ export default function LearningApp() {
             </span>
             <span>
               <strong>{progress.name || "Tu perfil"}</strong>
-              <small>{progress.school} · Aprendiz</small>
+              <small>{progress.school}</small>
             </span>
             <Settings2 size={17} />
           </button>
@@ -467,7 +467,7 @@ export default function LearningApp() {
             </button>
             <img className="mobile-brand" src={publicAsset("brand/omri-logo.png")}
               alt="OMRI" width={1080} height={270} />
-            <span>Tu aprendizaje</span>
+            <span>Guía OMRI</span>
             <ChevronRight size={14} />
             <strong>{viewNames[route.view]}</strong>
           </div>
@@ -517,7 +517,7 @@ export default function LearningApp() {
                 progress={progress}
                 onComplete={() => {
                   update(completeLesson(progress, lesson.id));
-                  setToast("¡Una idea más en tu camino! Lección completada.");
+                  setToast("Lección completada.");
                 }}
                 onNote={(note) =>
                   update({
@@ -530,7 +530,7 @@ export default function LearningApp() {
             ) : (
               <Empty
                 title="No encontramos esta lección"
-                text="Explora las lecciones de tu ruta de aprendizaje."
+                text="Puedes guardar apuntes desde cualquier lección."
                 action={() => go("ruta")}
               />
             ))}
@@ -542,22 +542,22 @@ export default function LearningApp() {
                 solved={progress.solvedProblems.includes(problem.id)}
                 onSolve={() => {
                   update(solveProblem(progress, problem.id));
-                  setToast("¡Lo lograste! Reto de razonamiento completado.");
+                  setToast("Ejercicio de razonamiento completado.");
                 }}
               />
             ) : (
               <Empty
                 title="No encontramos este problema"
-                text="Elige un reto del banco de problemas."
+                text="Elige un problema del catálogo."
                 action={() => go("problemas")}
               />
             ))}
           {route.view === "apuntes" && (
             <>
               <PageHeading
-                eyebrow="TU LIBRETA PERSONAL"
-                title="Las ideas que te llevas."
-                description="Guarda lo que descubriste y vuelve a ello cuando lo necesites."
+                eyebrow="APUNTES"
+                title="Mis apuntes"
+                description="Aquí puedes consultar las notas que guardaste en cada lección."
               />
               {Object.entries(progress.notes).filter(([, v]) => v.trim())
                 .length ? (
@@ -582,8 +582,8 @@ export default function LearningApp() {
                 </div>
               ) : (
                 <Empty
-                  title="Tu próxima idea merece un lugar"
-                  text="En cada lección encontrarás una libreta para escribir con tus propias palabras. Tus apuntes aparecerán aquí."
+                  title="Todavía no tienes apuntes"
+                  text="Puedes escribir y guardar notas en el panel de cada lección."
                   action={() => openLesson(next.id)}
                   label="Ir a una lección"
                 />
@@ -593,21 +593,21 @@ export default function LearningApp() {
           {route.view === "compilador" && (
             <>
               <PageHeading
-                eyebrow="ESCRIBE. EJECUTA. APRENDE."
-                title="Tu laboratorio de C++."
-                description="Cambia una idea, prueba con datos y descubre qué hace tu programa."
+                eyebrow="HERRAMIENTAS"
+                title="Laboratorio C++"
+                description="Escribe un programa, agrega la entrada y consulta el resultado de su ejecución."
               />
               <CppPlayground
                 storageKey="laboratorio"
-                title="Un espacio para experimentar"
+                title="Editor de C++17"
               />
               <div className="compiler-learning-tip">
                 <img src={publicAsset("brand/entrenator.png")} alt="" width={512} height={512} />
                 <p>
-                  <strong className="mascot-tip-title">Un consejo de Entrenator</strong>
+                  <strong className="mascot-tip-title">Cómo ejecutar tu programa</strong>
                   Escribe los datos que leerá <code>cin</code> en Entrada y
                   pulsa <strong>Ejecutar</strong>. Si aparece un error, revisa
-                  la línea indicada: corregirlo también es aprender. Tus
+                  la línea indicada y la anterior. Tus
                   borradores se guardan en este navegador.
                 </p>
               </div>
@@ -617,8 +617,7 @@ export default function LearningApp() {
           {route.view === "acerca" && <About />}
           <footer className="footer">
             <span>
-              <span className="footer-mark">&lt;/&gt;</span> Hecho con
-              curiosidad, para Morelos.
+              <span className="footer-mark">&lt;/&gt;</span> Guía de programación · OMRI
             </span>
             <span>
               <a href="#/acerca">Proyecto educativo independiente · Sin afiliación con USACO Guide</a>
@@ -627,7 +626,7 @@ export default function LearningApp() {
         </main>
       </div>
       {modal === "search" && (
-        <Modal title="Encuentra tu siguiente idea" onClose={closeModal} wide>
+        <Modal title="Buscar en la guía" onClose={closeModal} wide>
           <div className="search-field">
             <Search size={20} />
             <input
@@ -754,7 +753,7 @@ export default function LearningApp() {
         </Modal>
       )}
       {modal === "profile" && (
-        <Modal title="Tu espacio, a tu manera" onClose={closeModal}>
+        <Modal title="Perfil y progreso" onClose={closeModal}>
           <ProfileForm
             progress={progress}
             onSave={(p) => {
@@ -820,7 +819,7 @@ function LessonPage({
     <>
       <button className="back-link" onClick={() => go("ruta", lesson.level)}>
         <ArrowLeft size={16} />
-        Volver a mi ruta
+        Volver al temario
       </button>
       <div className="lesson-layout">
         <article className={`lesson-article ${lesson.takeaway ? "guided-lesson" : ""}`}>
@@ -841,12 +840,11 @@ function LessonPage({
                 Completada
               </Pill>
             ) : (
-              <Pill>A tu ritmo</Pill>
+              <Pill>Por completar</Pill>
             )}
           </div>
           {lesson.takeaway && <>
-            <div className="lesson-reading-mode"><BookOpen size={15} /> {lesson.sections.length} pasos cortos · lee, mira y prueba</div>
-            <div className="lesson-takeaway"><span>LA IDEA QUE VAMOS A CONSTRUIR</span><p>{lesson.takeaway}</p></div>
+            <p className="lesson-overview">{lesson.takeaway}</p>
             {!!lesson.prerequisites?.length && <div className="lesson-prerequisite-links"><span>Antes de esta lección:</span>{lesson.prerequisites.map(id => {
               const previous=lessons.find(item=>item.id===id);
               return previous?<button key={id} onClick={()=>openLesson(id)}>{previous.title}<ArrowUpRight size={12}/></button>:null;
@@ -854,21 +852,20 @@ function LessonPage({
           </>}
           <details className="mobile-lesson-contents">
             <summary>Contenido y ejercicios de esta lección</summary>
-            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{i + 1}. {section.title}</button>)}
+            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{section.title}</button>)}
             {!!lesson.exercises?.length && <button onClick={() => document.getElementById("practica-local")?.scrollIntoView({ behavior: "smooth", block: "start" })}>Practicar: {lesson.exercises.length} ejercicios</button>}
           </details>
           {lesson.optional && (
             <div className="optional-notice">
               <Compass size={17} />
               <p>
-                Exploración opcional. Este tema amplía tu preparación; puedes
-                retomarlo cuando domines sus prerrequisitos.
+                Tema opcional. Revisa los conocimientos previos antes de estudiarlo.
               </p>
             </div>
           )}
           {!lesson.takeaway && !!lesson.objectives?.length && (
             <section className="lesson-objectives">
-              <h2>Al terminar podrás…</h2>
+              <h2>Objetivos</h2>
               <ul>
                 {lesson.objectives.map((objective) => (
                   <li key={objective}>
@@ -881,27 +878,27 @@ function LessonPage({
           )}
           {lesson.sections.map((s, i) => (
             <section className="lesson-section" id={`lesson-part-${i}`} key={i}>
-              <h2>{lesson.takeaway&&<span className="lesson-step-number" aria-label={`Paso ${i+1}`}>{String(i+1).padStart(2,"0")}</span>}{s.title}</h2>
+              <h2>{s.title}</h2>
               {s.body.split("\n\n").map((p, j) => (
                 <p key={j}>{p}</p>
               ))}
               {s.picture&&<LessonDrawing picture={s.picture}/>}
               {s.visual&&<LessonAnimation key={`${lesson.id}:${i}`} visual={s.visual}/>}
               {s.code && <CodeBlock code={s.code} />}
-              {s.check&&<div className="lesson-check"><span>ANTES DE SEGUIR</span><p>{s.check.question}</p><details><summary>Ver la respuesta</summary><p>{s.check.answer}</p></details></div>}
+              {s.check&&<div className="lesson-check"><span>COMPRUEBA SI LO ENTENDISTE</span><p>{s.check.question}</p><details><summary>Ver la respuesta</summary><p>{s.check.answer}</p></details></div>}
             </section>
           ))}
           {!!lesson.detailedSections?.length&&<details className="lesson-depth" id="detalle-tecnico">
-            <summary>Quiero profundizar: {lesson.detailedSections.some(section=>section.code)?"detalles y código":"más detalles"}<span>Consulta un tema a la vez cuando estés listo para dar el siguiente paso.</span></summary>
+            <summary>Desarrollo técnico</summary>
             <div className="lesson-depth-body">
-              {lesson.objectives&&<p><strong>Para profundizar:</strong> {lesson.objectives.join(" · ")}.</p>}
+              {lesson.objectives&&<p><strong>Contenido:</strong> {lesson.objectives.join(" · ")}.</p>}
               {lesson.detailedSections.map((section,i)=><details key={i}><summary>{section.title}</summary>{section.body.split("\n\n").map((paragraph,j)=><p key={j}>{paragraph}</p>)}{section.code&&<CodeBlock code={section.code}/>}</details>)}
             </div>
           </details>}
           {!!lesson.exercises?.length && <LessonExercises lessonId={lesson.id} exercises={lesson.exercises} />}
           <section className="quiz-card">
             <div className="eyebrow">
-              <Lightbulb size={15} /> UNA PAUSA PARA PENSAR
+              <Lightbulb size={15} /> PREGUNTA DE REPASO
             </div>
             <h2>{lesson.quiz.question}</h2>
             <div className="quiz-options">
@@ -934,8 +931,8 @@ function LessonPage({
               >
                 <strong>
                   {answer === lesson.quiz.answer
-                    ? "¡Exacto!"
-                    : "Probemos una vez más."}
+                    ? "Respuesta correcta."
+                    : "Respuesta incorrecta."}
                 </strong>{" "}
                 {lesson.quiz.explanation}
               </div>
@@ -979,18 +976,17 @@ function LessonPage({
         <aside className="lesson-aside">
           <nav className="card lesson-contents" aria-label="Contenido de esta lección">
             <div className="eyebrow"><BookOpen size={15} /> EN ESTA LECCIÓN</div>
-            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}><span>{String(i + 1).padStart(2, "0")}</span>{section.title}</button>)}
+            {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{section.title}</button>)}
             {!!lesson.exercises?.length && <button className="contents-practice" onClick={() => document.getElementById("practica-local")?.scrollIntoView({ behavior: "smooth", block: "start" })}><Code2 size={16} /> {lesson.exercises.length} ejercicios con solución</button>}
           </nav>
-          {!!lesson.prerequisites?.length && (
+          {!lesson.takeaway && !!lesson.prerequisites?.length && (
             <section className="card prerequisites-card">
               <div className="eyebrow">
                 <Layers3 size={15} /> ANTES DE EMPEZAR
               </div>
-              <h3>Conecta con lo que ya sabes</h3>
+              <h3>Conocimientos previos</h3>
               <p>
-                Repasa estas ideas si las necesitas. Puedes explorar cualquier
-                lección.
+                Estas lecciones explican los conceptos que se usan aquí.
               </p>
               {lesson.prerequisites.map((id) => {
                 const required = lessons.find((l) => l.id === id);
@@ -1013,11 +1009,11 @@ function LessonPage({
             <span className="level-icon color-0">
               <NotebookPen size={22} />
             </span>
-            <h3>Tu idea, en tus palabras</h3>
-            <p>¿Qué aprendiste? Escribirlo te ayuda a recordarlo.</p>
+            <h3>Apuntes</h3>
+            <p>Anota una explicación, una duda o un ejemplo.</p>
             <textarea
               aria-label="Mis apuntes de la lección"
-              placeholder="Hoy descubrí que..."
+              placeholder="Escribe tus notas…"
               value={note}
               onChange={(e) => {
                 setNote(e.target.value);
@@ -1039,8 +1035,8 @@ function LessonPage({
           {lesson.problemId && (
             <div className="lesson-practice">
               <Code2 size={25} />
-              <h3>Ahora es tu turno</h3>
-              <p>Lleva esta idea a un problema de práctica.</p>
+              <h3>Problema relacionado</h3>
+              <p>Practica el tema con un problema completo.</p>
               <button
                 className="text-link"
                 onClick={() => go("problema", lesson.problemId)}
@@ -1049,13 +1045,6 @@ function LessonPage({
               </button>
             </div>
           )}
-          <div className="learning-tip">
-            <Sprout size={18} />
-            <p>
-              Si algo no sale a la primera, vas por buen camino. Equivocarse
-              también es aprender.
-            </p>
-          </div>
         </aside>
       </div>
     </>
@@ -1078,9 +1067,9 @@ function ProblemsPage({ progress }: { progress: Progress }) {
   return (
     <>
       <PageHeading
-        eyebrow="IDEAS QUE SE CONVIERTEN EN SOLUCIONES"
-        title="Tu próxima conquista."
-        description="Lee con calma, prueba con ejemplos y descubre que puedes resolverlo."
+        eyebrow="PRÁCTICA"
+        title="Problemas y ejercicios"
+        description="Elige un tema o un problema completo. Todos incluyen pistas, solución explicada y ejemplos."
       />
       <div className="practice-mode">
         <button
@@ -1088,7 +1077,7 @@ function ProblemsPage({ progress }: { progress: Progress }) {
           onClick={() => setMode("local")}
         >
           <Code2 size={16} />
-          Retos locales <span>{problems.length}</span>
+          Problemas completos <span>{problems.length}</span>
         </button>
         <button
           className={mode === "temas" ? "selected" : ""}
@@ -1108,9 +1097,9 @@ function ProblemsPage({ progress }: { progress: Progress }) {
           <div className="problem-banner">
             <Code2 size={28} />
             <div>
-              <h3>Primero entiende. Después programa.</h3>
+              <h3>Problemas con casos de prueba</h3>
               <p>
-                Estos retos comprueban tu razonamiento con casos de entrada y
+                Estos problemas incluyen casos de entrada y
                 salida. Incluyen pistas y soluciones en C++.
               </p>
             </div>
@@ -1254,7 +1243,7 @@ function ProblemPage({
       </div>
       <div className="problem-layout">
         <article className="card problem-statement">
-          <h2>El reto</h2>
+          <h2>Enunciado</h2>
           {problem.statement.split("\n\n").map((s, i) => (
             <p key={i}>{s}</p>
           ))}
@@ -1272,18 +1261,18 @@ function ProblemPage({
               <pre>{problem.sampleOutput}</pre>
             </div>
           </div>
-          <h3>¿Por qué?</h3>
+          <h3>Explicación del ejemplo</h3>
           <p>{problem.explanation}</p>
           <button className="button subtle" onClick={() => setHint(!hint)}>
             <Lightbulb size={16} />
-            {hint ? "Ocultar pista" : "Necesito una pista"}
+            {hint ? "Ocultar pista" : "Ver pista"}
             <ChevronDown size={14} />
           </button>
           {hint && <div className="hint-box">{problem.hint}</div>}
         </article>
         <section className="card practice-panel">
           <span className="eyebrow">
-            <Play size={14} /> PIENSA COMO UNA COMPUTADORA
+            <Play size={14} /> CASOS DE PRUEBA
           </span>
           <h2>¿Qué debería imprimir?</h2>
           <p>
@@ -1338,7 +1327,7 @@ function ProblemPage({
               className={`answer-feedback ${allCorrect ? "success" : "try-again"}`}
             >
               {allCorrect
-                ? "¡Muy bien! Todos los casos son correctos. Ahora intenta programar tu solución."
+                ? "Todas las respuestas son correctas. Puedes escribir tu programa en el editor."
                 : "Todavía hay casos por resolver. Revisa la pista y vuelve a intentarlo."}
             </div>
           )}
@@ -1347,7 +1336,7 @@ function ProblemPage({
       <section className="card code-practice">
         <div className="section-heading">
           <div>
-            <h2>Llévalo a C++</h2>
+            <h2>Solución en C++</h2>
             <p>
               Edita la plantilla y prueba tu solución con los datos del ejemplo.
             </p>
@@ -1363,8 +1352,8 @@ function ProblemPage({
           onTestsPassed={onSolve}
         />
         <p className="compiler-problem-note">
-          Ejecuta con tu propia entrada o comprueba todos los casos del reto.
-          Superarlos registra el reto como resuelto; explica también por qué
+          Ejecuta con tu propia entrada o comprueba todos los casos del problema.
+          Superarlos registra el problema como resuelto; explica también por qué
           tu algoritmo funciona para cualquier entrada válida.
         </p>
         <button className="text-link" onClick={() => setSolution(!solution)}>
@@ -1399,7 +1388,7 @@ function Empty({
   return (
     <div className="empty-state">
       <img className="empty-mascot" src={publicAsset("brand/entrenator.png")}
-        alt="Entrenator te acompaña en tu aprendizaje" width={512} height={512} loading="lazy" />
+        alt="Entrenator, mascota de la OMRI" width={512} height={512} loading="lazy" />
       <h2>{title}</h2>
       <p>{text}</p>
       <button className="button primary" onClick={action}>
@@ -1440,8 +1429,8 @@ function ProfileForm({
         onSave({ ...progress, name: name.trim().slice(0, 35), school, goal });
       }}
     >
-      <p>Haz tuyo este espacio. Tu progreso se guarda en este navegador.</p>
-      <label htmlFor="profile-name">¿Cómo te gustaría que te llamemos?</label>
+      <p>Configura tu perfil y la cantidad de actividades que quieres completar cada semana.</p>
+      <label htmlFor="profile-name">Nombre o apodo</label>
       <input
         id="profile-name"
         value={name}
@@ -1466,15 +1455,15 @@ function ProfileForm({
         value={goal}
         onChange={(e) => setGoal(Number(e.target.value))}
       >
-        <option value={3}>A mi ritmo · 3 avances por semana</option>
-        <option value={5}>Paso constante · 5 avances por semana</option>
-        <option value={7}>Con todo · 7 avances por semana</option>
-        <option value={10}>Modo reto · 10 avances por semana</option>
+        <option value={3}>3 actividades por semana</option>
+        <option value={5}>5 actividades por semana</option>
+        <option value={7}>7 actividades por semana</option>
+        <option value={10}>10 actividades por semana</option>
       </select>
       <div className="privacy-note">
         <Bookmark size={16} />
         <span>
-          Sin cuenta ni correo. Tus lecciones, retos y apuntes se guardan en
+          Sin cuenta ni correo. Tus lecciones, problemas y apuntes se guardan en
           este dispositivo y navegador.
         </span>
       </div>
@@ -1497,7 +1486,7 @@ function ProfileForm({
       {reset && (
         <div className="reset-confirm">
           <p>
-            Se borrarán las lecciones completadas, los retos, la actividad y los
+            Se borrarán las lecciones completadas, los problemas, la actividad y los
             apuntes de este navegador. Puedes descargar tu progreso antes de
             continuar.
           </p>
@@ -1553,7 +1542,7 @@ function Resources() {
       icon: BookOpen,
       title: "USACO Guide",
       tag: "EXPLORA",
-      text: "La inspiración de esta guía. Amplía tus conocimientos con módulos y problemas de programación competitiva en inglés.",
+      text: "Curso de algoritmos y estructuras de datos en inglés. Su índice sirve como referencia para este temario.",
       url: "https://usaco.guide/",
     },
     {
@@ -1567,15 +1556,15 @@ function Resources() {
       icon: Code2,
       title: "LearnCpp",
       tag: "CONSULTA",
-      text: "Tutoriales de C++ para profundizar en el lenguaje, con explicaciones y ejemplos en inglés.",
+      text: "Tutoriales de C++ con explicaciones y ejemplos en inglés.",
       url: "https://www.learncpp.com/",
     },
   ];
   return (
     <>
       <PageHeading
-        eyebrow="HERRAMIENTAS PARA TU CAMINO"
-        title="La curiosidad no tiene límites."
+        eyebrow="MATERIAL COMPLEMENTARIO"
+        title="Recursos"
         description="Una selección de recursos para practicar y seguir aprendiendo."
       />
       <div className="resources-grid">
@@ -1605,12 +1594,9 @@ function Resources() {
       <section className="card resource-advice">
         <Lightbulb size={24} />
         <div>
-          <h2>Tu kit para empezar</h2>
+          <h2>Qué necesitas</h2>
           <p>
-            Necesitas curiosidad, papel para probar ideas y una computadora
-            cuando pases al código. Las primeras lecciones te explican cómo
-            funciona un programa y cómo preparar tu editor. Empieza con la ruta
-            y usa estos recursos cuando los necesites.
+            Puedes leer las lecciones desde el teléfono. Para escribir código, es más cómodo usar una computadora con teclado. El laboratorio funciona en el navegador; no necesitas instalar un compilador.
           </p>
           <a className="text-link" href="#/ruta/inicio">
             Ir a primeros pasos <ArrowRight size={15} />
@@ -1625,17 +1611,15 @@ function About() {
   return (
     <>
       <PageHeading
-        eyebrow="TALENTO QUE CRECE EN MORELOS"
-        title="Tu siguiente reto comienza aquí."
+        eyebrow="INFORMACIÓN DEL CURSO"
+        title="Acerca de esta guía"
         description="Aprende programación en español, desde cero, con explicaciones, práctica y soluciones dentro de la guía."
       />
       <section className="about-hero">
         <img className="about-brand-logo" src={publicAsset("brand/omri-logo.png")}
           alt="OMRI · Olimpiada Morelense de Informática" width={1080} height={270} loading="lazy" />
         <h2>
-          Aprender a resolver problemas
-          <br />
-          te lleva a lugares increíbles.
+          Programación para secundaria y preparatoria
         </h2>
         <p>
           La Olimpiada Morelense de Informática inspira esta guía de preparación
@@ -1651,17 +1635,17 @@ function About() {
         {[
           {
             icon: Sprout,
-            title: "Comienza desde cero",
+            title: "Primeros programas",
             text: "No necesitas experiencia. Empezamos con instrucciones, ejemplos cotidianos y tus primeros programas.",
           },
           {
             icon: Lightbulb,
-            title: "Aprende a pensar",
+            title: "Algoritmos",
             text: "Entiende el problema antes de escribir código. Prueba casos pequeños, equivócate y encuentra patrones.",
           },
           {
             icon: GraduationCap,
-            title: "Avanza a tu ritmo",
+            title: "Ejercicios resueltos",
             text: "Estudia, pide una pista y compara tu razonamiento con la solución. Todo está en español y puedes practicar aquí mismo.",
           },
         ].map((x) => (
@@ -1675,7 +1659,7 @@ function About() {
       <section className="card about-note">
         <h3>Sobre esta guía</h3>
         <p>
-          El logotipo y Entrenator, la mascota que te acompaña, proceden del{" "}
+          El logotipo y la mascota Entrenator proceden del{" "}
           <a className="inline-link" href="https://www.omri.org.mx/" target="_blank" rel="noopener noreferrer">
             sitio de la OMRI
           </a>. Allí puedes consultar las convocatorias y la información oficial de la olimpiada.

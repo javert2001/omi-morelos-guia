@@ -6,7 +6,6 @@ import {
   Layers3, Search, X, Play, Circle, Sparkles,
 } from "lucide-react";
 import { levels, lessons } from "@/lib/curriculum";
-import { guideIndex, guideCheckedAt } from "@/lib/curriculum/source-index";
 import type { Progress } from "@/lib/progress";
 
 const normalize = (text: string) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -22,7 +21,6 @@ export default function CurriculumBrowser({ selected, progress, openLesson }: {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [expandMode, setExpandMode] = useState<"auto" | "open" | "closed">("auto");
   const complete = new Set(progress.completedLessons);
-  const sourceCount = new Set(lessons.flatMap((lesson) => lesson.source ? [lesson.source.key] : [])).size;
   const completedCount = lessons.filter((lesson) => complete.has(lesson.id)).length;
   const activeLevel = levels.find((level) => level.id === selected);
   const selectedLessons = lessons.filter((lesson) => !selected || lesson.level === selected);
@@ -51,32 +49,32 @@ export default function CurriculumBrowser({ selected, progress, openLesson }: {
     <div className="curriculum-studio">
       <header className="route-heading">
         <div className="route-heading-copy">
-          <span className="route-kicker"><span /> TU RUTA DE APRENDIZAJE</span>
-          <h1>De cero a tu<br /><span>siguiente reto.</span></h1>
-          <p>Una idea a la vez. Aprende con ejemplos, explora los dibujos y pon a prueba lo que sabes. Todo en español, a tu ritmo.</p>
+          <span className="route-kicker"><span /> CURSO DE PROGRAMACIÓN</span>
+          <h1>Temario</h1>
+          <p>Las lecciones están ordenadas por nivel. Cada una incluye una explicación, ejemplos y ejercicios con solución.</p>
         </div>
         <div className="route-start">
-          <span className="route-start-label">{lastLesson ? "DONDE TE QUEDASTE" : nextPending ? "TU SIGUIENTE PASO" : "VUELVE A PRACTICAR"}</span>
+          <span className="route-start-label">{lastLesson ? "ÚLTIMA LECCIÓN" : nextPending ? "SIGUIENTE LECCIÓN" : "REPASO"}</span>
           <strong>{nextLesson?.title || "Explora la ruta"}</strong>
           <span className="route-start-description">{nextLesson ? levels.find((level) => level.id === nextLesson.level)?.title : "Elige una etapa para comenzar"}</span>
           {nextLesson && <button type="button" onClick={() => openLesson(nextLesson.id)}>
-            {lastLesson ? "Continuar aprendiendo" : !nextPending ? "Repasar una lección" : completedCount ? "Seguir aprendiendo" : "Empezar por aquí"}<ArrowUpRight size={17} />
+            {lastLesson ? "Continuar lección" : !nextPending ? "Repasar una lección" : completedCount ? "Abrir lección" : "Abrir lección"}<ArrowUpRight size={17} />
           </button>}
         </div>
       </header>
 
       <div className="route-overview" aria-label="Resumen de la ruta">
-        <div><strong>{levels.length}</strong><span>etapas para crecer</span></div>
-        <div><strong>{lessons.length}</strong><span>lecciones paso a paso</span></div>
+        <div><strong>{levels.length}</strong><span>niveles</span></div>
+        <div><strong>{lessons.length}</strong><span>lecciones</span></div>
         <div className="route-overview-progress"><strong>{completedCount}<small> / {lessons.length}</small></strong><span>lecciones completadas</span><div className="route-progress-track" aria-hidden="true"><span style={{ width: `${completedCount / lessons.length * 100}%` }} /></div></div>
       </div>
 
       <div className="route-directory">
         <aside className="route-stage-rail">
-          <span className="route-rail-label">EXPLORAR ETAPAS</span>
+          <span className="route-rail-label">NIVELES</span>
           <nav aria-label="Etapas del temario" className="route-stage-nav">
             <a href="#/ruta" className={!selected ? "is-selected" : ""} aria-current={!selected ? "page" : undefined}>
-              <Layers3 size={17} /><span>Toda la ruta</span><small>{lessons.length}</small>
+              <Layers3 size={17} /><span>Todos los niveles</span><small>{lessons.length}</small>
             </a>
             {levels.map((level, index) => {
               const items = lessons.filter((lesson) => lesson.level === level.id);
@@ -92,12 +90,12 @@ export default function CurriculumBrowser({ selected, progress, openLesson }: {
 
         <div className="route-directory-main">
           <div className="route-directory-heading">
-            <div><span className="route-section-label">ELIGE QUÉ APRENDER</span><h2>{activeLevel?.title || "El camino completo"}</h2></div>
+            <div><h2>{activeLevel?.title || "Todos los temas"}</h2></div>
             <span className="route-filter-count" aria-live="polite">{filtered.length} {filtered.length === 1 ? "lección" : "lecciones"}</span>
           </div>
           {activeLevel && <p className="route-selected-description">{activeLevel.description}</p>}
           <div className="route-filter-bar">
-            <div className="route-search"><Search size={17} /><input aria-label="Buscar en el temario" placeholder="Busca un tema o una idea…" value={query} onChange={(event) => { setQuery(event.target.value); setExpandMode("auto"); setExpanded({}); }} />{query && <button type="button" aria-label="Limpiar búsqueda del temario" onClick={clearQuery}><X size={15} /></button>}</div>
+            <div className="route-search"><Search size={17} /><input aria-label="Buscar en el temario" placeholder="Buscar por tema…" value={query} onChange={(event) => { setQuery(event.target.value); setExpandMode("auto"); setExpanded({}); }} />{query && <button type="button" aria-label="Limpiar búsqueda del temario" onClick={clearQuery}><X size={15} /></button>}</div>
             <select aria-label="Filtrar lecciones por avance" value={status} onChange={(event) => { setStatus(event.target.value); setExpandMode("auto"); setExpanded({}); }}><option value="todos">Todo el avance</option><option value="pendientes">Por aprender</option><option value="completadas">Completadas</option></select>
           </div>
           <div className="route-list-controls">
@@ -120,7 +118,7 @@ export default function CurriculumBrowser({ selected, progress, openLesson }: {
                   <div className="route-level-copy"><span>{level.eyebrow}</span><h3 id={`route-level-${level.id}`}>{level.title}</h3><p>{level.description}</p></div>
                   <div className="route-level-progress"><span><strong>{done}</strong> / {levelItems.length}</span><div className="route-progress-track" aria-hidden="true"><span style={{ width: `${done / levelItems.length * 100}%` }} /></div><small>completadas</small></div>
                 </header>
-                {previous && <div className="route-prerequisite"><BookOpen size={13} /><span>Base recomendada: <a href={`#/ruta/${previous.id}`}>{previous.title}<ArrowUpRight size={12} /></a></span>{level.id === "avanzado" && <small>Especialidades opcionales</small>}</div>}
+                {previous && <div className="route-prerequisite"><BookOpen size={13} /><span>Conocimientos previos: <a href={`#/ruta/${previous.id}`}>{previous.title}<ArrowUpRight size={12} /></a></span>{level.id === "avanzado" && <small>Especialidades opcionales</small>}</div>}
                 {categories.map((category, categoryIndex) => {
                   const key = `${level.id}/${category}`;
                   const items = visible.filter((lesson) => (lesson.category || "Lecciones esenciales") === category);
@@ -152,7 +150,7 @@ export default function CurriculumBrowser({ selected, progress, openLesson }: {
         </div>
       </div>
 
-      <footer className="route-reference"><BookOpen size={16} /><p><strong>{sourceCount} / {guideIndex.length} módulos de referencia cubiertos.</strong> Explicaciones y ejercicios propios en español. Temario cotejado el {new Date(guideCheckedAt + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "long", year: "numeric" })}.<a href="https://github.com/cpinitiative/usaco-guide/blob/master/content/ordering.ts" target="_blank" rel="noopener noreferrer">Referencia: USACO Guide<ArrowUpRight size={12} /></a></p></footer>
+      <footer className="route-reference"><BookOpen size={16} /><p>El temario sigue la organización de <a href="https://usaco.guide/" target="_blank" rel="noopener noreferrer">USACO Guide<ArrowUpRight size={12} /></a>, con explicaciones y ejercicios en español.</p></footer>
     </div>
   );
 }

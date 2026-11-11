@@ -321,7 +321,7 @@ function PlaygroundSession({
         </div>
         <div>
           <h2 id={`${id}-title`}>{title}</h2>
-          <p>Escribe, prueba, equivócate y vuelve a intentar.</p>
+          <p>Escribe el código y los datos de entrada. Luego pulsa Ejecutar.</p>
         </div>
         <span className="cpp-language">C++17</span>
       </div>
@@ -572,7 +572,7 @@ function PlaygroundSession({
       </div>
       {caseResults.length > 0 && (
         <section className="cpp-case-results" aria-label="Resultados de los casos">
-          <h3 role="status">{testsPassed ? `¡Superaste los ${testCases!.length} casos!` : `${caseResults.filter(item => item.status === "passed").length} de ${testCases?.length} casos superados`}</h3>
+          <h3 role="status">{testsPassed ? `${testCases!.length} casos correctos` : `${caseResults.filter(item => item.status === "passed").length} de ${testCases?.length} casos superados`}</h3>
           {caseResults.map(item => (
             <details key={item.index} open={item.status !== "passed"}>
               <summary>Caso {item.index + 1} · {item.status === "passed" ? "Correcto" : item.status === "wrong_answer" ? "La salida no coincide" : statusLabels[item.execution.status]}</summary>
@@ -614,7 +614,7 @@ function PlaygroundSession({
       <p className="cpp-footnote">
         Tu código se compila y ejecuta en este navegador, sin enviarlo a un servidor.
         El borrador se guarda en este dispositivo.{" "}
-        {onTestsPassed ? "Superar todos los casos registra este reto como resuelto." : "Estudiar los casos y explicar el algoritmo es parte de resolver el ejercicio."}
+        {onTestsPassed ? "Pasar todos los casos registra el problema como resuelto." : "Comprueba también las entradas límite del enunciado."}
       </p>
     </section>
   );

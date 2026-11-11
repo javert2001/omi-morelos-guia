@@ -3,17 +3,17 @@ import assert from 'node:assert/strict';
 import {lessons} from '../lib/curriculum.ts';
 import {lessonVisuals} from '../lib/lesson-visuals.ts';
 
-test('all 169 lessons have a short guided path and retain their technical chapter',()=>{
+test('all 169 lessons have a readable explanation and retain their technical chapter',()=>{
   assert.equal(lessons.length,169);
   for(const lesson of lessons) {
-    assert.equal(lesson.sections.length,6,`${lesson.id}: six steps`);
+    assert.ok(lesson.sections.length>=4&&lesson.sections.length<=8,`${lesson.id}: focused sections`);
     assert.ok(lesson.takeaway&&lesson.takeaway.length>20,`${lesson.id}: takeaway`);
     assert.ok((lesson.detailedSections?.length||0)>=6,`${lesson.id}: technical chapter preserved`);
     assert.ok(lesson.sections.some(s=>s.check),`${lesson.id}: comprehension check`);
     const words=lesson.sections.reduce((count,section)=>count+section.body.split(/\s+/).length,0);
-    assert.ok(words>=180&&words<=460,`${lesson.id}: ${words} words`);
+    assert.ok(words>=180&&words<=650,`${lesson.id}: ${words} words`);
     for(const section of lesson.sections) {
-      for(const paragraph of section.body.split('\n\n'))assert.ok(paragraph.split(/\s+/).length<=70,`${lesson.id}: long paragraph`);
+      for(const paragraph of section.body.split('\n\n'))assert.ok(paragraph.split(/\s+/).length<=90,`${lesson.id}: long paragraph`);
       if(section.visual)assert.ok(lessonVisuals[section.visual],`${lesson.id}: missing animation ${section.visual}`);
       if(section.check)assert.ok(section.check.question.trim()&&section.check.answer.trim(),lesson.id);
       if(section.picture) {

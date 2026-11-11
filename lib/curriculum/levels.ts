@@ -3,14 +3,14 @@ export const expandedLevels: Level[] = [
   {
     id: "inicio",
     title: "Primeros pasos",
-    eyebrow: "Empieza desde cero",
+    eyebrow: "Sin conocimientos previos",
     description: "De las instrucciones cotidianas a tu primer programa en C++.",
     color: "#528566",
   },
   {
     id: "fundamentos",
     title: "Fundamentos",
-    eyebrow: "Construye tus herramientas",
+    eyebrow: "Sintaxis básica de C++",
     description: "Condiciones, ciclos, arreglos, cadenas y funciones.",
     color: "#6b8eac",
     prerequisite: "inicio",
@@ -18,7 +18,7 @@ export const expandedLevels: Level[] = [
   {
     id: "general",
     title: "General",
-    eyebrow: "Aprende a entrenar",
+    eyebrow: "Herramientas y preparación",
     description:
       "Preparación, C++, depuración, práctica y recursos de competencia.",
     color: "#7d8a65",
@@ -28,7 +28,7 @@ export const expandedLevels: Level[] = [
   {
     id: "bronce",
     title: "Bronce",
-    eyebrow: "Resuelve con estrategia",
+    eyebrow: "Algoritmos básicos",
     description:
       "Simulación, búsqueda exhaustiva, ordenamiento y algoritmos voraces.",
     color: "#ac805c",
@@ -38,7 +38,7 @@ export const expandedLevels: Level[] = [
   {
     id: "plata",
     title: "Plata",
-    eyebrow: "Encuentra patrones",
+    eyebrow: "Búsqueda y recorridos",
     description: "Prefijos, dos punteros, búsqueda binaria, grafos y árboles.",
     color: "#7b91a5",
     prerequisite: "bronce",
@@ -47,7 +47,7 @@ export const expandedLevels: Level[] = [
   {
     id: "oro",
     title: "Oro",
-    eyebrow: "Conecta las técnicas",
+    eyebrow: "Algoritmos intermedios",
     description:
       "Programación dinámica, matemáticas, rutas y estructuras de datos.",
     color: "#ae9350",
@@ -57,7 +57,7 @@ export const expandedLevels: Level[] = [
   {
     id: "platino",
     title: "Platino",
-    eyebrow: "Domina estructuras avanzadas",
+    eyebrow: "Estructuras y optimización",
     description:
       "Consultas en rangos, árboles, geometría y optimización de DP.",
     color: "#8e7aa9",
@@ -67,7 +67,7 @@ export const expandedLevels: Level[] = [
   {
     id: "avanzado",
     title: "Avanzado",
-    eyebrow: "Explora más allá",
+    eyebrow: "Temas especializados",
     description:
       "Flujos, cadenas, polinomios, convexidad y algoritmos especializados.",
     color: "#467f80",

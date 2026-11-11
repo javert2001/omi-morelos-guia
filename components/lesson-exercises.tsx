@@ -50,7 +50,7 @@ function Exercise({ exercise, lessonId, index }: { exercise: LessonExercise; les
   return <article className="study-exercise" aria-labelledby={`${id}-title`}>
     <div className="exercise-heading">
       <span className="exercise-number">{String(index + 1).padStart(2, "0")}</span>
-      <div><span className="eyebrow">{exercise.code ? "PROGRAMA Y COMPRUEBA" : "RAZONA Y EXPLICA"}</span><h3 id={`${id}-title`}>{exercise.title}</h3></div>
+      <div><span className="eyebrow">{exercise.code ? "PROGRAMACIÓN" : "RAZONAMIENTO"}</span><h3 id={`${id}-title`}>{exercise.title}</h3></div>
       {reviewed && <span className="exercise-reviewed"><Check size={14} /> Revisado</span>}
     </div>
     <div className="exercise-prompt"><Paragraphs text={exercise.prompt} /></div>
@@ -60,11 +60,11 @@ function Exercise({ exercise, lessonId, index }: { exercise: LessonExercise; les
     </div>}
     <label className="exercise-answer-label" htmlFor={`${id}-answer`}><NotebookPen size={16} /> Tu razonamiento</label>
     <textarea id={`${id}-answer`} rows={3} value={answer} disabled={!ready} maxLength={20000}
-      placeholder="Escribe qué harías y por qué. Un ejemplo pequeño es un buen comienzo."
+      placeholder="Escribe tu solución y explica por qué funciona."
       onChange={e => { setAnswer(e.target.value); setReviewed(false); }} />
     <span className="exercise-save-status">{ready ? saved ? "Respuesta guardada en este navegador" : "Guardado local no disponible" : "Cargando respuesta…"}</span>
     <div className="exercise-actions">
-      {hints < exercise.hints.length && <button className="button subtle" onClick={() => setHints(n => n + 1)}><Lightbulb size={16} /> {hints ? "Otra pista" : "Necesito una pista"}</button>}
+      {hints < exercise.hints.length && <button className="button subtle" onClick={() => setHints(n => n + 1)}><Lightbulb size={16} /> {hints ? "Otra pista" : "Ver pista"}</button>}
       {exercise.code && <button className="button primary" aria-expanded={editor} onClick={() => setEditor(value => !value)}><Code2 size={16} /> {editor ? "Cerrar editor" : "Resolver en C++"}</button>}
     </div>
     {exercise.hints.slice(0, hints).map((hint, i) => <div className="exercise-hint" key={i}><strong>Pista {i + 1}</strong><Paragraphs text={hint} /></div>)}
@@ -76,8 +76,8 @@ function Exercise({ exercise, lessonId, index }: { exercise: LessonExercise; les
         <Paragraphs text={exercise.solution} />
         {exercise.code && <>
           <pre className="exercise-solution-code" tabIndex={0} aria-label={`Código de la solución: ${exercise.title}`}><code>{exercise.code}</code></pre>
-          <button className="button subtle" aria-expanded={solutionEditor} onClick={() => setSolutionEditor(value => !value)}><Code2 size={16} /> {solutionEditor ? "Cerrar ejemplo" : "Experimentar con la solución"}</button>
-          {solutionEditor && <CppPlayground initialCode={exercise.code} initialInput={exercise.sampleInput || ""} storageKey={`solution:${lessonId}:${exercise.id}`} title="Explora la solución" testCases={exercise.tests} compact />}
+          <button className="button subtle" aria-expanded={solutionEditor} onClick={() => setSolutionEditor(value => !value)}><Code2 size={16} /> {solutionEditor ? "Cerrar ejemplo" : "Ejecutar la solución"}</button>
+          {solutionEditor && <CppPlayground initialCode={exercise.code} initialInput={exercise.sampleInput || ""} storageKey={`solution:${lessonId}:${exercise.id}`} title="Código de la solución" testCases={exercise.tests} compact />}
         </>}
         <label className="exercise-review"><input type="checkbox" checked={reviewed} onChange={e => setReviewed(e.target.checked)} /> Comparé mi razonamiento con la solución y puedo explicar la idea.</label>
       </div>
@@ -87,9 +87,8 @@ function Exercise({ exercise, lessonId, index }: { exercise: LessonExercise; les
 
 export default function LessonExercises({ lessonId, exercises }: { lessonId: string; exercises: LessonExercise[] }) {
   return <section className="lesson-exercises" id="practica-local" aria-labelledby="practice-title">
-    <div className="eyebrow"><Code2 size={16} /> APRENDE HACIENDO</div>
-    <h2 id="practice-title">Tu turno, aquí mismo.</h2>
-    <p className="exercise-intro">Inténtalo antes de abrir la solución. Si te atoras, pide una pista, trabaja un ejemplo pequeño y vuelve a probar.</p>
+    <h2 id="practice-title">Ejercicios</h2>
+    <p className="exercise-intro">Resuelve cada ejercicio antes de consultar la solución. Las pistas se muestran una por una.</p>
     {exercises.map((exercise, index) => <Exercise key={`${lessonId}:${exercise.id}`} lessonId={lessonId} exercise={exercise} index={index} />)}
   </section>;
 }

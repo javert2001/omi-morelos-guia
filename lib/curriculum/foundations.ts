@@ -20,31 +20,31 @@ export const foundationLessons: Lesson[] = [
   {
     id: "que-es-programar",
     level: "inicio",
-    title: "¿Qué es programar?",
+    title: "Qué es programar",
     description:
-      "Convierte una idea en instrucciones que una computadora pueda seguir.",
+      "Describe una tarea mediante datos de entrada, instrucciones y una salida.",
     minutes: 10,
     sections: [
       {
-        title: "Una idea, paso a paso",
-        body: "Programar es escribir instrucciones precisas para resolver una tarea. Piensa en preparar una torta: necesitas ingredientes, un orden y un resultado. Una computadora también necesita que le digas qué hacer y en qué orden. No adivina lo que querías decir. Equivocarte mientras escribes esas instrucciones forma parte de aprender.",
+        title: "Instrucciones que se pueden seguir",
+        body: "Preparar una torta requiere ingredientes y acciones en cierto orden: abrir el pan, poner el relleno y cerrarlo. Programar también consiste en describir acciones, pero con suficiente precisión para que una computadora pueda ejecutarlas. Si una instrucción resulta ambigua, el programa no elegirá por nosotros la interpretación que queríamos.",
       },
       {
-        title: "Entrada → proceso → salida",
-        body: "Si quieres saber cuántas personas van en dos autobuses, la entrada puede ser 23 y 19. El proceso es sumar. La salida es 42. Antes de escribir código, completa tres frases: «recibo estos datos», «hago estos pasos» y «entrego esta respuesta». Esa secuencia de pasos se llama algoritmo.",
+        title: "Entrada, cálculo y resultado",
+        body: "Dos autobuses llevan 23 y 19 personas. Recibimos esas cantidades como entrada, las sumamos y entregamos 42 como salida. El procedimiento de sumar sirve con otros números; 42 es solo el resultado de esta prueba. Llamamos algoritmo a los pasos que indican cómo resolver la tarea con los datos recibidos.",
       },
       {
-        title: "Tu primer experimento",
-        body: "Usaremos C++, un lenguaje para escribir esas instrucciones. Este programa muestra un mensaje. No necesita entrada: su única tarea es escribir Hola, Morelos! exactamente como aparece entre comillas. Usa el botón Copiar para llevar el programa completo a un editor con compilador y ejecutarlo allí.",
+        title: "Un programa que escribe un mensaje",
+        body: "El siguiente programa está escrito en C++ y muestra Hola, Morelos! No lee datos porque el mensaje es fijo. El texto entre comillas determina qué aparece en la salida. Pulsa Probar código para abrir este programa completo en el laboratorio de la página.",
         code: cpp(String.raw`    cout << "Hola, Morelos!" << '\n';`),
       },
       {
-        title: "Tu primera ejecución, paso a paso",
-        body: "Puedes empezar aquí mismo. 1) Pulsa Probar código junto al ejemplo de esta lección. 2) Observa el programa en el editor. 3) Pulsa Ejecutar código. 4) Busca Hola, Morelos! en la salida. Después cambia el mensaje entre comillas y vuelve a ejecutar. El laboratorio guarda tu borrador en este navegador, así que puedes regresar a tu experimento más tarde. También encontrarás un espacio libre en Laboratorio C++ desde el menú.",
+        title: "Ejecutar y cambiar el mensaje",
+        body: "Deja la entrada vacía y pulsa Ejecutar código. La salida debe contener Hola, Morelos! Cambia únicamente el texto entre comillas y ejecuta de nuevo: verás el mensaje nuevo. El laboratorio conserva el borrador en este navegador cuando su almacenamiento está disponible. El menú Laboratorio C++ ofrece otro editor para pruebas independientes.",
       },
       {
-        title: "Pruébalo sin computadora",
-        body: "Escribe instrucciones para que otra persona dibuje un cuadrado sin mostrarle tu dibujo. ¿Dijiste cuánto avanzar? ¿Cuánto girar? Cuando tu compañero interprete algo distinto, mejora la instrucción. Así se siente depurar: encontrar dónde nuestras instrucciones dejaron de expresar nuestra idea.",
+        title: "Detectar una instrucción incompleta",
+        body: "Pide a otra persona que dibuje un cuadrado siguiendo tus instrucciones, sin mostrarle el dibujo. Si no indicas cuánto avanzar o cuánto girar, puede obtener otra figura. Depurar un programa consiste en localizar diferencias de ese tipo entre la tarea que queríamos resolver y las instrucciones que realmente escribimos.",
       },
     ],
     quiz: {
@@ -53,7 +53,7 @@ export const foundationLessons: Lesson[] = [
       options: ["23 y 19", "La operación de sumar", "42"],
       answer: 2,
       explanation:
-        "La salida es el resultado que entrega el programa. Los números 23 y 19 son la entrada.",
+        "El programa recibe 23 y 19 como entrada. Después de sumarlos entrega 42; ese resultado es la salida.",
     },
     problemId: "hola-morelos",
   },
@@ -62,26 +62,26 @@ export const foundationLessons: Lesson[] = [
     level: "inicio",
     title: "Tu primer programa en C++",
     description:
-      "Conoce las piezas de un programa y pierde el miedo a los errores.",
+      "Lee la estructura de un programa, ejecútalo y distingue errores de escritura y de cálculo.",
     minutes: 12,
     sections: [
       {
-        title: "Un punto de partida",
-        body: "#include <iostream> agrega herramientas de entrada y salida. using namespace std permite escribir cout sin el prefijo std::. int main() marca dónde comienza el programa y las llaves encierran sus instrucciones. return 0 indica que el programa terminó normalmente. Por ahora usa esta estructura y concéntrate en lo que va dentro de main.",
+        title: "Dónde empieza el programa",
+        body: "Este programa escribe dos líneas: Estoy aprendiendo C++ y Un paso a la vez. #include <iostream> permite usar entrada y salida; using namespace std evita escribir std:: antes de cout. La ejecución comienza en main y sigue las instrucciones entre sus llaves. return 0 indica una terminación normal; ese cero no se imprime.",
         code: cpp(String.raw`    cout << "Estoy aprendiendo C++" << '\n';
     cout << "Un paso a la vez" << '\n';`),
       },
       {
-        title: "Del código a la ejecución",
-        body: "El código fuente es el texto que escribes. Un compilador lo traduce a un programa ejecutable. Si escribes cou en lugar de cout o falta un punto y coma, la compilación puede fallar. Lee primero el primer mensaje de error: corregirlo a veces arregla varios mensajes posteriores. Un programa que compila todavía puede tener errores en su idea.",
+        title: "Qué hace el compilador",
+        body: "El código fuente es el texto que escribes. El compilador lo transforma en un programa ejecutable y rechaza ciertas construcciones inválidas, como un nombre cou que no existe en lugar de cout. Que compile no demuestra que resuelva la tarea: una multiplicación puede estar bien escrita aunque el problema pidiera una suma.",
       },
       {
-        title: "Practica un cambio a la vez",
-        body: "Pulsa Probar código junto al ejemplo y después Ejecutar código. Debes ver dos líneas: Estoy aprendiendo C++ y Un paso a la vez. Cambia sólo el primer mensaje y ejecuta otra vez. Ahora quita el punto y coma de una instrucción: observa el número de línea del error y vuelve a colocarlo. Un error de compilación significa que primero debes corregir el programa; no es una salida de tu programa. Tu borrador se guarda automáticamente y puedes descargar una copia con Descargar .cpp.",
+        title: "Comparar dos versiones",
+        body: "Abre el ejemplo con Probar código y ejecútalo sin entrada. Cambia solo el primer mensaje: la segunda línea debe mantenerse. Después quita un punto y coma, observa el diagnóstico y repónlo. Puedes hacer lo mismo con una comilla. Revisa el primer error y también la línea anterior: una comilla ausente puede hacer que el compilador interprete mal lo que viene después.\n\nEl borrador se guarda en este navegador. Descargar .cpp permite conservar una copia fuera de él.",
       },
       {
-        title: "Detalles pequeños que importan",
-        body: "C++ distingue mayúsculas y minúsculas: main y Main no son lo mismo. Las comillas dobles delimitan texto. El punto y coma termina muchas instrucciones. La expresión '\\n' representa un salto de línea. Los espacios que agregas para acomodar el código ayudan a leerlo; los espacios que imprimes sí forman parte de la salida.",
+        title: "Texto, nombres y separadores",
+        body: "C++ distingue mayúsculas: main no es Main y cout no es Cout. Las comillas dobles delimitan texto, y el punto y coma termina muchas instrucciones. Dentro de un mensaje, \\n produce un salto de línea. Los espacios fuera de las comillas suelen servir para acomodar el código; los que imprimes sí forman parte de la respuesta.\n\nPuedes escribir dos líneas con dos instrucciones o con dos saltos dentro de un mensaje. Añadir una etiqueta como La respuesta es cambia la salida si el problema solo pide un número.",
       },
     ],
     quiz: {
@@ -93,35 +93,35 @@ export const foundationLessons: Lesson[] = [
       ],
       answer: 1,
       explanation:
-        "El compilador traduce y detecta ciertos errores del lenguaje. La lógica de la solución sigue siendo responsabilidad de quien programa.",
+        "El compilador transforma el texto fuente y detecta ciertas construcciones inválidas. No sabe si elegiste sumar o multiplicar según lo que pedía el problema.",
     },
     problemId: "hola-morelos",
   },
   {
     id: "entrada-y-salida",
     level: "inicio",
-    title: "Habla con tu programa",
-    description: "Lee datos con cin y muestra resultados con cout.",
+    title: "Entrada y salida con cin y cout",
+    description: "Lee los datos de una prueba y muestra el resultado sin cambiar el programa.",
     minutes: 14,
     sections: [
       {
-        title: "La entrada cambia; el programa no",
-        body: "Un programa útil funciona con distintos datos. cin >> a lee el siguiente valor y lo guarda en a. cout << a muestra su valor. En los ejercicios, la entrada ya viene preparada: no necesitas imprimir «Escribe un número». El juez espera únicamente la salida solicitada.",
+        title: "Leer dos números y sumarlos",
+        body: "El programa recibe dos enteros. cin >> a >> b guarda el primero en a y el segundo en b; después cout muestra a + b. No imprime una pregunta para pedirlos porque el problema ya proporciona la entrada. La salida debe contener únicamente lo solicitado.",
         code: cpp(String.raw`    int a, b;
     cin >> a >> b;
     cout << a + b << '\n';`),
       },
       {
-        title: "Sigue una ejecución",
-        body: "Con entrada 8 5, primero a vale 8 y b vale 5. Después a + b produce 13 y cout lo muestra. Con entrada 2 9, el mismo programa muestra 11. Para leer números con cin, un espacio y un salto de línea sirven como separadores; 8 y 5 pueden estar juntos en una línea o en dos líneas.",
+        title: "Seguir los valores leídos",
+        body: "Con 8 5, las variables guardan ocho y cinco y la suma produce trece. Con 2 9, el mismo código produce once. Al leer números con cin, espacios y saltos de línea funcionan como separadores: escribir 8 y 5 en dos líneas no cambia la secuencia de valores recibidos.",
       },
       {
-        title: "Prueba la entrada en tu editor",
-        body: "Pulsa Probar código para abrir este programa en el editor. Escribe 8 5 en Entrada (stdin) y después pulsa Ejecutar código. En la salida debe aparecer 13. Cambia la entrada por 2 9 y vuelve a ejecutar: debe aparecer 11. El código y la entrada van en áreas diferentes. Escribe todos los datos antes de ejecutar: este laboratorio los entrega de una vez, así que no debes esperar a que aparezca una pregunta en la salida para escribirlos.",
+        title: "Probar otra entrada",
+        body: "Abre el ejemplo con Probar código, escribe 8 5 en Entrada y ejecuta; espera 13. Luego cambia solo la entrada a 2 9 y espera 11. El código y los datos van en paneles distintos. Escribe todos los valores antes de ejecutar: el laboratorio entrega la entrada completa, sin esperar nuevas respuestas durante la ejecución.",
       },
       {
-        title: "Copia el formato, no la respuesta",
-        body: "El ejemplo de un problema ilustra cómo deben verse los datos. Tu solución debe calcular también las respuestas de otros casos. Un programa que siempre imprime 13 pasa el primer ejemplo, pero falla para 2 9. Prueba al menos un caso distinto que puedas resolver mentalmente.",
+        title: "Calcular, no memorizar el ejemplo",
+        body: "Un programa que siempre escribe 13 coincide con la primera prueba, pero falla con 2 9. El ejemplo del enunciado muestra el formato y un resultado; tu procedimiento debe obtener también los demás. Prepara una entrada pequeña diferente y calcula su salida antes de ejecutar para tener con qué comparar.",
       },
     ],
     quiz: {
@@ -138,24 +138,24 @@ export const foundationLessons: Lesson[] = [
     level: "inicio",
     title: "Variables y operaciones",
     description:
-      "Guarda información y calcula con enteros, divisiones y residuos.",
+      "Usa variables enteras, asignaciones, cocientes y residuos.",
     minutes: 16,
     sections: [
       {
-        title: "Ponle nombre a un dato",
-        body: "Una variable guarda un valor que puedes usar y cambiar. int dias = 7 crea un entero llamado dias. El signo = asigna un valor; no pregunta si dos cosas son iguales. Por eso puntos = puntos + 1 significa calcular el valor anterior más uno y guardarlo de nuevo. Elige nombres que describan la información.",
+        title: "Guardar y actualizar un valor",
+        body: "int dias = 7 crea una variable entera llamada dias y guarda siete. El signo = asigna: primero calcula lo que hay a la derecha y luego reemplaza el valor de la izquierda. Por eso puntos = puntos + 1 usa la cantidad anterior para obtener la nueva. El nombre debe indicar qué cantidad guarda.",
       },
       {
-        title: "Dividir no siempre produce decimales",
-        body: "Los operadores +, -, * y / suman, restan, multiplican y dividen. Entre enteros positivos, 17 / 5 da 3: cuenta grupos completos. El operador % obtiene el residuo: 17 % 5 da 2. Así puedes saber que hay 3 equipos completos de 5 personas y sobran 2.",
+        title: "Grupos completos y sobrantes",
+        body: "Para repartir 17 personas en equipos de cinco, 17 / 5 da tres equipos completos y 17 % 5 da dos personas restantes. La división de enteros no conserva decimales. Los operadores +, -, * y / permiten sumar, restar, multiplicar y dividir; % calcula el residuo de la división entera.",
         code: cpp(String.raw`    int personas = 17;
     int porEquipo = 5;
     cout << personas / porEquipo << '\n';
     cout << personas % porEquipo << '\n';`),
       },
       {
-        title: "Elige un tipo que alcance",
-        body: "En los entornos habituales de competencia, int puede guardar aproximadamente hasta 2 mil millones. Para sumas y productos mayores usa long long. Si dos int se multiplican, la operación puede desbordarse antes de guardarse: 1LL * a * b fuerza una multiplicación de enteros grandes. Nunca dividas entre cero. Los paréntesis ayudan a expresar claramente el orden de las operaciones.",
+        title: "Revisar el tamaño de la operación",
+        body: "En entornos habituales, int llega aproximadamente a dos mil millones; long long permite enteros mayores. Si a y b son int, a * b puede desbordarse antes de guardarse en una variable más amplia. 1LL * a * b realiza la multiplicación con long long desde el principio.\n\nNo dividas entre cero. Usa paréntesis cuando necesites cambiar o aclarar el orden de las operaciones.",
       },
     ],
     quiz: {
@@ -170,21 +170,21 @@ export const foundationLessons: Lesson[] = [
   {
     id: "tu-primer-problema",
     level: "inicio",
-    title: "Resuelve tu primer problema",
-    description: "Una pequeña rutina para leer, pensar, programar y comprobar.",
+    title: "Resolver un problema completo",
+    description: "Del enunciado a una solución comprobada: datos, procedimiento, código y pruebas.",
     minutes: 12,
     sections: [
       {
-        title: "Traduce la historia",
-        body: "Un enunciado puede hablar de autobuses, monedas o mochilas. Busca qué datos recibes, qué resultado se pide y cuáles son sus límites. Si dos grupos llevan a y b mochilas, sólo necesitas sumar a + b. No hace falta representar cada mochila ni cada persona.",
+        title: "Separar la historia de la cuenta",
+        body: "Un grupo trae a mochilas y otro trae b. Para saber cuántas llegaron, basta sumar a + b; no necesitamos representar a cada persona ni cada mochila. Antes de escribir código, identifica las cantidades recibidas, el resultado pedido y los límites que pueden tomar esos datos.",
       },
       {
-        title: "Haz un plan antes del código",
-        body: "Escribe tu algoritmo en palabras: leer a y b, calcular su suma, imprimirla. Resuelve a mano un ejemplo. Después conviértelo en código. Esta pausa pequeña evita programar una interpretación equivocada del problema. Si no puedes explicar la idea con un caso de tres elementos, conviene seguir pensando.",
+        title: "Escribir el procedimiento",
+        body: "Para las mochilas, el plan es leer a y b, calcular a + b y mostrarlo. Con doce y nueve esperamos veintiuna. Escribe esa cuenta antes de programarla. Si una tarea más grande no se puede explicar todavía con pocos datos, vuelve al enunciado y decide qué operación falta.",
       },
       {
-        title: "Prueba con intención",
-        body: "Para una suma, prueba 0 + 0, un número pequeño con uno grande y los valores máximos permitidos. Calcula la respuesta esperada antes de ejecutar. Si un caso falla, anota entrada, resultado esperado y resultado obtenido. Un caso pequeño que falla ayuda mucho más que «no funciona». Pedir una pista también es parte de entrenar.",
+        title: "Elegir pruebas que distingan errores",
+        body: "Prueba 0 + 0, un dato pequeño junto a uno grande y los máximos permitidos. Calcula cada respuesta antes de ejecutar. Si falla, guarda entrada, salida esperada y salida obtenida. Esa prueba permite revisar el cálculo o pedir una pista sobre un fallo concreto, en lugar de describirlo solo como “no funciona”.",
       },
     ],
     quiz: {
@@ -196,20 +196,20 @@ export const foundationLessons: Lesson[] = [
       ],
       answer: 0,
       explanation:
-        "El ejemplo es una comprobación inicial. Los casos pequeños, los límites y una explicación de tu algoritmo aportan más confianza.",
+        "Prueba entradas distintas y calcula sus respuestas antes de ejecutar. Los casos de frontera pueden revelar un fallo; el argumento del algoritmo debe explicar también los casos que no ejecutaste.",
     },
     problemId: "mochilas-del-equipo",
   },
   {
     id: "condicionales",
     level: "fundamentos",
-    title: "Toma decisiones con if",
-    description: "Haz que tu programa elija qué hacer según los datos.",
+    title: "Condiciones con if y else",
+    description: "Decide qué instrucciones ejecutar según una comparación o varios requisitos.",
     minutes: 15,
     sections: [
       {
-        title: "Si ocurre esto, haz aquello",
-        body: "if ejecuta un bloque cuando una condición es verdadera. else define qué hacer en el caso contrario. Si un taller requiere al menos 60 puntos, la condición es puntos >= 60. «Al menos» incluye 60; usar puntos > 60 dejaría fuera por error a quien tiene exactamente esa cantidad.",
+        title: "El caso de sesenta puntos",
+        body: "Un taller permite pasar con al menos sesenta puntos. if ejecuta su bloque cuando puntos >= 60 es verdadero; else cubre el caso contrario. La igualdad está incluida. Usar puntos > 60 rechazaría exactamente sesenta aunque los valores mayores funcionaran.",
         code: cpp(String.raw`    int puntos;
     cin >> puntos;
     if (puntos >= 60) {
@@ -219,12 +219,12 @@ export const foundationLessons: Lesson[] = [
     }`),
       },
       {
-        title: "Comparar y combinar",
-        body: "Usa == para igualdad, != para diferencia, < y > para comparar, y <= o >= para incluir el límite. No confundas == con =, que asigna. El operador && exige que ambas condiciones sean verdaderas; || necesita que al menos una lo sea. Por ejemplo, edad >= 12 && edad <= 18 comprueba un intervalo completo.",
+        title: "Escribir una condición compuesta",
+        body: "== compara igualdad y != diferencia. < y > son comparaciones estrictas; <= y >= incluyen el límite. Una sola = asigna un valor. Para exigir dos requisitos usa &&; con || basta que alguno se cumpla. Así, edad >= 12 && edad <= 18 acepta las edades del intervalo completo, incluidos ambos extremos.",
       },
       {
-        title: "Ataca las fronteras",
-        body: "Para una condición con límite 60, prueba 59, 60 y 61. Esos tres casos revelan si incluiste correctamente la igualdad. Para varias condiciones, busca una entrada que haga verdadera cada rama. Las pruebas funcionan mejor cuando cada una responde una duda concreta.",
+        title: "Probar dónde cambia la respuesta",
+        body: "Con el límite sesenta, prueba 59, 60 y 61. Los tres resultados muestran si la igualdad quedó en el caso correcto. Si el programa tiene varias ramas, busca un ejemplo que llegue a cada una. Para reconocer números pares, comprueba si x % 2 == 0: la división entre dos no deja residuo.",
       },
     ],
     quiz: {
@@ -239,18 +239,18 @@ export const foundationLessons: Lesson[] = [
   {
     id: "ciclos",
     level: "fundamentos",
-    title: "Repite con ciclos",
+    title: "Repeticiones con ciclos",
     description:
-      "Procesa muchos datos sin copiar la misma instrucción una y otra vez.",
+      "Cuenta vueltas y acumula datos sin duplicar instrucciones.",
     minutes: 20,
     sections: [
       {
-        title: "Una instrucción, muchas veces",
-        body: "Un ciclo for reúne inicio, condición y avance. En for (int i = 0; i < n; ++i), i toma los valores 0, 1, …, n - 1: exactamente n repeticiones. Si n vale 3, las iteraciones son 0, 1 y 2. No llega a 3 porque la condición i < n ya sería falsa.",
+        title: "Qué se repite en un for",
+        body: "Si llegan n números, necesitamos n lecturas. for (int i = 0; i < n; ++i) empieza con i igual a cero, comprueba la condición y aumenta i después de cada vuelta. Para n = 3 visita 0, 1 y 2. No ejecuta una vuelta con i = 3 porque 3 < 3 es falso.",
       },
       {
-        title: "Contadores y acumuladores",
-        body: "Un contador suma uno cada vez que ocurre algo. Un acumulador suma cantidades que pueden variar. Este programa cuenta días con al menos 30 minutos de práctica. Iniciamos el contador en cero porque, antes de leer datos, todavía no hemos encontrado ningún día.",
+        title: "Contar no es sumar los valores",
+        body: "El ejemplo cuenta días con al menos treinta minutos de práctica. El contador empieza en cero y aumenta uno cuando el dato cumple la condición. Un acumulador tendría otra función: sumar los minutos recibidos. Ambos cambian durante el recorrido, pero representan cantidades distintas y no se actualizan con la misma operación.",
         code: cpp(String.raw`    int n;
     cin >> n;
     int dias = 0;
@@ -262,8 +262,8 @@ export const foundationLessons: Lesson[] = [
     cout << dias << '\n';`),
       },
       {
-        title: "Cuida el principio y el final",
-        body: "Un error frecuente es usar i <= n y repetir una vez de más. Otro es olvidar actualizar la variable en un while, que repite mientras una condición sea verdadera. Traza un ciclo con n = 1: escribe el valor de i antes y después de cada vuelta. Si sólo necesitas contar o sumar, puedes procesar cada dato al leerlo sin guardar la lista completa.",
+        title: "Comprobar el inicio y la salida",
+        body: "Con i <= n harías una vuelta extra. En un while, olvidar el cambio de la variable puede impedir que la condición se vuelva falsa. Prueba n = 1 y anota el estado antes y después de la vuelta. Si solo necesitas una suma o un conteo, puedes procesar cada dato al leerlo sin guardar toda la lista.",
       },
     ],
     quiz: {
@@ -277,18 +277,18 @@ export const foundationLessons: Lesson[] = [
   {
     id: "arreglos",
     level: "fundamentos",
-    title: "Organiza datos con arreglos",
+    title: "Arreglos y posiciones",
     description:
-      "Guarda una colección y recórrela sin perderte en sus posiciones.",
+      "Guarda datos en un vector y recórrelos sin salir de sus posiciones válidas.",
     minutes: 20,
     sections: [
       {
-        title: "Una fila de casillas",
-        body: "Un vector guarda varios valores del mismo tipo. vector<int> a(n) crea n enteros. Sus índices van de 0 a n - 1: a[0] es el primero y a[n - 1] es el último. a[n] queda fuera del vector. Imagina cinco casillas con etiquetas 0, 1, 2, 3, 4 antes de escribir un acceso.",
+        title: "El tamaño y el último índice",
+        body: "vector<int> a(n) guarda n enteros. La primera posición es a[0] y la última a[n - 1]. Si hay cinco casillas, sus etiquetas son 0, 1, 2, 3 y 4; a[5] no existe. El índice indica dónde consultar, mientras que el contenido es el valor almacenado allí.",
       },
       {
-        title: "Encuentra el mayor",
-        body: "Lee los datos y recórrelos manteniendo el mayor valor visto hasta ahora. Inicializa mayor con el primer dato. Si usaras cero, fallarías en una lista como -8, -3, -5: la respuesta es -3 y el cero ni siquiera aparece. Este ejemplo supone n >= 1.",
+        title: "Guardar un máximo provisional",
+        body: "Para buscar el mayor, toma el primer dato como candidato y compáralo con cada valor posterior. Reemplázalo solo si encuentras uno mayor. Con -8, -3 y -5 termina en -3. Iniciar en cero daría una respuesta que ni siquiera pertenece a la lista. El programa supone n >= 1.",
         code: cpp(
           String.raw`    int n;
     cin >> n;
@@ -303,8 +303,8 @@ export const foundationLessons: Lesson[] = [
         ),
       },
       {
-        title: "Recuerda sólo lo necesario",
-        body: "Si únicamente quieres el máximo, puedes leer un dato, actualizarlo y olvidar ese dato. Guardar el vector conviene cuando lo recorrerás varias veces, ordenarás sus valores o necesitarás consultar posiciones. Elegir qué información conservar también es parte de diseñar una solución.",
+        title: "Cuándo conservar la lista",
+        body: "Si únicamente quieres el máximo, puedes mantener el candidato mientras lees y descartar cada dato anterior. Guardar el vector sirve si después necesitas ordenar, consultar posiciones o hacer otro recorrido. Elige según esas consultas: conservar más datos ocupa memoria, pero perderlos impide responder preguntas que dependan de ellos.",
       },
     ],
     quiz: {
@@ -319,17 +319,17 @@ export const foundationLessons: Lesson[] = [
   {
     id: "cadenas",
     level: "fundamentos",
-    title: "Trabaja con palabras",
-    description: "Explora textos carácter por carácter usando string.",
+    title: "Cadenas de caracteres",
+    description: "Lee palabras o líneas y recorre sus caracteres con string.",
     minutes: 16,
     sections: [
       {
-        title: "El texto también es una colección",
-        body: "Un string guarda una cadena de caracteres. Si palabra vale \"morelos\", palabra[0] es la letra 'm' y palabra.size() vale 7. Las comillas dobles representan una cadena; las simples, un carácter. Puedes recorrer una cadena igual que un vector.",
+        title: "Posiciones de una palabra",
+        body: "Si un string contiene \"morelos\", palabra[0] es el carácter m y palabra.size() vale siete. Las posiciones empiezan en cero, como en un vector. Las comillas dobles escriben una cadena y las simples un carácter. Podemos recorrer esa colección para contar letras o construir otro texto.",
       },
       {
-        title: "Cuenta lo que buscas",
-        body: 'El ciclo for (char letra : palabra) visita cada carácter. En este ejemplo contamos cuántas letras a aparecen. Sólo cuenta la a minúscula: las mayúsculas son caracteres diferentes. Si la entrada es "banana", la salida es 3.',
+        title: "Contar apariciones de una letra",
+        body: "for (char letra : palabra) recibe cada carácter de la cadena. El programa aumenta un contador cuando letra es a. Para banana encuentra tres. A mayúscula es otro carácter y no cumple esa comparación. La condición debe corresponder exactamente a las letras que pide contar el problema.",
         code: cpp(
           String.raw`    string palabra;
     cin >> palabra;
@@ -342,8 +342,8 @@ export const foundationLessons: Lesson[] = [
         ),
       },
       {
-        title: "Una palabra o una línea",
-        body: "cin >> palabra lee hasta el siguiente espacio. Para leer una línea completa puedes usar getline(cin, linea). Si antes leíste un número con cin, puede quedar un salto de línea pendiente; getline(cin >> ws, linea) descarta primero espacios iniciales. Úsalo cuando esos espacios no formen parte de los datos importantes.",
+        title: "Leer hasta un espacio o hasta el fin de línea",
+        body: "cin >> palabra lee una palabra, mientras que getline(cin, linea) conserva los espacios internos de la línea. Después de leer un número puede quedar pendiente un salto de línea. getline(cin >> ws, linea) consume primero los espacios iniciales; úsalo solo si esos espacios no pertenecen a la información que debes conservar.",
       },
     ],
     quiz: {
@@ -356,18 +356,18 @@ export const foundationLessons: Lesson[] = [
   {
     id: "funciones",
     level: "fundamentos",
-    title: "Divide y organiza con funciones",
+    title: "Funciones y resultados",
     description:
-      "Dale un nombre a una tarea y reutilízala con distintos datos.",
+      "Define una tarea, pásale sus datos y utiliza el resultado que devuelve.",
     minutes: 18,
     sections: [
       {
-        title: "Pequeñas tareas con nombre",
-        body: "Una función recibe parámetros, hace una tarea y puede devolver un resultado. Esto permite probar una parte sin releer todo el programa. bool esPar(int x) recibe un entero y devuelve verdadero o falso. El nombre de la función debe explicar qué calcula.",
+        title: "Una tarea que recibe un entero",
+        body: "bool esPar(int x) recibe un número y responde verdadero o falso según su paridad. Es una función: reúne instrucciones para una tarea y permite llamarlas con distintos datos. Su nombre y sus parámetros deben dejar claro qué calcula, para poder comprobarla sin recorrer todo el programa.",
       },
       {
-        title: "Define, llama y recupera",
-        body: "La función se define antes de usarla en este ejemplo. Cuando main llama esPar(numero), el valor de numero se copia en x. return devuelve el resultado y termina esa llamada. El return dentro de esPar no termina main.",
+        title: "Seguir una llamada",
+        body: "En este programa, esPar se define antes de main. Cuando main llama esPar(numero), el valor de numero se copia en x. La función calcula su respuesta y return la devuelve, terminando esa llamada. Después continúa main desde el lugar que usó el resultado; el return de esPar no termina todo el programa.",
         code: String.raw`#include <iostream>
 using namespace std;
 
@@ -383,8 +383,8 @@ int main() {
 }`,
       },
       {
-        title: "Haz explícito lo que necesita",
-        body: "Es más fácil comprender una función que recibe sus datos como parámetros que una que depende de muchas variables externas. Escribe qué espera y qué promete: «recibe un entero; devuelve si es par». El operador condición ? valorSiVerdadero : valorSiFalso del ejemplo es una forma corta de elegir entre dos valores.",
+        title: "Leer el contrato de la función",
+        body: "El contrato aquí es “recibe un entero y devuelve si es par”. Pasar los datos como parámetros hace visible esa dependencia. El ejemplo también usa condición ? valorSiVerdadero : valorSiFalso, que elige uno de dos valores. Esa elección usa la respuesta de esPar para decidir qué mostrar, sin confundir devolver con imprimir.",
       },
     ],
     quiz: {
@@ -396,27 +396,27 @@ int main() {
       ],
       answer: 1,
       explanation:
-        "return devuelve el control a donde se llamó la función. Sólo return en main finaliza normalmente el programa completo.",
+        "return termina la llamada actual y devuelve el control a quien la hizo. Puede entregar un resultado para seguir calculando. En main, return termina normalmente el programa.",
     },
   },
   {
     id: "pensar-en-algoritmos",
     level: "algoritmos",
     title: "De una idea a un algoritmo",
-    description: "Construye una solución clara y explica por qué funciona.",
+    description: "Define un procedimiento, comprueba qué mantiene y busca entradas que puedan refutarlo.",
     minutes: 18,
     sections: [
       {
-        title: "Empieza con una solución que entiendas",
-        body: "Antes de buscar una solución ingeniosa, describe una directa. Para saber si un número aparece en una lista, puedes recorrer toda la lista y comparar cada dato. Tal vez después exista una forma más rápida, pero la solución directa te da una base para pensar y comprobar.",
+        title: "Una solución que puedes comprobar",
+        body: "Para saber si aparece un número en una lista, recorre sus elementos y compara cada uno con el objetivo. Es una solución directa que permite comprobar casos pequeños. Si los límites exigen algo más rápido, úsala como referencia para revisar la nueva idea sin perder de vista qué respuesta debe producir.",
       },
       {
-        title: "Qué sabes después de cada paso",
-        body: "Una invariante es una afirmación que se mantiene durante un algoritmo. Al buscar el máximo, después de procesar i valores, mayor es el máximo entre esos i valores. Comprueba tres momentos: al empezar se cumple; al incorporar un dato sigue cumpliéndose; al terminar expresa exactamente la respuesta solicitada.",
+        title: "Lo que sigue siendo cierto tras cada vuelta",
+        body: "Al buscar el máximo, después de procesar i datos, mayor debe ser el máximo de esos i datos. Esa afirmación es una invariante. Comprueba que sea cierta al iniciar, que cada actualización la conserve y que al terminar exprese lo que pide el problema. Así justificas todas las vueltas, no solo una ejecución dibujada.",
       },
       {
-        title: "Prueba ideas con contraejemplos",
-        body: "Supón que quieres detectar números repetidos y sólo comparas vecinos. La lista 4, 7, 4 demuestra que esa idea falla: hay dos cuatros que no son vecinos. Un contraejemplo pequeño basta para descartar una idea, aunque funcione en muchos otros casos. Pregunta siempre qué tendría que pasar para que tu algoritmo se equivoque.",
+        title: "Una entrada que demuestra un fallo",
+        body: "Para detectar repetidos en una lista sin ordenar, comparar solo vecinos falla con 4, 7, 4. Los dos cuatros no quedan juntos. Ese contraejemplo basta para descartar la regla, aunque otras pruebas hayan pasado. Cuando una idea depende de una suposición, busca una entrada permitida que no la cumpla.",
       },
     ],
     quiz: {
@@ -436,21 +436,21 @@ int main() {
   {
     id: "complejidad",
     level: "algoritmos",
-    title: "¿Cuánto tarda tu idea?",
-    description: "Compara soluciones contando cómo crece su trabajo.",
+    title: "Tiempo y memoria de un algoritmo",
+    description: "Estima cómo crecen las operaciones y los datos guardados al aumentar la entrada.",
     minutes: 20,
     sections: [
       {
-        title: "El tamaño cambia todo",
-        body: "Llamamos n a la cantidad de datos. Un recorrido hace aproximadamente n pasos. Comparar cada elemento con todos los demás puede hacer aproximadamente n² pasos. Con n = 100000, hablamos de cien mil frente a diez mil millones. Una idea cómoda para cinco datos puede volverse inviable cuando crece la entrada.",
+        title: "Contar trabajo con el tamaño de entrada",
+        body: "Llamemos n a la cantidad de datos. Un recorrido hace unas n visitas; comparar cada dato con todos puede hacer n². Para cien mil elementos, son cien mil frente a diez mil millones. Los ejemplos pequeños ocultan esa diferencia, así que la estimación debe usar los límites máximos del problema.",
       },
       {
-        title: "Lee O como una forma de crecer",
-        body: "O(n) describe trabajo que crece proporcionalmente a n; O(n²), trabajo cuadrático. Dos recorridos consecutivos siguen siendo O(n), aunque hagan cerca de 2n operaciones. O(log n) suele aparecer cuando descartas la mitad de las opciones repetidamente. No son tiempos exactos en segundos: también importan la máquina, el lenguaje y cada operación.",
+        title: "Qué expresa la notación O",
+        body: "O(n) indica crecimiento lineal y O(n²), cuadrático. Dos recorridos consecutivos hacen cerca de 2n operaciones y siguen siendo O(n). Descartar aproximadamente media búsqueda cada vez suele dar O(log n). Estas expresiones no son segundos: el equipo, el lenguaje y el costo de cada operación también afectan el tiempo real.",
       },
       {
-        title: "Tiempo y memoria",
-        body: "Si guardas n enteros, usas O(n) memoria; si sólo conservas una suma y el dato actual, usas O(1) memoria adicional. Leer los límites del enunciado te ayuda a escoger una técnica. Antes de programar, anota tu costo esperado y comprueba que estás contando el trabajo de todos los ciclos, incluso los anidados.",
+        title: "Hacer una cuenta separada de memoria",
+        body: "Guardar n enteros usa O(n) memoria. Conservar solo una suma y el dato recién leído requiere O(1) espacio adicional. Revisa todo el procedimiento, incluidos los ciclos internos y los datos temporales. Una solución puede reducir tiempo a cambio de guardar información, por lo que conviene escribir ambas cuentas antes de elegirla.",
       },
     ],
     quiz: {
@@ -465,17 +465,17 @@ int main() {
   {
     id: "ordenamiento",
     level: "algoritmos",
-    title: "Pon los datos en orden",
-    description: "Usa sort y descubre qué preguntas se vuelven más fáciles.",
+    title: "Ordenamiento con sort",
+    description: "Ordena datos para consultar posiciones o comparar valores vecinos.",
     minutes: 20,
     sections: [
       {
-        title: "Una nueva forma de mirar la lista",
-        body: "Ordenar reúne los valores iguales y coloca los menores antes de los mayores. Después es sencillo localizar el mínimo, el máximo o el k-ésimo menor. Cambiar el orden es válido sólo cuando la posición original no es parte de lo que necesitas conservar; si lo es, guarda también los índices originales.",
+        title: "Lo que cambia al ordenar",
+        body: "Ordenar de menor a mayor coloca juntos los valores iguales. El primer dato es el mínimo, el último el máximo y cada posición permite consultar un valor por su rango. Si el problema también necesita las posiciones originales, guarda el índice junto a cada valor antes de cambiar el orden.",
       },
       {
-        title: "Ordena con la biblioteca",
-        body: "Incluye <algorithm> y usa sort(a.begin(), a.end()). El orden predeterminado es ascendente. Si k se cuenta desde uno, el k-ésimo elemento está en a[k - 1]. Los repetidos ocupan posiciones distintas: en 2, 2, 9, el segundo menor es 2.",
+        title: "La posición del k-ésimo menor",
+        body: "Con <algorithm>, sort(a.begin(), a.end()) ordena todo el vector de forma ascendente. Si k se cuenta desde uno, consulta a[k - 1]. Las copias de un valor ocupan posiciones diferentes: en 2, 2, 9, el segundo menor es dos. Debe cumplirse 1 <= k <= n antes de acceder.",
         code: cpp(
           String.raw`    int n, k;
     cin >> n >> k;
@@ -487,8 +487,8 @@ int main() {
         ),
       },
       {
-        title: "Lo que cuesta y lo que permite",
-        body: "sort realiza O(n log n) comparaciones. Una vez ordenado, puedes contar valores distintos comparando vecinos o buscar con búsqueda binaria. Incluye el costo de ordenar al analizar toda tu solución; el recorrido posterior no lo hace desaparecer.",
+        title: "Incluir el costo de ordenar",
+        body: "sort usa O(n log n) comparaciones. Después, contar valores distintos comparando vecinos cuesta O(n), y una búsqueda binaria cuesta O(log n). El costo previo no desaparece al añadir esas operaciones. Si solo necesitas hallar el máximo una vez, una vuelta de O(n) evita ordenar toda la lista.",
       },
     ],
     quiz: {
@@ -503,18 +503,18 @@ int main() {
   {
     id: "busqueda-binaria",
     level: "algoritmos",
-    title: "Busca descartando mitades",
+    title: "Búsqueda binaria en una lista ordenada",
     description:
-      "Encuentra un valor rápidamente cuando los datos están ordenados.",
+      "Mantén un intervalo de candidatos y descarta una mitad con cada comparación.",
     minutes: 25,
     sections: [
       {
-        title: "La pista está en el orden",
-        body: "Si buscas 17 y el elemento central vale 10, en una lista ascendente puedes descartar ese 10 y todo lo que queda a su izquierda. Si el central vale 25, puedes descartar la parte derecha. Cada comparación elimina aproximadamente la mitad de las opciones. Sin orden, ese descarte no sería válido.",
+        title: "Descartar una mitad con una comparación",
+        body: "Buscas diecisiete en una lista ascendente. Si el centro vale diez, también todos los datos a su izquierda son menores que diecisiete. Puedes descartarlos junto con ese diez. Si el centro vale veinticinco, descarta la derecha. El orden justifica cada descarte; sin él, no sabríamos qué valores contiene la otra mitad.",
       },
       {
-        title: "Mantén un intervalo de candidatos",
-        body: "Este ejemplo encuentra la primera posición con un valor mayor o igual que x. Usa el intervalo [izq, der), que incluye izq y excluye der. Si a[medio] es menor que x, la respuesta está después; en otro caso, medio todavía puede ser la respuesta. Al terminar, izq puede valer n si todos los datos eran menores.",
+        title: "Encontrar el primero que alcanza x",
+        body: "El programa encuentra la primera posición con valor mayor o igual que x. Mantiene [izq, der), incluyendo izq y excluyendo der. Si a[medio] < x, la respuesta debe ir después; si no, medio sigue siendo candidato. Al terminar, izq puede valer n, indicando que todos los elementos eran menores.",
         code: cpp(
           String.raw`    int n, x;
     cin >> n >> x;
@@ -533,8 +533,8 @@ int main() {
         ),
       },
       {
-        title: "Comprueba los extremos",
-        body: "Prueba un valor menor que todos, uno mayor que todos, uno repetido y uno que no existe entre dos elementos. La búsqueda tarda O(log n), pero leer la lista cuesta O(n). La biblioteca ofrece lower_bound para la misma idea de encontrar el primer elemento mayor o igual; entender el intervalo te ayuda a usarla correctamente.",
+        title: "Probar límites y contar comparaciones",
+        body: "Prueba un objetivo menor que todos, uno mayor, uno repetido y uno ausente entre dos valores. Cada comparación reduce el intervalo aproximadamente a la mitad, por eso la búsqueda cuesta O(log n); leer los datos sigue costando O(n). lower_bound ofrece esta misma consulta en la biblioteca. Verifica su resultado antes de usarlo como una posición existente.",
       },
     ],
     quiz: {
@@ -553,17 +553,17 @@ int main() {
   {
     id: "sumas-de-prefijos",
     level: "algoritmos",
-    title: "Suma una vez, responde muchas",
-    description: "Resuelve consultas de intervalos con sumas de prefijos.",
+    title: "Sumas de prefijos",
+    description: "Prepara sumas acumuladas para contestar intervalos con una resta.",
     minutes: 25,
     sections: [
       {
-        title: "Recuerda lo acumulado",
-        body: "Define pref[i] como la suma de los primeros i elementos. Entonces pref[0] = 0 y pref[i + 1] = pref[i] + a[i]. Para la lista 4, 2, 5, 1, los prefijos son 0, 4, 6, 11, 12. Hay n + 1 prefijos porque también guardamos la suma de cero elementos.",
+        title: "Preparar lo que se repite entre consultas",
+        body: "En 4, 2, 5 y 1 queremos responder varias sumas de intervalos. Recorrer cada intervalo puede repetir muchas adiciones. Guarda pref[i], la suma de los primeros i elementos: pref[0] = 0 y pref[i + 1] = pref[i] + a[i]. Obtenemos 0, 4, 6, 11 y 12. Hay n + 1 prefijos porque también representamos no tomar ningún elemento.",
       },
       {
-        title: "Quita lo que sobra",
-        body: "Si las posiciones del problema empiezan en uno y la consulta incluye L y R, la suma es pref[R] - pref[L - 1]. Para posiciones 2 a 3, calculas 11 - 4 = 7: quitas el primer elemento y conservas 2 + 5. Esta cancelación también funciona con números negativos.",
+        title: "Restar la parte anterior al intervalo",
+        body: "Con posiciones del problema desde uno e intervalo inclusivo [L,R], pref[R] contiene todo hasta R. pref[L - 1] contiene exactamente lo anterior a L. Al restarlos queda pref[R] - pref[L - 1]. Para posiciones dos a tres, 11 - 4 = 7, que corresponde a 2 + 5. La cancelación también funciona con negativos.",
         code: cpp(
           String.raw`    int n, q;
     cin >> n >> q;
@@ -582,8 +582,8 @@ int main() {
         ),
       },
       {
-        title: "Una inversión que se aprovecha",
-        body: "Preparar los prefijos cuesta O(n); cada consulta cuesta O(1). Para q consultas, el total es O(n + q). La memoria es O(n). Este método supone que los valores no cambian entre consultas: si modificas un dato, los prefijos posteriores dejan de representar las sumas actuales.",
+        title: "Cuándo compensa preparar los prefijos",
+        body: "Construir la tabla requiere O(n) tiempo y memoria. Cada consulta usa una resta, O(1), así que q consultas cuestan O(n + q) en total. La lista debe permanecer fija. Si modificas un elemento, todos los prefijos que lo incluyen pueden cambiar; la tabla anterior ya no representa las sumas de la lista actual.",
       },
     ],
     quiz: {
@@ -598,13 +598,13 @@ int main() {
   {
     id: "busqueda-exhaustiva",
     level: "olimpiada",
-    title: "Explora todas las posibilidades",
-    description: "Usa fuerza bruta cuando el espacio de opciones es pequeño.",
+    title: "Búsqueda exhaustiva",
+    description: "Genera todas las opciones permitidas y comprueba cuáles cumplen la condición.",
     minutes: 22,
     sections: [
       {
-        title: "Una solución directa también cuenta",
-        body: "La búsqueda exhaustiva revisa todas las opciones válidas y escoge las que sirven. Para contar parejas de números iguales, puedes revisar cada par de posiciones. Usa i < j para evitar contar una pareja dos veces o emparejar un elemento consigo mismo.",
+        title: "Revisar parejas de posiciones",
+        body: "Para contar parejas con valores iguales, podemos comparar cada par de casillas. Exige i < j: así no eliges una casilla consigo misma ni cuentas dos órdenes de la misma pareja. Este recorrido es una búsqueda exhaustiva porque considera todas las opciones permitidas antes de decidir cuáles sirven.",
         code: cpp(
           String.raw`    int n;
     cin >> n;
@@ -621,12 +621,12 @@ int main() {
         ),
       },
       {
-        title: "Cuenta antes de explorar",
-        body: "El programa revisa n(n - 1)/2 parejas y tarda O(n²). Para n = 100 puede ser una opción cómoda; para n = 200000 habría cerca de veinte mil millones de parejas. Elegir o no elegir cada uno de n objetos produce 2ⁿ subconjuntos: el crecimiento es todavía más rápido.",
+        title: "Cuántas opciones hay que revisar",
+        body: "El programa visita n(n - 1)/2 parejas, de modo que tarda O(n²). Para n = 100 son 4 950; para n = 200000, casi veinte mil millones. Si cada objeto puede elegirse o no, aparecen 2ⁿ subconjuntos. Cuenta ese espacio antes de añadir ciclos o ramas: la corrección por sí sola no garantiza que alcance el tiempo.",
       },
       {
-        title: "Un laboratorio para ideas más rápidas",
-        body: "Una solución lenta y correcta sirve para comprobar otra rápida con entradas pequeñas. También puede resolver subtareas con límites menores, cuando el concurso las ofrece. Conserva la explicación de por qué enumera todas las opciones sin duplicarlas: la fuerza bruta también necesita ser correcta.",
+        title: "Usar una solución pequeña como referencia",
+        body: "Una búsqueda lenta y correcta permite comprobar un método rápido con entradas pequeñas. También puede resolver subtareas de menor tamaño si el concurso las ofrece. Justifica que la enumeración cubre todas las opciones y no repite respuestas: revisar mucho no compensa una generación que dejó posibilidades fuera.",
       },
     ],
     quiz: {
@@ -644,22 +644,22 @@ int main() {
   {
     id: "voraces",
     level: "olimpiada",
-    title: "Elige con una estrategia voraz",
+    title: "Algoritmos voraces y argumentos de intercambio",
     description:
-      "Aprende cuándo una decisión local puede construir una solución óptima.",
+      "Comprueba cuándo una decisión local conserva una solución óptima.",
     minutes: 24,
     sections: [
       {
-        title: "Una decisión que no se deshace",
-        body: "Un algoritmo voraz toma una decisión conveniente y sigue adelante. Imagina que todos los talleres tienen el mismo valor, cada uno ocupa un intervalo de tiempo y quieres asistir a la mayor cantidad sin traslapes. Una estrategia correcta es elegir siempre el que termina primero entre los que todavía puedes tomar.",
+        title: "Elegir el taller que termina primero",
+        body: "Varios talleres ocupan intervalos de tiempo y todos cuentan igual. Queremos asistir a la mayor cantidad sin traslapes. Una regla voraz elige el que termina primero entre los compatibles y continúa sin deshacer esa elección. El procedimiento es corto; falta explicar por qué no pierde una selección mejor.",
       },
       {
-        title: "La razón importa más que la intuición",
-        body: "Si una solución óptima comienza con otro taller, puedes sustituirlo por el que termina primero. El nuevo taller deja al menos tanto tiempo libre como el anterior, así que los siguientes siguen cabiendo. Este argumento de intercambio justifica la primera elección; después repites el razonamiento con los talleres restantes.",
+        title: "Cambiar una solución sin empeorarla",
+        body: "Supón que una solución óptima empieza con otro taller. Sustituye ese primero por el que termina antes. Queda libre al menos el mismo tiempo, por lo que los talleres posteriores siguen cabiendo. El intercambio conserva su cantidad. Podemos repetir el razonamiento con las actividades compatibles que quedan después de la primera elección.",
       },
       {
-        title: "Una estrategia que parece buena puede fallar",
-        body: "Para pagar 6 con monedas de 1, 3 y 4, elegir siempre la mayor toma 4 + 1 + 1: tres monedas. Pero 3 + 3 usa dos. Por eso «toma lo más grande» no es una solución universal. Antes de confiar en una regla voraz, intenta construir un contraejemplo y explica por qué tu decisión conserva alguna solución óptima.",
+        title: "Una regla parecida puede fallar",
+        body: "Con monedas de uno, tres y cuatro, tomar la mayor primero paga seis con 4 + 1 + 1. Pero 3 + 3 utiliza solo dos monedas. La regla voraz no es universal: depende del problema y su objetivo. Antes de adoptarla, busca un contraejemplo y un argumento que conserve alguna solución óptima tras cada elección.",
       },
     ],
     quiz: {
@@ -678,18 +678,18 @@ int main() {
   {
     id: "programacion-dinamica",
     level: "olimpiada",
-    title: "Guarda respuestas pequeñas",
+    title: "Programación dinámica para monedas",
     description:
-      "Construye una solución grande a partir de subproblemas con programación dinámica.",
+      "Calcula mínimos para cantidades pequeñas y reutilízalos al resolver las siguientes.",
     minutes: 30,
     sections: [
       {
-        title: "Primero define qué significa tu tabla",
-        body: "Para monedas de 1, 3 y 4, define dp[s] como el mínimo número de monedas para pagar exactamente s. La respuesta inicial es dp[0] = 0. Si conocemos las cantidades menores, podemos decidir cuál conviene usar como último paso para llegar a s.",
+        title: "Qué guarda cada respuesta",
+        body: "Con monedas de uno, tres y cuatro, queremos pagar exactamente una cantidad usando el menor número de monedas. Define dp[s] como ese mínimo para s. dp[0] = 0 porque no hace falta ninguna moneda para pagar cero. Resolveremos cantidades crecientes para usar respuestas ya conocidas al calcular la siguiente.",
       },
       {
-        title: "Prueba cada última moneda",
-        body: "Si la última moneda vale c, antes debimos pagar s - c. Por eso la candidata es dp[s - c] + 1. Tomamos la menor entre todas las monedas que caben. Calculamos s en orden creciente para que cada respuesta necesaria esté lista. Una cantidad mayor que cualquier respuesta posible representa inicialmente «todavía no calculado».",
+        title: "Elegir la última moneda",
+        body: "Si la última moneda es c, antes pagamos s - c. Esa opción cuesta dp[s - c] + 1 monedas. Revisa todas las c que caben y toma el mínimo. El orden creciente asegura que las cantidades menores ya estén resueltas. Inicializa lo pendiente con un valor mayor que cualquier respuesta posible para que una opción válida lo reemplace.",
         code: cpp(
           String.raw`    int n;
     cin >> n;
@@ -706,8 +706,8 @@ int main() {
         ),
       },
       {
-        title: "Comprueba el significado con seis pesos",
-        body: "Las respuestas de 0 a 6 son 0, 1, 2, 1, 1, 2, 2. Para 6, la última moneda 3 permite usar dp[3] + 1 = 2. Toda solución termina con alguna moneda de la lista y el algoritmo revisa todas: por eso no pierde una opción mejor. Con tres denominaciones fijas, tiempo y memoria son O(n).",
+        title: "La cuenta para seis y su justificación",
+        body: "De cero a seis, la tabla vale 0, 1, 2, 1, 1, 2, 2. Para seis, elegir tres al final da dp[3] + 1 = 2. Toda solución termina con alguna moneda permitida y revisamos todas, así que no omitimos una respuesta mejor. Con tres denominaciones fijas, calcular hasta n usa O(n) tiempo y memoria.",
       },
     ],
     quiz: {
@@ -726,17 +726,17 @@ int main() {
   {
     id: "grafos",
     level: "olimpiada",
-    title: "Conecta ideas con grafos",
-    description: "Representa lugares y caminos; encuentra distancias con BFS.",
+    title: "Grafos y búsqueda en anchura",
+    description: "Representa conexiones y encuentra distancias cuando cada arista cuesta un paso.",
     minutes: 30,
     sections: [
       {
-        title: "Puntos y conexiones",
-        body: "Un grafo tiene vértices y aristas. Los vértices pueden representar salones y las aristas pasillos entre ellos. Si un pasillo se puede recorrer en ambas direcciones, añade cada extremo a la lista de vecinos del otro. La representación con listas de adyacencia guarda sólo las conexiones existentes.",
+        title: "Guardar los pasillos de un campus",
+        body: "Los salones serán vértices y los pasillos, aristas. Si puedes recorrer un pasillo en ambos sentidos, registra cada extremo entre los vecinos del otro. Esa lista de adyacencia guarda las conexiones existentes sin reservar una casilla para cada pareja de salones. El modelo debe conservar la dirección real de las conexiones.",
       },
       {
-        title: "Explora por capas",
-        body: "BFS, o búsqueda en anchura, usa una cola: lo primero que entra es lo primero que sale. Visita primero el origen, después los lugares a un paso, luego los de dos pasos. Si todas las aristas cuestan un paso, la primera distancia descubierta para cada vértice es la mínima.",
+        title: "Procesar primero las distancias menores",
+        body: "BFS, o búsqueda en anchura, usa una cola: lo que entra primero sale primero. Desde un origen, descubre lugares a un paso antes que los de dos, y así sucesivamente. Cuando todas las aristas cuestan un paso, la primera distancia descubierta es mínima, porque cualquier recorrido más corto habría llegado desde una capa anterior.",
         code: cpp(
           String.raw`    int n, m;
     cin >> n >> m;
@@ -766,8 +766,8 @@ int main() {
         ),
       },
       {
-        title: "Marca al descubrir",
-        body: "La distancia -1 significa «no visitado». Cámbiala cuando agregas un vértice a la cola para no agregarlo varias veces. Cada vértice se procesa una vez y cada arista se revisa por sus extremos: O(n + m). Si las aristas tienen costos diferentes, BFS ya no garantiza la ruta de menor costo.",
+        title: "Evitar visitas repetidas",
+        body: "Usamos distancia -1 para un vértice no descubierto. Al agregarlo a la cola, asigna su distancia; no esperes a sacarlo, porque otro vecino podría agregarlo otra vez. Cada vértice se procesa una vez y las aristas se revisan por sus extremos: O(n + m). Con costos distintos, pocas aristas no implican menor costo y esta garantía de BFS deja de servir.",
       },
     ],
     quiz: {
@@ -786,26 +786,26 @@ int main() {
   {
     id: "preparar-concurso",
     level: "olimpiada",
-    title: "Prepara tu día de olimpiada",
+    title: "Preparar y revisar un simulacro",
     description:
-      "Entrena cómo leer, repartir tu tiempo y aprender de cada intento.",
+      "Elige problemas, distribuye el tiempo y revisa las causas de los errores.",
     minutes: 15,
     sections: [
       {
-        title: "Lee primero el mapa completo",
-        body: "Al comenzar una práctica de concurso, revisa todos los problemas. Identifica cuáles entiendes, qué límites tienen y si hay subtareas. Empieza por una solución que puedas explicar y terminar. Si te atoras, escribe lo que sabes antes de cambiar de problema: será más fácil retomar después.",
+        title: "Elegir por dónde comenzar",
+        body: "Lee los problemas del ensayo y distingue qué entiendes, qué límites tienen y si ofrecen subtareas. Empieza por una solución que puedas explicar y completar. Si te detienes, escribe qué sabes y qué falta antes de cambiar de problema. Esa nota permite regresar sin rehacer la lectura ni perder la idea que ya tenías.",
       },
       {
-        title: "Un envío es una comprobación",
-        body: "Antes de enviar, revisa entrada y salida, tipos numéricos, índices y complejidad. Prueba el tamaño mínimo y una frontera importante. Si el resultado es incorrecto, busca un caso pequeño que contradiga tu programa. En un simulacro usa únicamente las herramientas permitidas por las reglas de esa práctica; las condiciones oficiales deben consultarse en la convocatoria vigente.",
+        title: "Comprobar antes de enviar",
+        body: "Revisa formato, tipos numéricos, posiciones válidas y cantidad de operaciones. Prueba el tamaño mínimo y un límite donde cambie la respuesta. Si falla, reduce la entrada hasta poder seguirla a mano. Durante un simulacro usa las herramientas acordadas; para un evento real, los recursos permitidos los establece su convocatoria vigente.",
       },
       {
-        title: "La bitácora convierte errores en progreso",
-        body: "Después de una sesión anota problema, idea, ayuda utilizada, error principal y siguiente intento. Vuelve a resolver una tarea difícil dos días después sin mirar tu código anterior. Si estudiaste la solución, cierra la explicación y reconstruye el argumento con tus palabras. Una pausa y dormir bien también ayudan a razonar mejor.",
+        title: "Registrar la causa del error",
+        body: "Después del intento, anota la idea, la ayuda usada, el fallo y una prueba que lo muestre. Dos días después, resuelve otra vez sin mirar el código. Si consultaste una solución, cierra la explicación y reconstruye el argumento. Deja también tiempo de descanso: revisar cansado puede ocultar errores que verías con una lectura posterior.",
       },
       {
-        title: "Tu siguiente paso",
-        body: "Al terminar esta ruta tendrás una base, no una lista cerrada de todo lo que puede aparecer en una olimpiada. Continúa con más problemas, árboles, recursión, dos punteros y nuevas formas de programación dinámica. Avanza cuando puedas explicar las ideas y adaptarlas a ejemplos nuevos, a tu ritmo y con apoyo de tu entrenador.",
+        title: "Decidir qué estudiar después",
+        body: "La ruta cubre herramientas, no todos los problemas que podrían aparecer. El siguiente tema debe responder a una necesidad concreta: representar un árbol, explorar decisiones con recursión, mantener dos punteros o definir un estado de programación dinámica. Comprueba primero que puedas explicar y adaptar las ideas previas; así sabrás qué parte del problema nuevo requiere atención.",
       },
     ],
     quiz: {
@@ -818,7 +818,7 @@ int main() {
       ],
       answer: 1,
       explanation:
-        "Reconstruir y recuperar la idea después te ayuda a distinguir comprender un algoritmo de reconocer su código.",
+        "Cerrar la explicación y reconstruirla obliga a recuperar cada decisión. Repetirla días después con otra entrada comprueba si puedes aplicar la idea sin tener el código delante.",
     },
   },
 ];
@@ -831,14 +831,14 @@ export const foundationProblems: Problem[] = [
     difficulty: "Inicial",
     topic: "Salida de datos",
     statement:
-      "Tu equipo está listo para su primera sesión. Escribe un programa que muestre el mensaje Hola, Morelos! para dar la bienvenida. Respeta la mayúscula, la coma, el espacio y el signo final.",
-    input: "Este problema no recibe datos de entrada.",
-    output: "Una línea con el texto exacto: Hola, Morelos!",
+      "Escribe un programa que muestre Hola, Morelos! en una línea. El mensaje debe conservar la mayúscula, la coma, el espacio y el signo final.",
+    input: "No se proporcionan datos de entrada.",
+    output: "Escribe una línea con Hola, Morelos!",
     sampleInput: "",
     sampleOutput: "Hola, Morelos!",
-    hint: "cout permite escribir texto. Coloca el mensaje entre comillas dobles.",
+    hint: "Escribe el texto entre comillas dobles en una instrucción cout.",
     explanation:
-      "No hay nada que leer ni calcular. Es suficiente imprimir el mensaje solicitado. El signo de apertura ¡ forma parte del título del problema, pero no de la salida.",
+      "Como el mensaje es fijo, no necesitas variables ni lecturas. cout escribe el texto entre comillas y un salto termina la línea. El signo inicial ¡ del título no pertenece al mensaje solicitado.",
     tests: [{ input: "", output: "Hola, Morelos!" }],
     starter: cpp("    // Escribe aquí tu mensaje de bienvenida."),
     solution: cpp(String.raw`    cout << "Hola, Morelos!" << '\n';`),
@@ -850,14 +850,14 @@ export const foundationProblems: Problem[] = [
     difficulty: "Inicial",
     topic: "Variables y suma",
     statement:
-      "Dos grupos llegan al entrenamiento: el primero trae a mochilas y el segundo trae b. ¿Cuántas mochilas llegaron en total?",
-    input: "Dos enteros a y b separados por un espacio. 0 ≤ a, b ≤ 1000.",
-    output: "Un entero: la cantidad total de mochilas.",
+      "Llegan dos grupos con a y b mochilas, respectivamente. Calcula cuántas mochilas trajeron entre los dos.",
+    input: "Recibe dos enteros a y b, con 0 ≤ a, b ≤ 1000, separados por un espacio.",
+    output: "Escribe el total de mochilas como un entero.",
     sampleInput: "12 9",
     sampleOutput: "21",
-    hint: "Guarda ambos números y suma sus valores.",
+    hint: "Cada mochila pertenece a uno de los dos grupos. ¿Qué operación junta ambas cantidades?",
     explanation:
-      "Cada mochila pertenece a uno de los dos grupos, por lo que el total es a + b. Para el ejemplo, 12 + 9 = 21. Tiempo O(1) y memoria O(1).",
+      "Lee a y b y calcula a + b. Con doce y nueve, la suma es veintiuno. Cada mochila se cuenta una vez, en el grupo que la trajo. Dos lecturas y una suma tienen tiempo O(1) y usan memoria O(1).",
     tests: [
       { input: "12 9", output: "21" },
       { input: "0 0", output: "0" },
@@ -876,15 +876,15 @@ export const foundationProblems: Problem[] = [
     difficulty: "Fácil",
     topic: "División y residuo",
     statement:
-      "En una actividad hay n estudiantes. Cada equipo debe tener exactamente k integrantes. Forma la mayor cantidad posible de equipos completos y calcula cuántos estudiantes quedan sin equipo.",
-    input: "Dos enteros n y k. 0 ≤ n ≤ 1000000 y 1 ≤ k ≤ 1000.",
+      "Hay n estudiantes y necesitas equipos de exactamente k integrantes. Forma tantos equipos completos como sea posible y cuenta también los estudiantes que quedan fuera.",
+    input: "Recibe n y k, con 0 ≤ n ≤ 1000000 y 1 ≤ k ≤ 1000.",
     output:
-      "Dos enteros separados por un espacio: equipos completos y estudiantes restantes.",
+      "Escribe el número de equipos completos y el de estudiantes restantes, en ese orden y separados por un espacio.",
     sampleInput: "23 5",
     sampleOutput: "4 3",
-    hint: "La división entera cuenta grupos completos; el operador % cuenta lo que sobra.",
+    hint: "Divide n entre k para contar equipos completos. El residuo indica los estudiantes que no completan otro.",
     explanation:
-      "La cantidad de equipos es n / k y el residuo es n % k. Con 23 estudiantes y equipos de 5, se usan 20 estudiantes y quedan 3. Tiempo O(1) y memoria O(1).",
+      "n / k cuenta los grupos completos y n % k obtiene el sobrante. Con veintitrés estudiantes y equipos de cinco, formas cuatro equipos que usan veinte; quedan tres estudiantes. El sobrante es menor que k, por lo que no alcanza para otro grupo. Tiempo O(1) y memoria O(1).",
     tests: [
       { input: "23 5", output: "4 3" },
       { input: "0 4", output: "0 0" },
@@ -904,14 +904,14 @@ export const foundationProblems: Problem[] = [
     difficulty: "Fácil",
     topic: "Condicionales",
     statement:
-      "En este ejercicio, un taller propone un reto de práctica: para desbloquear su siguiente actividad necesitas al menos 60 puntos. Dado tu puntaje p, indica si alcanzas esa meta. Esta regla pertenece al ejercicio y no representa un criterio de selección de la olimpiada.",
-    input: "Un entero p, con 0 ≤ p ≤ 100.",
-    output: "Imprime 1 si p es al menos 60. En otro caso, imprime 0.",
+      "Una actividad se abre al obtener al menos sesenta puntos. Recibes el puntaje p y debes indicar si cumple esa condición.",
+    input: "Recibe un entero p entre 0 y 100, incluidos.",
+    output: "Escribe 1 si p ≥ 60; escribe 0 en otro caso.",
     sampleInput: "60",
     sampleOutput: "1",
-    hint: "«Al menos» significa que el valor de la frontera también cuenta.",
+    hint: "Sesenta también debe aceptar la actividad. Elige una comparación que incluya la igualdad.",
     explanation:
-      "Comprueba p >= 60. Usar > en lugar de >= fallaría justamente para p = 60. Tiempo O(1) y memoria O(1).",
+      "La condición p >= 60 acepta el límite y todos los valores superiores. Para 59 escribe cero; para 60 y 61, uno. Usar > excluiría incorrectamente sesenta. La comparación tarda O(1) y usa memoria O(1).",
     tests: [
       { input: "60", output: "1" },
       { input: "59", output: "0" },
@@ -930,16 +930,16 @@ export const foundationProblems: Problem[] = [
     difficulty: "Fácil",
     topic: "Ciclos y conteo",
     statement:
-      "Llevas un registro de los minutos que practicaste durante n días. Tu meta diaria era practicar al menos k minutos. Cuenta cuántos días alcanzaste la meta; no es necesario que sean consecutivos.",
+      "Tienes los minutos de práctica de n días. Cuenta cuántos registran al menos k minutos. Los días contados no necesitan ser consecutivos.",
     input:
-      "La primera línea contiene n y k, con 1 ≤ n ≤ 100000 y 1 ≤ k ≤ 1440. La segunda contiene n enteros entre 0 y 1440: los minutos de cada día.",
+      "La primera línea contiene n y k, con 1 ≤ n ≤ 100000 y 1 ≤ k ≤ 1440. La siguiente contiene n enteros entre 0 y 1440, uno por día.",
     output:
-      "Un entero: la cantidad de días en los que practicaste al menos k minutos.",
+      "Escribe cuántos días tienen un registro mayor o igual que k.",
     sampleInput: "5 30\n20 45 30 0 60",
     sampleOutput: "3",
-    hint: "Empieza un contador en cero y aumenta uno cada vez que un dato sea mayor o igual que k.",
+    hint: "Empieza un contador en cero. Cada día que cumpla minutos >= k añade una unidad.",
     explanation:
-      "En el ejemplo alcanzaste la meta con 45, 30 y 60 minutos. Procesa cada dato una vez. El tiempo es O(n) y la memoria adicional O(1); no necesitas guardar todos los días.",
+      "Revisa cada duración una vez y aumenta el contador cuando alcance k. En el ejemplo cuentan 45, 30 y 60: son tres días. Tras procesar cada dato, el contador representa los días válidos entre los ya leídos. Tiempo O(n) y memoria adicional O(1), sin guardar la lista.",
     tests: [
       { input: "5 30\n20 45 30 0 60", output: "3" },
       { input: "1 1\n0", output: "0" },
@@ -964,15 +964,15 @@ export const foundationProblems: Problem[] = [
     difficulty: "Fácil",
     topic: "Arreglos y máximos",
     statement:
-      "Un equipo revisa n mediciones de temperatura de una estación de práctica. Encuentra la mayor medición. Los datos pueden ser negativos; son un conjunto de entrenamiento, no un reporte meteorológico real.",
+      "Recibes n temperaturas enteras, que pueden ser negativas. Encuentra el valor más alto de la lista.",
     input:
-      "La primera línea contiene n, con 1 ≤ n ≤ 100000. La segunda contiene n temperaturas enteras entre -100 y 100.",
-    output: "Un entero: la temperatura más alta de la lista.",
+      "La primera línea contiene n, con 1 ≤ n ≤ 100000. La siguiente contiene n temperaturas enteras entre −100 y 100.",
+    output: "Escribe la temperatura más alta como un entero.",
     sampleInput: "5\n18 24 21 28 23",
     sampleOutput: "28",
-    hint: "Inicia el máximo con el primer dato, no con cero. Después compáralo con los demás.",
+    hint: "Usa la primera temperatura como candidato y compárala con cada una de las siguientes. Cero puede no aparecer en la lista.",
     explanation:
-      "Mantén el mayor valor que has leído. Cuando llega una temperatura más alta, reemplázalo. Al terminar, has considerado todos los datos. Tiempo O(n) y memoria adicional O(1).",
+      "El primer dato es un candidato válido porque n es al menos uno. Reemplázalo cuando llegue uno mayor. Así conservas el máximo de las temperaturas leídas; al terminar es el de toda la lista. Inicializar en cero fallaría si todas fueran negativas. Tiempo O(n) y memoria adicional O(1).",
     tests: [
       { input: "5\n18 24 21 28 23", output: "28" },
       { input: "3\n-8 -3 -5", output: "-3" },
@@ -999,16 +999,16 @@ export const foundationProblems: Problem[] = [
     difficulty: "Intermedio",
     topic: "Ordenamiento",
     statement:
-      "Cada una de n personas resolvió un acertijo. Conoces los minutos que tardó cada una y quieres obtener el k-ésimo menor tiempo. Si dos personas tardaron lo mismo, sus tiempos ocupan dos posiciones distintas en la lista ordenada.",
+      "Conoces los tiempos de n personas y buscas el k-ésimo menor. Cuenta cada aparición: si dos personas tardaron lo mismo, sus tiempos ocupan dos posiciones en la lista ordenada.",
     input:
-      "La primera línea contiene n y k, con 1 ≤ k ≤ n ≤ 100000. La segunda contiene n tiempos enteros entre 1 y 1000000000.",
+      "La primera línea contiene n y k, con 1 ≤ k ≤ n ≤ 100000. La siguiente contiene n tiempos enteros entre 1 y 1000000000.",
     output:
-      "Un entero: el tiempo que ocupa la posición k al ordenar de menor a mayor.",
+      "Escribe el tiempo de la posición k después de ordenar de menor a mayor, contando desde uno.",
     sampleInput: "5 3\n18 9 12 9 25",
     sampleOutput: "12",
-    hint: "Ordena los tiempos con sort. Recuerda que el vector empieza en el índice cero.",
+    hint: "Ordena con sort y convierte la posición pedida al índice del vector, que cuenta desde cero.",
     explanation:
-      "Los tiempos ordenados son 9, 9, 12, 18, 25. La tercera posición contiene 12. En general, después de ordenar responde a[k - 1]. Tiempo O(n log n) y memoria O(n) para guardar la lista.",
+      "La muestra se ordena como [9,9,12,18,25], así que el tercer tiempo es doce. En general consulta a[k − 1] tras ordenar. Los límites garantizan que existe y los empates permanecen como apariciones separadas. El ordenamiento cuesta O(n log n); almacenar los datos usa O(n) memoria.",
     tests: [
       { input: "5 3\n18 9 12 9 25", output: "12" },
       { input: "1 1\n17", output: "17" },
@@ -1034,16 +1034,16 @@ export const foundationProblems: Problem[] = [
     difficulty: "Intermedio",
     topic: "Sumas de prefijos",
     statement:
-      "Tu bitácora contiene los minutos de práctica de n días. Un entrenador hace q consultas. En cada una quiere saber cuántos minutos practicaste desde el día L hasta el día R, incluyendo ambos. Los registros no cambian entre consultas.",
+      "Una lista fija guarda los minutos de práctica de n días. Recibes q consultas: cada una pide la suma desde el día L hasta el R, incluidos ambos. Los valores no cambian entre consultas.",
     input:
-      "La primera línea contiene n y q, con 1 ≤ n, q ≤ 100000. La segunda contiene n enteros entre 0 y 1440. Siguen q líneas con L y R, donde 1 ≤ L ≤ R ≤ n.",
+      "La primera línea contiene n y q, con 1 ≤ n, q ≤ 100000. Siguen n enteros entre 0 y 1440 y después q líneas con L y R, donde 1 ≤ L ≤ R ≤ n.",
     output:
-      "Por cada consulta, imprime en una línea la suma de minutos del intervalo solicitado.",
+      "Escribe la suma de cada consulta en una línea, en el orden recibido.",
     sampleInput: "5 3\n20 30 15 45 10\n2 4\n1 5\n3 3",
     sampleOutput: "90\n120\n15",
-    hint: "Guarda pref[i], la suma de los primeros i días. ¿Qué parte debes quitar de pref[R]?",
+    hint: "pref[R] suma desde el primer día hasta R. Identifica el prefijo que contiene los días anteriores a L.",
     explanation:
-      "La consulta 2 a 4 suma 30 + 15 + 45 = 90. Con pref[0] = 0, cada respuesta es pref[R] - pref[L - 1]. Preparar la tabla y contestar todo cuesta O(n + q), con O(n) memoria.",
+      "Define pref[0] = 0 y pref[i] como la suma de los primeros i días. Para [L,R], resta pref[L − 1] de pref[R]: quitas exactamente lo anterior a L. La consulta 2 a 4 suma 30 + 15 + 45 = 90. Preparación y consultas cuestan O(n + q), con O(n) memoria.",
     tests: [
       { input: "5 3\n20 30 15 45 10\n2 4\n1 5\n3 3", output: "90\n120\n15" },
       { input: "1 2\n0\n1 1\n1 1", output: "0\n0" },
@@ -1078,14 +1078,14 @@ export const foundationProblems: Problem[] = [
     difficulty: "Intermedio",
     topic: "Programación dinámica",
     statement:
-      "En un juego, las monedas tienen valores de 1, 3 y 4. Puedes usar tantas monedas de cada valor como necesites. Encuentra la menor cantidad de monedas con la que puedes pagar exactamente n. Si n es cero, no necesitas monedas.",
-    input: "Un entero n, con 0 ≤ n ≤ 100000.",
-    output: "Un entero: la mínima cantidad de monedas necesaria.",
+      "Dispones de monedas de valores 1, 3 y 4, sin límite de cantidad para cada valor. Calcula el menor número de monedas que suma exactamente n. Para n = 0, la respuesta es cero.",
+    input: "Recibe un entero n, con 0 ≤ n ≤ 100000.",
+    output: "Escribe el mínimo número de monedas necesario para sumar n.",
     sampleInput: "6",
     sampleOutput: "2",
-    hint: "Define dp[s] como el mínimo para pagar s. Prueba si conviene terminar con una moneda de 1, de 3 o de 4.",
+    hint: "Si la última moneda vale c, antes debías haber pagado s − c. Define dp[s] y compara las tres opciones que caben.",
     explanation:
-      "Para pagar 6 conviene 3 + 3. Elegir primero la moneda más grande produciría 4 + 1 + 1 y usaría una moneda extra. Usa dp[0] = 0 y dp[s] = mínimo de dp[s - c] + 1 para c en {1, 3, 4} con c ≤ s. Tiempo O(n) y memoria O(n).",
+      "Para seis, 3 + 3 usa dos monedas y mejora 4 + 1 + 1. Define dp[0] = 0. Para cada s, prueba c en {1,3,4} con c ≤ s y toma el menor dp[s − c] + 1. Toda solución termina en una de esas monedas, por lo que revisar las tres cubre el óptimo. Tiempo y memoria O(n).",
     tests: [
       { input: "6", output: "2" },
       { input: "0", output: "0" },
@@ -1117,16 +1117,16 @@ export const foundationProblems: Problem[] = [
     difficulty: "Avanzado",
     topic: "Grafos y BFS",
     statement:
-      "Un campus de práctica tiene n edificios numerados del 1 al n y m senderos. Cada sendero conecta dos edificios y se recorre en ambas direcciones. Todos cuentan como un paso. Encuentra el menor número de senderos que necesitas recorrer para ir del edificio 1 al edificio n. Si no existe una ruta, indica -1.",
+      "Un campus tiene n edificios numerados de 1 a n y m senderos que pueden recorrerse en ambos sentidos. Cada sendero cuenta como un paso. Encuentra el menor número de pasos del edificio 1 al n, o indica −1 si no existe ruta.",
     input:
-      "La primera línea contiene n y m, con 1 ≤ n ≤ 100000 y 0 ≤ m ≤ 200000. Siguen m líneas con dos edificios a y b, donde 1 ≤ a, b ≤ n y a ≠ b. No hay senderos repetidos.",
+      "La primera línea contiene n y m, con 1 ≤ n ≤ 100000 y 0 ≤ m ≤ 200000. Después hay m líneas a b, con 1 ≤ a, b ≤ n y a ≠ b. Ningún sendero se repite.",
     output:
-      "Un entero: la menor cantidad de senderos para llegar de 1 a n, o -1 si es imposible. Si n = 1, la respuesta es 0.",
+      "Escribe la distancia mínima de 1 a n, o −1 si no se puede llegar. Cuando n = 1, escribe 0.",
     sampleInput: "5 5\n1 2\n2 5\n1 3\n3 4\n4 5",
     sampleOutput: "2",
-    hint: "Explora el grafo por capas con una cola. Guarda la distancia de cada edificio cuando lo visitas por primera vez.",
+    hint: "Usa una cola para visitar primero los edificios a un paso, después a dos y así sucesivamente. Marca cada uno al insertarlo.",
     explanation:
-      "En el ejemplo, la ruta 1 → 2 → 5 usa dos senderos. BFS visita primero todos los edificios a un paso, luego los de dos y así sucesivamente. Marca cada edificio al agregarlo a la cola para evitar repetirlo. Tiempo y memoria O(n + m).",
+      "BFS comienza en uno con distancia cero y procesa por capas. Al descubrir un vecino, guarda la distancia actual más uno y márcalo antes de ponerlo en la cola. Su primera visita ofrece el menor número de aristas porque todos los senderos cuestan un paso. En la muestra, 1 → 2 → 5 usa dos. Tiempo y memoria O(n + m).",
     tests: [
       { input: "5 5\n1 2\n2 5\n1 3\n3 4\n4 5", output: "2" },
       { input: "1 0", output: "0" },

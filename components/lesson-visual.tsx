@@ -41,7 +41,7 @@ function Player({ animation }: { animation: (typeof lessonVisuals)[string] }) {
   },[playing,step,last,reduceMotion]);
   const go=(next:number)=>{setPlaying(false);setStep(Math.max(0,Math.min(last,next)));};
   return <figure className="lesson-visual" aria-labelledby={`${id}-title`}>
-    <figcaption className="visual-heading"><div><span className="visual-eyebrow">MÍRALO PASO A PASO</span><h3 id={`${id}-title`}>{animation.title}</h3></div><span className="visual-counter">{step+1} / {last+1}</span></figcaption>
+    <figcaption className="visual-heading"><div><h3 id={`${id}-title`}>{animation.title}</h3></div><span className="visual-counter">{step+1} / {last+1}</span></figcaption>
     <div className="visual-progress" aria-hidden="true">{animation.frames.map((_,i)=><span key={i} className={i<=step?"filled":""} />)}</div>
     {frame.nodes&&<svg className="visual-graph" viewBox="0 0 600 290" role="img" aria-labelledby={`${id}-diagram`}>
       <title id={`${id}-diagram`}>{frame.title}. {frame.nodes.map(n=>`${n.label}: ${n.value}`).join("; ")}</title>
@@ -65,6 +65,6 @@ function Player({ animation }: { animation: (typeof lessonVisuals)[string] }) {
       <button type="button" className="visual-next" onClick={()=>go(step+1)} disabled={step===last} aria-label="Paso siguiente de la animación"><span>Siguiente</span><ArrowRight size={16}/></button>
       <button type="button" className="visual-reset" onClick={()=>go(0)} aria-label="Reiniciar animación" title="Volver al primer paso"><RotateCcw size={15}/></button>
     </div>
-    <p className="visual-caption">{frame.nodes?"Azul: lo que estamos revisando. Los números debajo indican posiciones o distancias. ":""}{reduceMotion?"Avanza con los botones, a tu ritmo.":"Puedes avanzar a tu ritmo o reproducir un paso cada 5 segundos."}</p>
+    <p className="visual-caption">{frame.nodes?"Azul: lo que estamos revisando. Los números debajo indican posiciones o distancias. ":""}{reduceMotion?"Usa los botones para cambiar de paso.":"Usa los botones o reproduce un paso cada 5 segundos."}</p>
   </figure>;
 }

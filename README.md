@@ -54,17 +54,25 @@ Abre la dirección que indique Vite, normalmente `http://127.0.0.1:4173/`. Para 
 
 Cada lección reúne explicaciones en español, ejemplos trabajados, preguntas de comprensión y ejercicios locales con pistas progresivas y soluciones explicadas. Los capítulos de algoritmos desarrollan sus estados o invariantes, justificación, complejidad, límites y errores frecuentes. Los ejercicios de programación incluyen enunciado, formato de entrada y salida, solución completa en C++17 y casos publicados que se pueden comprobar en el navegador. Los temas de orientación y herramientas incluyen actividades de razonamiento o aplicación apropiadas a su contenido.
 
-La lectura principal está organizada en seis pasos cortos: una idea concreta, un ejemplo pequeño y preguntas con respuesta desplegable. Los esquemas muestran casillas, estados y tablas. Las animaciones de árboles de segmentos, búsqueda, prefijos, recorridos y otros procesos tienen avance manual, reproducción, pausa y reinicio; nunca arrancan solas y respetan la preferencia de movimiento reducido. Funcionan dentro del sitio, sin reproductores ni imágenes externas. El apartado «Quiero profundizar» conserva las demostraciones, fórmulas y programas completos, separados por tema para consultarlos cuando hagan falta.
+La lectura principal parte de una situación concreta, sigue con un ejemplo pequeño y explica el procedimiento con párrafos breves. Los encabezados nombran el contenido, sin imponer una plantilla de seis pasos. Las preguntas de comprensión permiten desplegar la respuesta. Los esquemas muestran casillas, estados y tablas. Las animaciones de árboles de segmentos, búsqueda, prefijos, recorridos y otros procesos tienen avance manual, reproducción, pausa y reinicio; nunca arrancan solas y respetan la preferencia de movimiento reducido. Funcionan dentro del sitio, sin reproductores ni imágenes externas. El apartado «Desarrollo técnico» reúne las demostraciones, fórmulas y programas completos, separados por tema para consultarlos cuando hagan falta.
 
 Las referencias se encuentran en un apartado opcional y no son un paso necesario para resolver los ejercicios locales. Los módulos sobre procesos de USACO y contribución a su sitio conservan su contexto y carácter opcional. La cobertura del índice organiza los temas; no implica reproducir cada problema o cada variante del material externo.
 
 La ruta permite buscar sin acentos, filtrar por avance, incluir u ocultar módulos opcionales y desplegar capítulos por etapa. Las especialidades avanzadas se pueden abrir libremente; los prerrequisitos son recomendaciones.
 
+## Criterio editorial
+
+Escribe como si le explicaras el tema a otra persona que está aprendiendo. Usa «tú», frases de longitud variada, verbos activos y vocabulario sencillo. Empieza con un caso cotidiano o un ejemplo pequeño que el lector pueda seguir. A partir de ese caso, explica qué hace el algoritmo, por qué funciona, cuánto cuesta y cuándo deja de servir. Presenta la notación después de explicar qué representa.
+
+Cada párrafo debe desarrollar una idea. Usa encabezados que describan el contenido cuando ayuden a orientarse; evita las plantillas repetidas, las frases motivacionales, el tono corporativo, las muletillas y los guiones largos. Las pistas deben ayudar a dar el siguiente paso y las soluciones deben explicar el razonamiento, no limitarse a repetir el código. Conserva los ejemplos visuales donde aclaren un proceso.
+
+Al editar, revisa la lectura principal, el desarrollo técnico, las preguntas, los diagramas, los enunciados, las pistas y las soluciones. Comprueba el texto final que compone `lib/curriculum.ts`, porque una lección puede reunir contenido de varios archivos. `tests/editorial.test.ts` detecta las expresiones prohibidas de forma explícita; esa prueba no sustituye la revisión de claridad y corrección técnica.
+
 ## Funcionamiento
 
 - Panel con siguiente lección, estadísticas reales, racha, meta semanal y accesos por etapa.
 - 169 lecciones y 340 ejercicios integrados de razonamiento y programación, con pistas progresivas y soluciones explicadas.
-- 10 retos originales adicionales con práctica de salida esperada, editor C++17 y comprobación de sus casos publicados.
+- 10 problemas originales adicionales con práctica de salida esperada, editor C++17 y comprobación de sus casos publicados.
 - Catálogo local de práctica por tema, desde Primeros pasos hasta Avanzado, con búsqueda y filtros por etapa.
 - Búsqueda global, apuntes por lección y perfil con meta semanal.
 - Laboratorio C++17 con editor, entrada, salida, diagnósticos, cancelación y borradores locales.
@@ -158,6 +166,6 @@ El índice curricular se basa en [USACO Guide](https://usaco.guide/), de Competi
 
 El compilador WebAssembly se basa en [binji/wasm-clang](https://github.com/binji/wasm-clang), con las adaptaciones y la versión de origen documentadas en `public/compiler/NOTICE` y `public/compiler/manifest.json`. Se conservan `public/compiler/LICENSE` y `public/compiler/LICENSE.llvm`; estas licencias de software son independientes de la licencia del material educativo.
 
-El logotipo, la mascota Entrenator y el favicon proceden del [sitio de la Olimpiada Morelense de Informática](https://www.omri.org.mx/). Sus archivos originales, fuentes y condiciones de atribución se documentan en [public/brand/ATTRIBUTION.md](public/brand/ATTRIBUTION.md). El rediseño conserva estos recursos y usa una paleta cobalto sobre superficies claras. La tipografía amplia y la composición toman como referencias visuales [Wickret, de Cuberto](https://wickret.cuberto.com/) y la navegación y jerarquía de [Linear](https://linear.app/), sin reutilizar sus recursos gráficos ni código. Las animaciones de entrada son breves y respetan el movimiento reducido; los procesos de las lecciones conservan sus controles manuales.
+El logotipo, la mascota Entrenator y el favicon proceden del [sitio de la Olimpiada Morelense de Informática](https://www.omri.org.mx/). Sus archivos originales, fuentes y condiciones de atribución se documentan en [public/brand/ATTRIBUTION.md](public/brand/ATTRIBUTION.md). El rediseño conserva estos recursos y usa una paleta cobalto sobre superficies claras. La composición toma como referencias visuales [Wickret, de Cuberto](https://wickret.cuberto.com/) y la navegación y jerarquía de [Linear](https://linear.app/), sin reutilizar sus recursos gráficos ni código. Las animaciones de entrada son breves y respetan el movimiento reducido; los procesos de las lecciones conservan sus controles manuales.
 
 Fuentes DM Sans y Manrope bajo SIL Open Font License, con licencias en `public/fonts/`. Iconos de Lucide.

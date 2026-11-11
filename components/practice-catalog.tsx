@@ -18,12 +18,12 @@ export default function PracticeCatalog() {
   return <div className="practice-library">
     <div className="practice-library-intro">
       <div className="practice-intro-icon"><Code2 size={25} /></div>
-      <div><span className="practice-kicker">DEL «LO ENTIENDO» AL «YA PUEDO»</span><h2>Una idea. Muchas formas de practicar.</h2><p>Empieza con un ejemplo, intenta resolverlo y descubre las pistas cuando las necesites. El editor de C++ está dentro de cada lección.</p></div>
+      <div><h2>Ejercicios por tema</h2><p>Cada tema incluye ejercicios de razonamiento y programación. Puedes consultar pistas, comparar tu solución y ejecutar el código dentro de la lección.</p></div>
       <div className="practice-total"><strong>{totalExercises}</strong><span>{totalExercises === 1 ? "ejercicio" : "ejercicios"} con solución</span></div>
     </div>
 
     <div className="practice-library-toolbar">
-      <div className="practice-library-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} aria-label="Buscar práctica por tema" placeholder="¿Qué quieres practicar hoy?" />{query && <button type="button" aria-label="Limpiar búsqueda de práctica" onClick={() => setQuery("")}><X size={15} /></button>}</div>
+      <div className="practice-library-search"><Search size={17} /><input value={query} onChange={(event) => setQuery(event.target.value)} aria-label="Buscar práctica por tema" placeholder="Buscar por tema…" />{query && <button type="button" aria-label="Limpiar búsqueda de práctica" onClick={() => setQuery("")}><X size={15} /></button>}</div>
       <select aria-label="Etapa de práctica" value={stage} onChange={(event) => setStage(event.target.value)}><option value="todos">Todas las etapas</option>{levels.filter((level) => modules.some((lesson) => lesson.level === level.id)).map((level) => <option key={level.id} value={level.id}>{level.title}</option>)}</select>
     </div>
     <div className="practice-results"><span aria-live="polite"><strong>{filtered.length}</strong> {filtered.length === 1 ? "tema" : "temas"}<span aria-hidden="true"> · </span>{filteredExercises} {filteredExercises === 1 ? "ejercicio" : "ejercicios"}</span>{(query || stage !== "todos") && <button type="button" onClick={reset}>Limpiar filtros<X size={12} /></button>}<span className="practice-help-note"><Lightbulb size={13} />Pistas y soluciones incluidas</span></div>

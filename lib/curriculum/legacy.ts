@@ -38,7 +38,7 @@ export const legacyLessons: Lesson[] = foundationLessons.map((l) => ({
   ...l,
   level: placement[l.id] || l.level,
   prerequisites: before[l.id] || [],
-  category: placement[l.id] ? "Puente al nivel" : "Lecciones esenciales",
+  category: placement[l.id] ? "Conceptos previos" : "Lecciones esenciales",
 }));
 const problemPlacement: Record<string, string> = {
   algoritmos: "bronce",
