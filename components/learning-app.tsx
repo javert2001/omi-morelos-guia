@@ -185,7 +185,7 @@ function Modal({
     </div>
   );
 }
-function CodeBlock({ code, fragment = false, input = "" }: { code: string; fragment?: boolean; input?: string }) {
+function CodeBlock({ code, fragment = false, input = "", language = "cpp" }: { code: string; fragment?: boolean; input?: string; language?: "cpp" | "text" | "bash" | "markdown" }) {
   const [copied, setCopied] = useState(false);
   const [editing, setEditing] = useState(false);
   const draftId =
@@ -202,9 +202,9 @@ function CodeBlock({ code, fragment = false, input = "" }: { code: string; fragm
     <>
       <div className="code-block">
         <div className="code-heading">
-          <span>{fragment ? "C++17 · Fragmento" : "C++17"}</span>
+          <span>{language === "cpp" ? (fragment ? "C++17 · Fragmento" : "C++17") : { text: "Texto", bash: "Terminal", markdown: "Markdown" }[language]}</span>
           <div className="code-actions">
-            {!fragment && <button
+            {!fragment && language === "cpp" && <button
               aria-expanded={editing}
               onClick={() => setEditing(!editing)}
             >
@@ -820,6 +820,7 @@ function LessonPage({
   const [note, setNote] = useState(progress.notes[lesson.id] || "");
   const [saved, setSaved] = useState(false);
   const done = progress.completedLessons.includes(lesson.id);
+  const guided = lesson.presentation === "walkthrough" || !!lesson.takeaway;
   const index = lessons.findIndex((l) => l.id === lesson.id);
   const next = lessons
     .slice(index + 1)
@@ -832,13 +833,13 @@ function LessonPage({
         Volver al temario
       </button>
       <div className="lesson-layout">
-        <article className={`lesson-article ${lesson.takeaway ? "guided-lesson" : ""} ${lesson.presentation === "walkthrough" ? "lesson-walkthrough" : ""}`}>
+        <article className={`lesson-article ${guided ? "guided-lesson" : ""} ${lesson.presentation === "walkthrough" ? "lesson-walkthrough" : ""}`}>
           <div className="eyebrow">
             {levels.find((l) => l.id === lesson.level)?.title} · LECCIÓN{" "}
             {index + 1}
           </div>
           <h1>{lesson.title}</h1>
-          {!lesson.takeaway&&<p className="lesson-description">{lesson.description}</p>}
+          {!guided&&<p className="lesson-description">{lesson.description}</p>}
           <div className="lesson-badges">
             <span>
               <Clock3 size={15} />
@@ -853,7 +854,7 @@ function LessonPage({
               <Pill>Por completar</Pill>
             )}
           </div>
-          {lesson.takeaway && <>
+          {guided && <>
             {lesson.presentation !== "walkthrough" && <p className="lesson-overview">{lesson.takeaway}</p>}
             {!!lesson.prerequisites?.length && <div className="lesson-prerequisite-links"><span>Antes de esta lección:</span>{lesson.prerequisites.map(id => {
               const previous=lessons.find(item=>item.id===id);
@@ -873,7 +874,7 @@ function LessonPage({
               </p>
             </div>
           )}
-          {!lesson.takeaway && !!lesson.objectives?.length && (
+          {!guided && !!lesson.objectives?.length && (
             <section className="lesson-objectives">
               <h2>Objetivos</h2>
               <ul>
@@ -894,7 +895,7 @@ function LessonPage({
               {s.diagram === "segment-max" && <SegmentTreeDiagram />}
               {s.visual&&<LessonAnimation key={`${lesson.id}:${i}`} visual={s.visual}/>}
               {s.example && <div className="exercise-sample"><div><strong>Entrada de ejemplo</strong><pre>{s.example.input}</pre></div><div><strong>Salida esperada</strong><pre>{s.example.output}</pre></div></div>}
-              {s.code && <CodeBlock code={s.code} fragment={s.codeKind === "fragment"} input={s.codeInput} />}
+              {s.code && <CodeBlock code={s.code} fragment={s.codeKind === "fragment"} input={s.codeInput} language={s.codeLanguage} />}
               {s.afterCode && <LessonParagraphs text={s.afterCode} formatted={lesson.presentation === "walkthrough"} />}
               {s.check&&<div className="lesson-check"><span>COMPRUEBA SI LO ENTENDISTE</span><p>{s.check.question}</p><details><summary>Ver la respuesta</summary><p>{s.check.answer}</p></details></div>}
             </section>
@@ -990,7 +991,7 @@ function LessonPage({
             {lesson.sections.map((section, i) => <button key={i} onClick={() => document.getElementById(`lesson-part-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" })}>{section.title}</button>)}
             {!!lesson.exercises?.length && <button className="contents-practice" onClick={() => document.getElementById("practica-local")?.scrollIntoView({ behavior: "smooth", block: "start" })}><Code2 size={16} /> {lesson.exercises.length} ejercicios con solución</button>}
           </nav>
-          {!lesson.takeaway && !!lesson.prerequisites?.length && (
+          {!guided && !!lesson.prerequisites?.length && (
             <section className="card prerequisites-card">
               <div className="eyebrow">
                 <Layers3 size={15} /> ANTES DE EMPEZAR

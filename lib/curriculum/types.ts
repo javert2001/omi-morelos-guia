@@ -19,6 +19,7 @@ export type LessonSection = {
   code?: string;
   /** A function or excerpt, explained in place rather than run on its own. */
   codeKind?: "fragment";
+  codeLanguage?: "cpp" | "text" | "bash" | "markdown";
   codeInput?: string;
   afterCode?: string;
   example?: { input: string; output: string };

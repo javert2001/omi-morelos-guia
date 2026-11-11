@@ -7,20 +7,13 @@ test('all 169 lessons have explanations, checks and valid diagrams',()=>{
   assert.equal(lessons.length,169);
   for(const lesson of lessons) {
     const walkthrough = lesson.presentation === 'walkthrough';
+    assert.ok(walkthrough, `${lesson.id}: the course uses the approved teaching format`);
     assert.ok(lesson.sections.length>=4,`${lesson.id}: focused sections`);
-    assert.ok(lesson.takeaway&&lesson.takeaway.length>20,`${lesson.id}: takeaway`);
-    if (!walkthrough) assert.ok((lesson.detailedSections?.length||0)>=6,`${lesson.id}: technical chapter preserved`);
-    else {
-      assert.equal(lesson.id, 'usaco-plat-segtree-ext', 'the new format is limited to the requested sample');
-      assert.ok(lesson.sections.some(s=>s.code && s.codeKind !== 'fragment'), 'runnable code belongs in the main explanation');
-    }
-    assert.ok(lesson.sections.some(s=>s.check),`${lesson.id}: comprehension check`);
-    const words=lesson.sections.reduce((count,section)=>count+section.body.split(/\s+/).length,0);
+    assert.equal(lesson.detailedSections, undefined, `${lesson.id}: teaching steps stay in the main reading flow`);
+    if (lesson.level !== 'general') assert.ok(lesson.sections.some(s=>s.code && s.codeKind !== 'fragment' && (!s.codeLanguage || s.codeLanguage === 'cpp')), `${lesson.id}: runnable code belongs in the main explanation`);
+    assert.ok(lesson.sections.some(s=>s.check) || lesson.quiz.question.trim(),`${lesson.id}: comprehension check`);
+    const words=lesson.sections.reduce((count,section)=>count+`${section.body} ${section.afterCode || ''}`.split(/\s+/).length,0);
     assert.ok(words>=180,`${lesson.id}: ${words} words`);
-    if (!walkthrough) {
-      assert.ok(lesson.sections.length<=8,`${lesson.id}: focused sections`);
-      assert.ok(words<=650,`${lesson.id}: ${words} words`);
-    }
     for(const section of lesson.sections) {
       for(const paragraph of [section.body, section.afterCode || ''].join('\n\n').split('\n\n'))assert.ok(paragraph.split(/\s+/).length<=90,`${lesson.id}: long paragraph`);
       if(section.visual)assert.ok(lessonVisuals[section.visual],`${lesson.id}: missing animation ${section.visual}`);

@@ -14,11 +14,12 @@ const failures=[];let examples=0,testCases=0,cached=0,executed=0;
 const solutions=[...problems.map(p=>({id:p.id,code:p.solution,tests:p.tests})),...lessons.flatMap(l=>(l.exercises||[]).flatMap(e=>e.code?[{id:`${l.id}/${e.id}`,code:e.code,tests:e.tests||[]}]:[]))];
 try{
   for(const lesson of lessons)for(const [index,section] of [...lesson.sections,...lesson.detailedSections||[]].entries()){
-    if(!section.code || section.codeKind === 'fragment')continue;examples++;
-    const key=hash(JSON.stringify([runtime,'compile',section.code]));
+    if(!section.code || section.codeKind === 'fragment' || (section.codeLanguage && section.codeLanguage !== 'cpp'))continue;examples++;
+    const sample=section.example||(section.codeInput!==undefined?lesson.sections.find(s=>s.example?.input===section.codeInput)?.example:undefined);
+    const key=hash(JSON.stringify(sample?[runtime,'case',section.code,sample.input,sample.output]:[runtime,'compile',section.code]));
     if(cache[key]){cached++;continue;}
-    const result=await compiler.run(section.code,'',{compileOnly:true,runMs:100});executed++;
-    if(!['success','runtime_error','output_limit'].includes(result.status))failures.push({id:`${lesson.id}-${index}`,status:result.status,error:result.compileOutput||result.message});
+    const result=await compiler.run(section.code,sample?.input||'',sample?{}:{compileOnly:true,runMs:100});executed++;
+    if(sample?(result.status!=='success'||!sameOutput(result.stdout,sample.output)):!['success','runtime_error','output_limit'].includes(result.status))failures.push({id:`${lesson.id}-${index}`,status:result.status,expected:sample?.output,actual:result.stdout,error:result.compileOutput||result.message});
     else cache[key]=true;
     if(executed%20===0)console.log(`Verified ${executed} executions; chapter ${lesson.id}`);
   }
