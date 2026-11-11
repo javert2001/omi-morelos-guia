@@ -854,7 +854,7 @@ function LessonPage({
             )}
           </div>
           {lesson.takeaway && <>
-            <p className="lesson-overview">{lesson.takeaway}</p>
+            {lesson.presentation !== "walkthrough" && <p className="lesson-overview">{lesson.takeaway}</p>}
             {!!lesson.prerequisites?.length && <div className="lesson-prerequisite-links"><span>Antes de esta lección:</span>{lesson.prerequisites.map(id => {
               const previous=lessons.find(item=>item.id===id);
               return previous?<button key={id} onClick={()=>openLesson(id)}>{previous.title}<ArrowUpRight size={12}/></button>:null;
