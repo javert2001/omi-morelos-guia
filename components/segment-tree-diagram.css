@@ -1,0 +1,21 @@
+.segment-tree-diagram { margin: 28px 0; padding: 20px; border: 1px solid #dce1ef; border-radius: 10px; background: #f8f9fc; }
+.segment-tree-diagram figcaption { margin-bottom: 20px; color: #394358; font-size: 15px; line-height: 1.65; }
+.segment-tree-scroll { overflow-x: auto; }
+.segment-tree-scroll:focus-visible { outline: 2px solid #3037df; outline-offset: 3px; }
+.segment-tree-diagram svg { display: block; width: 100%; min-width: 430px; }
+.segment-tree-diagram line { stroke: #a4acc1; stroke-width: 2; }
+.segment-tree-diagram rect { fill: #eeefff; stroke: #a3a8e4; stroke-width: 1.5; }
+.segment-tree-diagram rect.is-leaf { fill: #fff; stroke: #c8cedd; }
+.segment-tree-label { fill: #4c556d; font: 14px var(--study-sans, sans-serif); }
+.segment-tree-value { fill: #202854; font: 600 25px var(--study-mono, monospace); }
+.segment-tree-scroll-hint { display: none; }
+.lesson-walkthrough .lesson-section p code { padding: 2px 4px; background: #f0f2f8; border-radius: 4px; color: #272f59; font-size: .87em; overflow-wrap: anywhere; }
+.lesson-walkthrough .lesson-section .exercise-sample { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.lesson-walkthrough .exercise-sample > div { min-width: 0; }
+.lesson-walkthrough .exercise-sample strong { display: block; margin-bottom: 8px; font-size: 14px; }
+.lesson-walkthrough .exercise-sample pre { padding: 16px; border: 1px solid #dde2ec; border-radius: 8px; background: #f8f9fc; font: 15px/1.7 var(--study-mono, monospace); overflow: auto; }
+@media (max-width: 600px) {
+  .segment-tree-diagram { padding: 16px 12px; }
+  .segment-tree-scroll-hint { display: block; color: #626d82; font-size: 12px; margin: 10px 0 0; }
+  .lesson-walkthrough .lesson-section .exercise-sample { grid-template-columns: minmax(0, 1fr); }
+}

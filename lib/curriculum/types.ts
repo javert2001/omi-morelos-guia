@@ -17,6 +17,12 @@ export type LessonSection = {
   title: string;
   body: string;
   code?: string;
+  /** A function or excerpt, explained in place rather than run on its own. */
+  codeKind?: "fragment";
+  codeInput?: string;
+  afterCode?: string;
+  example?: { input: string; output: string };
+  diagram?: "segment-max";
   picture?: LessonPicture;
   check?: { question: string; answer: string };
   visual?: string;
@@ -36,6 +42,7 @@ export interface Lesson {
   sections: LessonSection[];
   detailedSections?: LessonSection[];
   takeaway?: string;
+  presentation?: "walkthrough";
   quiz: {
     question: string;
     options: string[];

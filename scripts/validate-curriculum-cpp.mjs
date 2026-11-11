@@ -13,7 +13,7 @@ if (modules.length) {
   const records = imported.flatMap(m=>Object.values(m).filter(v=>v && typeof v==='object').flatMap(v=>Object.entries(v)).filter(([,v])=>Array.isArray(v?.sections)));
   selected = [...new Map(records.map(([id,lesson])=>[id,{id,...lesson}])).values()];
 }
-const snippets = selected.flatMap(l=>[...l.sections,...l.detailedSections||[]].flatMap((s,i)=>s.code?[{id:`${l.id}-${i}`,code:s.code}]:[]));
+const snippets = selected.flatMap(l=>[...l.sections,...l.detailedSections||[]].flatMap((s,i)=>s.code && s.codeKind !== 'fragment'?[{id:`${l.id}-${i}`,code:s.code}]:[]));
 const solutions = [...(modules.length?[]:problems.map(p=>({id:p.id,code:p.solution,tests:p.tests}))), ...selected.flatMap(l=>(l.exercises||[]).flatMap(e=>e.code?[{id:`${l.id}/${e.id}`,code:e.code,tests:e.tests||[]}]:[]))];
 // The browser supplies this portable convenience header; macOS clang does not.
 await mkdir(join(directory,'bits'));

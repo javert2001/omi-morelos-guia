@@ -3,17 +3,26 @@ import assert from 'node:assert/strict';
 import {lessons} from '../lib/curriculum.ts';
 import {lessonVisuals} from '../lib/lesson-visuals.ts';
 
-test('all 169 lessons have a readable explanation and retain their technical chapter',()=>{
+test('all 169 lessons have explanations, checks and valid diagrams',()=>{
   assert.equal(lessons.length,169);
   for(const lesson of lessons) {
-    assert.ok(lesson.sections.length>=4&&lesson.sections.length<=8,`${lesson.id}: focused sections`);
+    const walkthrough = lesson.presentation === 'walkthrough';
+    assert.ok(lesson.sections.length>=4,`${lesson.id}: focused sections`);
     assert.ok(lesson.takeaway&&lesson.takeaway.length>20,`${lesson.id}: takeaway`);
-    assert.ok((lesson.detailedSections?.length||0)>=6,`${lesson.id}: technical chapter preserved`);
+    if (!walkthrough) assert.ok((lesson.detailedSections?.length||0)>=6,`${lesson.id}: technical chapter preserved`);
+    else {
+      assert.equal(lesson.id, 'usaco-plat-segtree-ext', 'the new format is limited to the requested sample');
+      assert.ok(lesson.sections.some(s=>s.code && s.codeKind !== 'fragment'), 'runnable code belongs in the main explanation');
+    }
     assert.ok(lesson.sections.some(s=>s.check),`${lesson.id}: comprehension check`);
     const words=lesson.sections.reduce((count,section)=>count+section.body.split(/\s+/).length,0);
-    assert.ok(words>=180&&words<=650,`${lesson.id}: ${words} words`);
+    assert.ok(words>=180,`${lesson.id}: ${words} words`);
+    if (!walkthrough) {
+      assert.ok(lesson.sections.length<=8,`${lesson.id}: focused sections`);
+      assert.ok(words<=650,`${lesson.id}: ${words} words`);
+    }
     for(const section of lesson.sections) {
-      for(const paragraph of section.body.split('\n\n'))assert.ok(paragraph.split(/\s+/).length<=90,`${lesson.id}: long paragraph`);
+      for(const paragraph of [section.body, section.afterCode || ''].join('\n\n').split('\n\n'))assert.ok(paragraph.split(/\s+/).length<=90,`${lesson.id}: long paragraph`);
       if(section.visual)assert.ok(lessonVisuals[section.visual],`${lesson.id}: missing animation ${section.visual}`);
       if(section.check)assert.ok(section.check.question.trim()&&section.check.answer.trim(),lesson.id);
       if(section.picture) {

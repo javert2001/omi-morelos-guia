@@ -14,7 +14,7 @@ test('all published explanations follow the explicit wording restrictions', () =
   for (const lesson of lessons) {
     add(lesson.id, [lesson.title, lesson.description, lesson.takeaway, ...(lesson.objectives || [])]);
     for (const [index, section] of [...lesson.sections, ...(lesson.detailedSections || [])].entries()) {
-      add(`${lesson.id}/section-${index}`, [section.title, section.body, section.check?.question, section.check?.answer, section.picture?.caption]);
+      add(`${lesson.id}/section-${index}`, [section.title, section.body, section.afterCode, section.check?.question, section.check?.answer, section.picture?.caption]);
       section.picture?.rows.forEach(row => add(`${lesson.id}/picture`, [row.label, ...row.values]));
     }
     add(`${lesson.id}/quiz`, [lesson.quiz.question, ...lesson.quiz.options, lesson.quiz.explanation]);

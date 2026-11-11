@@ -174,10 +174,10 @@ test("prerequisites resolve and form a directed acyclic graph", () => {
   }
   lessons.forEach((l) => visit(l.id));
 });
-test("code examples are complete C++ programs and each advanced lesson is marked optional", () => {
+test("runnable code examples are complete C++ programs and each advanced lesson is marked optional", () => {
   for (const l of lessons) {
     for (const s of [...l.sections, ...l.detailedSections || []])
-      if (s.code) assert.match(s.code, /\bmain\s*\(/, `${l.id}: ${s.title}`);
+      if (s.code && s.codeKind !== 'fragment') assert.match(s.code, /\bmain\s*\(/, `${l.id}: ${s.title}`);
     if (l.level === "avanzado") assert.equal(l.optional, true, l.id);
   }
 });

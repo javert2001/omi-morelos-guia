@@ -62,6 +62,7 @@ import PracticeCatalog from "./practice-catalog";
 import CppPlayground from "./cpp-playground";
 import LessonExercises from "./lesson-exercises";
 import LessonAnimation, { LessonDrawing } from "./lesson-visual";
+import SegmentTreeDiagram from "./segment-tree-diagram";
 import { guideIndex } from "@/lib/curriculum/source-index";
 import { legacyLevelAliases } from "@/lib/curriculum/levels";
 import { publicAsset } from "@/lib/public-asset";
@@ -184,7 +185,7 @@ function Modal({
     </div>
   );
 }
-function CodeBlock({ code }: { code: string }) {
+function CodeBlock({ code, fragment = false, input = "" }: { code: string; fragment?: boolean; input?: string }) {
   const [copied, setCopied] = useState(false);
   const [editing, setEditing] = useState(false);
   const draftId =
@@ -201,15 +202,15 @@ function CodeBlock({ code }: { code: string }) {
     <>
       <div className="code-block">
         <div className="code-heading">
-          <span>C++17</span>
+          <span>{fragment ? "C++17 · Fragmento" : "C++17"}</span>
           <div className="code-actions">
-            <button
+            {!fragment && <button
               aria-expanded={editing}
               onClick={() => setEditing(!editing)}
             >
               <Play size={13} />
               {editing ? "Cerrar editor" : "Probar código"}
-            </button>
+            </button>}
             <button
               onClick={async () => {
                 try {
@@ -234,6 +235,7 @@ function CodeBlock({ code }: { code: string }) {
         <CppPlayground
           key={draftId}
           initialCode={code}
+          initialInput={input}
           storageKey={draftId}
           title="Ejecutar ejemplo"
           compact
@@ -241,6 +243,14 @@ function CodeBlock({ code }: { code: string }) {
       )}
     </>
   );
+}
+
+function LessonParagraphs({ text, formatted = false }: { text: string; formatted?: boolean }) {
+  return <>{text.split("\n\n").map((paragraph, i) => <p key={i}>{formatted
+    ? paragraph.split(/(`[^`]+`|\*\*[^*]+\*\*)/g).map((part, j) => part.startsWith("`")
+      ? <code key={j}>{part.slice(1, -1)}</code>
+      : part.startsWith("**") ? <strong key={j}>{part.slice(2, -2)}</strong> : part)
+    : paragraph}</p>)}</>;
 }
 
 export default function LearningApp() {
@@ -822,7 +832,7 @@ function LessonPage({
         Volver al temario
       </button>
       <div className="lesson-layout">
-        <article className={`lesson-article ${lesson.takeaway ? "guided-lesson" : ""}`}>
+        <article className={`lesson-article ${lesson.takeaway ? "guided-lesson" : ""} ${lesson.presentation === "walkthrough" ? "lesson-walkthrough" : ""}`}>
           <div className="eyebrow">
             {levels.find((l) => l.id === lesson.level)?.title} · LECCIÓN{" "}
             {index + 1}
@@ -832,7 +842,7 @@ function LessonPage({
           <div className="lesson-badges">
             <span>
               <Clock3 size={15} />
-              {lesson.takeaway ? `${Math.max(2, Math.ceil(lesson.sections.reduce((n,s)=>n+s.body.split(/\s+/).length,0)/130))} min de lectura` : `${lesson.minutes} min de estudio`}
+              {lesson.takeaway && lesson.presentation !== "walkthrough" ? `${Math.max(2, Math.ceil(lesson.sections.reduce((n,s)=>n+s.body.split(/\s+/).length,0)/130))} min de lectura` : `${lesson.minutes} min de estudio`}
             </span>
             {done ? (
               <Pill>
@@ -879,12 +889,13 @@ function LessonPage({
           {lesson.sections.map((s, i) => (
             <section className="lesson-section" id={`lesson-part-${i}`} key={i}>
               <h2>{s.title}</h2>
-              {s.body.split("\n\n").map((p, j) => (
-                <p key={j}>{p}</p>
-              ))}
+              <LessonParagraphs text={s.body} formatted={lesson.presentation === "walkthrough"} />
               {s.picture&&<LessonDrawing picture={s.picture}/>}
+              {s.diagram === "segment-max" && <SegmentTreeDiagram />}
               {s.visual&&<LessonAnimation key={`${lesson.id}:${i}`} visual={s.visual}/>}
-              {s.code && <CodeBlock code={s.code} />}
+              {s.example && <div className="exercise-sample"><div><strong>Entrada de ejemplo</strong><pre>{s.example.input}</pre></div><div><strong>Salida esperada</strong><pre>{s.example.output}</pre></div></div>}
+              {s.code && <CodeBlock code={s.code} fragment={s.codeKind === "fragment"} input={s.codeInput} />}
+              {s.afterCode && <LessonParagraphs text={s.afterCode} formatted={lesson.presentation === "walkthrough"} />}
               {s.check&&<div className="lesson-check"><span>COMPRUEBA SI LO ENTENDISTE</span><p>{s.check.question}</p><details><summary>Ver la respuesta</summary><p>{s.check.answer}</p></details></div>}
             </section>
           ))}
